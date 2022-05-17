@@ -1,0 +1,12 @@
+{
+  "name": "wesdevpro",
+  "version": "1.0.0",
+  "description": "Personal website for outreach made for and by wesdevpro",
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": "https://github.com/wesdevpro/wesdevpro",
+  "author": "Wesley Ford @wesdevpro <wes@wesdev.pro> ",
+  "license": "MIT",
+  "private": true
+}

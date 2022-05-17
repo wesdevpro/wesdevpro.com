@@ -1,0 +1,11 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "wesdevpro backend server",
+  "main": "app.js",
+  "repository": "https://github.com/wesdevpro/wesdevpro",
+  "author": "Wesley Ford @wesdevpro <wes@wesdev.pro>",
+  "license": "MIT",
+  "private": true
+}
