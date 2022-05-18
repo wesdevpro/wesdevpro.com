@@ -38,12 +38,9 @@
          </div>
          <div class="level-right has-text-right-bottom">
             <strong class="has-text-right"
-               ><b>Contact</b><br />Wesley Ford<br /><email
-                  ><a href="mailto:wesleyford@ntohq.dev"
-                     >wesleyford@ntohq.dev</a
-                  ></email
-               ></strong
-            >
+               ><b>Contact</b><br />Wesley Ford<br />
+               <a href="mailto:wes@wesdev.pro"> wes@wesdev.pro </a>
+            </strong>
          </div>
       </div>
    </footer>
@@ -61,6 +58,9 @@ export default {}
       text-align: center;
       margin-top: 10px;
       margin-bottom: 10px;
+   }
+   svg {
+      height: 64px;
    }
 }
 </style>

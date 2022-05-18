@@ -65,5 +65,5 @@ export default {
       port: 4000,
    },
    build: {},
-   target: 'static'
+   target: 'static',
 }
