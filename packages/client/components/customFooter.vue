@@ -9,7 +9,7 @@
                         <a href="https://github.com/ntohq">
                            <font-awesome-icon
                               class="fa-4x mx-1"
-                              style="color: #6e5494"
+                              style="color: #6e5494; height: 48px"
                               :icon="['fab', 'github-square']"
                            />
                         </a>
@@ -20,6 +20,7 @@
                         >
                            <font-awesome-icon
                               class="has-text-info fa-4x"
+                              style="height: 48px"
                               :icon="['fab', 'linkedin']"
                            />
                         </a>
@@ -58,9 +59,6 @@ export default {}
       text-align: center;
       margin-top: 10px;
       margin-bottom: 10px;
-   }
-   svg {
-      height: 64px;
    }
 }
 </style>
