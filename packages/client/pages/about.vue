@@ -1,0 +1,88 @@
+<template>
+   <div style="display: flex; flex-direction: column">
+      <section class="section content-wrapper" style="flex: 1">
+         <article class="wrapper-content pl-2">
+            <h1 class="title is-4">Quick Summary</h1>
+            <p>
+               I'm a student studying for my bachelor's in computer science at
+               Pensacola Christain College. Currently, I'm freelancing in web
+               design. Over the summer, I will continue to develop my projects.
+            </p>
+         </article>
+         <div class="card wrapper-content">
+            <div class="card-image">
+               <figure class="image is-3by3">
+                  <img
+                     src="https://bulma.io/images/placeholders/1280x960.png"
+                     alt="Placeholder image"
+                  />
+               </figure>
+            </div>
+            <div class="card-content">
+               <p>This is a test</p>
+            </div>
+         </div>
+      </section>
+      <section class="section" style="flex: 2">
+         <div>
+            <a href="/resume.pdf">
+               <b-button> My Resume </b-button>
+            </a>
+         </div>
+      </section>
+   </div>
+</template>
+
+<script>
+export default {
+   head: {
+      title: 'About Me',
+      meta: [
+         { charset: 'utf-8' },
+         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+         {
+            hid: 'description',
+            name: 'description',
+            content: 'my website description',
+         },
+      ],
+   },
+}
+</script>
+
+<style lang="scss">
+.content-wrapper {
+   display: flex;
+   flex-direction: row;
+   padding: 0 50px 0 50px;
+   margin-top: 10px;
+}
+
+.wrapper-content {
+   margin: 0 auto 0 auto;
+   flex: 1;
+   padding: 10px;
+}
+
+article.wrapper-content {
+   margin: 0 auto 0 10px;
+   text-align: left;
+}
+
+div.wrapper-content {
+   margin: 0 10px 0 auto;
+   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+   .content-wrapper {
+      flex-direction: column;
+   }
+
+   div.wrapper-content,
+   article.wrapper-content .wrapper-content {
+      margin: 10px 0 10px 0;
+      text-align: center;
+   }
+}
+</style>
