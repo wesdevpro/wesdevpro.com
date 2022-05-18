@@ -5,7 +5,7 @@
             <div class="level-item">
                <div style="display: flex; flex-direction: row">
                   <div style="flex: 1" class="mx-1">
-                     <a href="https://github.com/ntohq">
+                     <a href="https://github.com/ntohq" style="height: 48px">
                         <font-awesome-icon
                            class="fa-4x mx-1"
                            style="color: #6e5494"
@@ -16,6 +16,7 @@
                   <div style="flex: 1" class="mx-1">
                      <a
                         href="https://www.linkedin.com/in/wesley-ford-developer"
+                        style="height: 48px"
                      >
                         <font-awesome-icon
                            class="has-text-info fa-4x"
@@ -57,9 +58,8 @@ export default {}
       margin-top: 10px;
       margin-bottom: 10px;
    }
-
-   svg {
-      height: 48px !important;
+   font-awesome-icon {
+      height: 48px;
    }
 }
 </style>
