@@ -3,7 +3,7 @@
       <h2 class="title is-2">Welcome</h2>
       <div class="media box" style="z-index: 1">
          <figure class="image is-48x48 media-left">
-            <img class="is-rounded" src="@/assets/logo.png" />
+            <img class="is-rounded" src="@/assets/wesdevpro-logo.png" />
          </figure>
          <p class="media-content" style="text-indent: 1em">
             Oh, hey there! You've found my website! Here I showcase my projects,
