@@ -58,8 +58,8 @@ export default {}
       margin-top: 10px;
       margin-bottom: 10px;
    }
-   font-awesome-icon {
-      height: 48px;
-   }
+}
+font-awesome-icon {
+   height: 48px;
 }
 </style>
