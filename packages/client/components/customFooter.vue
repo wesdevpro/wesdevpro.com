@@ -59,7 +59,7 @@ export default {}
       margin-bottom: 10px;
    }
 }
-font-awesome-icon {
+svg {
    height: 48px;
 }
 </style>
