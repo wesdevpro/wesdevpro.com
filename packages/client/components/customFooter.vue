@@ -5,7 +5,7 @@
             <div class="level-item">
                <div style="display: flex; flex-direction: row">
                   <div style="flex: 1" class="mx-1">
-                     <a href="https://github.com/ntohq">
+                     <a href="https://github.com/wesdevpro">
                         <font-awesome-icon
                            class="fa-4x mx-1"
                            style="color: #6e5494"
