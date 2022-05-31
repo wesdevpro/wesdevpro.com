@@ -16,7 +16,9 @@
     "@nuxt/content": "^1.14.0",
     "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/robots": "^2.5.0",
+    "@nuxtjs/svg": "^0.4.0",
     "core-js": "^3.8.3",
+    "kute.js": "^2.2.2",
     "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.4",
     "sass-loader": "10.1.1"
@@ -35,5 +37,8 @@
     "pug-plain-loader": "^1.1.0",
     "sass": "^1.51.0",
     "sass-loader": "10.1.1"
-  }
+  },
+  "eslintIgnore": [
+    "util/kute.js"
+  ]
 }

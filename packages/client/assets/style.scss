@@ -23,11 +23,11 @@ $primary-light: findLightColor($primary);
 $primary-dark: findDarkColor($primary);
 $primary-invert: findColorInvert($primary);
 // Navbar Styles
-$navbar-item-color: $primary;
-$navbar-item-hover-color: #26CFD9;
+$navbar-item-color: #3b3b3b;
+$navbar-item-hover-color: #96BBCA;
 $navbar-item-hover-background-color: #fcfcfc;
 $navbar-burger-color: $primary;
-$scheme-invert: #00699C;
+$scheme-invert: #004571;
 $navbar-padding-vertical: 3rem;
 $navbar-padding-horizontal: 3rem;
 // Footer Styles

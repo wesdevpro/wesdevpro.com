@@ -9,18 +9,8 @@
                design. Over the summer, I will continue to develop my projects.
             </p>
          </article>
-         <div class="card wrapper-content">
-            <div class="card-image">
-               <figure class="image is-3by3">
-                  <img
-                     src="https://bulma.io/images/placeholders/1280x960.png"
-                     alt="Placeholder image"
-                  />
-               </figure>
-            </div>
-            <div class="card-content">
-               <p>This is a test</p>
-            </div>
+         <div class="wrapper-content">
+            <my-animation id="my-animation"></my-animation>
          </div>
       </section>
       <section class="section" style="flex: 2">
@@ -34,7 +24,13 @@
 </template>
 
 <script>
+import KUTE from 'kute.js'
+import myAnimation from '~/assets/wesdevpro-animation.svg?inline'
+
 export default {
+   components: {
+      myAnimation,
+   },
    head: {
       title: 'About Me',
       meta: [
@@ -46,6 +42,18 @@ export default {
             content: 'my website description',
          },
       ],
+   },
+   mounted() {
+      KUTE.fromTo(
+         '#blob2',
+         { path: '#blob2' },
+         { path: '#blob1' },
+         {
+            duration: 3000,
+            repeat: 999,
+            yoyo: true,
+         }
+      ).start()
    },
 }
 </script>
@@ -74,6 +82,10 @@ div.wrapper-content {
    text-align: center;
 }
 
+#my-animation {
+   height: 70%;
+}
+
 @media screen and (max-width: 768px) {
    .content-wrapper {
       flex-direction: column;
@@ -83,6 +95,21 @@ div.wrapper-content {
    article.wrapper-content .wrapper-content {
       margin: 10px 0 10px 0;
       text-align: center;
+   }
+}
+
+@media screen and (max-width: 1400px) {
+   #my-animation {
+      display: none;
+   }
+
+   .content-wrapper div {
+      display: none;
+   }
+
+   .content-wrapper article {
+      text-align: center;
+      margin: auto;
    }
 }
 </style>

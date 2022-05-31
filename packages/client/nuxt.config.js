@@ -9,6 +9,16 @@ export default {
          { charset: 'utf-8' },
          { name: 'viewport', content: 'width=device-width, initial-scale=1' },
          { hid: 'description', name: 'description', content: '' },
+         {
+            name: 'theme-color',
+            content: 'rgb(0, 69, 113)',
+            media: '(prefers-color-scheme: dark)',
+         },
+         {
+            name: 'theme-color',
+            content: 'rgb(150, 187, 202)',
+            media: '(prefers-color-scheme: dark)',
+         },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
    },
@@ -19,7 +29,7 @@ export default {
    // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
    plugins: [],
 
-   // Auto import components: https://go.nuxtjs.dev/config-components
+   // Auto import components: https://go.nu     xtjs.dev/config-components
    components: true,
 
    // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
@@ -27,6 +37,7 @@ export default {
       // https://go.nuxtjs.dev/eslint
       '@nuxtjs/eslint-module',
       '@nuxtjs/fontawesome',
+      '@nuxtjs/svg',
    ],
 
    // Modules: https://go.nuxtjs.dev/config-modules

@@ -1,8 +1,8 @@
 <template>
    <b-navbar class="my-2">
       <template #brand>
-         <b-navbar-item tag="router-link" :to="{ path: '/' }" class="mx-4">
-            <img src="../assets/logoName.png" alt="ntohq namebrand logo" />
+         <b-navbar-item tag="router-link" :to="{ path: '/' }" class="mx-2">
+            <img src="../assets/full-logo.png" alt="ntohq namebrand logo" />
          </b-navbar-item>
       </template>
       <template #start class="has-text-centered">
@@ -47,9 +47,26 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 b-navbar-item {
    border-radius: 10px;
-   background: #088f04;
+}
+
+a {
+   text-decoration: underline 0.15em rgba(255, 255, 255, 0);
+   transition: text-decoration-color 600ms;
+}
+
+a:hover {
+   text-decoration-color: rgb(150, 187, 202);
+   text-underline-offset: 0.4em;
+}
+
+img {
+   height: 120%;
+}
+
+nav {
+   min-height: 5rem;
 }
 </style>
