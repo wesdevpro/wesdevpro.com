@@ -27,12 +27,16 @@
             </div>
          </div>
          <div class="level-center has-text-centered">
-            <b-image
-               :src="require('@/assets/me.jpg')"
-               rounded="rounded"
-               style="display: block; margin-left: auto; margin-right: auto"
+            <img
+               src="../assets/full-logo.png"
+               style="
+                  display: block;
+                  margin-left: auto;
+                  margin-right: auto;
+                  max-width: 65%;
+               "
                class="is-128x128"
-            ></b-image>
+            />
          </div>
          <div class="level-right has-text-right-bottom">
             <strong class="has-text-right"
