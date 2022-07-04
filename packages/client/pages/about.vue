@@ -19,6 +19,7 @@
                <b-button> My Resume </b-button>
             </a>
          </div>
+         <expertise></expertise>
       </section>
    </div>
 </template>
@@ -26,10 +27,12 @@
 <script>
 import KUTE from 'kute.js'
 import myAnimation from '~/assets/wesdevpro-animation.svg?inline'
+import expertise from '@/components/myTools.vue'
 
 export default {
    components: {
       myAnimation,
+      expertise,
    },
    head: {
       title: 'About Me',
