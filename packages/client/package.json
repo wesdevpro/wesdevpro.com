@@ -21,7 +21,8 @@
     "kute.js": "^2.2.2",
     "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.4",
-    "sass-loader": "10.1.1"
+    "sass-loader": "10.1.1",
+    "typed.js": "^2.0.12"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^5.0.0",

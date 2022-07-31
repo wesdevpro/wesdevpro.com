@@ -6,7 +6,9 @@
             <p>
                I'm a student studying for my bachelor's in computer science at
                Pensacola Christain College. Currently, I'm freelancing in web
-               design. Over the summer, I will continue to develop my projects.
+               design. Over the summer, I will continue to develop my projects
+               to further develop my skills and improve the open source
+               community.
             </p>
          </article>
          <div class="wrapper-content">
@@ -14,12 +16,14 @@
          </div>
       </section>
       <section class="section" style="flex: 2">
-         <div>
+         <div class="has-text-centered">
             <a href="/resume.pdf">
-               <b-button> My Resume </b-button>
+               <b-button style="background-color: #0365a1">
+                  <b>My Resume</b>
+               </b-button>
             </a>
          </div>
-         <expertise></expertise>
+         <expertise style="margin-top: 5%"></expertise>
       </section>
    </div>
 </template>
