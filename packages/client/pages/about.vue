@@ -39,14 +39,14 @@ export default {
       expertise,
    },
    head: {
-      title: 'About Me',
+      title: 'About Me - wesdevpro',
       meta: [
          { charset: 'utf-8' },
          { name: 'viewport', content: 'width=device-width, initial-scale=1' },
          {
             hid: 'description',
             name: 'description',
-            content: 'my website description',
+            content: "wesdevpro's personal website - About Me Page!",
          },
       ],
    },
