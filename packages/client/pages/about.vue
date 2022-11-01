@@ -18,8 +18,8 @@
       <section class="section" style="flex: 2">
          <div class="has-text-centered">
             <a href="/resume.pdf">
-               <b-button style="background-color: rgb(189 213 220)">
-                  <b style="color: #003f6a">My Resume</b>
+               <b-button>
+                  <b>My Resume</b>
                </b-button>
             </a>
          </div>

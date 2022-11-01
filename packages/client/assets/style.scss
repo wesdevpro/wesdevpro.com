@@ -22,6 +22,8 @@ $primary: #2d2d2a;
 $primary-light: findLightColor($primary);
 $primary-dark: findDarkColor($primary);
 $primary-invert: findColorInvert($primary);
+$button-color: #003f6a !important;
+$button-background-color: rgb(189 213 220) !important;
 // Navbar Styles
 $navbar-item-color: #3b3b3b;
 $navbar-item-hover-color: #96BBCA;

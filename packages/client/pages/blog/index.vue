@@ -33,6 +33,7 @@
                      tag="router-link"
                      :to="'/blog/' + listItems.slug"
                      type="is-link"
+                     class="button"
                   >
                      Read More
                   </b-button>
