@@ -1,6 +1,7 @@
 backend:
   name: github
   repo: wesdevpro/wesdevpro
+  branch: main
 
 media_folder: static/img
 public_folder: /img
@@ -8,14 +9,16 @@ public_folder: /img
 collections:
   - name: 'blog'
     label: 'Blog'
-    folder: 'content/articles'
+    folder: '/packages/client/content/articles'
     format: 'frontmatter'
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    slug: '{{title}}-{{slug}}'
     editor:
       preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Pexel Image', name: 'img', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'date' }
-      - { label: 'Description', name: 'description', widget: 'string' }
+      - { label: 'Category', name: 'category', widget: 'string' }
+      - { label: 'Description', name: 'clentcher', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
