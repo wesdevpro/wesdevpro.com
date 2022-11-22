@@ -76,7 +76,7 @@ export default {
       },
    },
    publicRuntimeConfig: {
-      myEmail: 'wes@' + process.env.URL.substring(8) || 'wes@wesdev.pro',
+      myEmail: 'wes@' + process.env.URL.substring(12) || 'wes@wesdev.pro',
    },
    server: {
       port: 4000,
