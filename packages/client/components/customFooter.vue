@@ -41,7 +41,9 @@
          <div class="level-right has-text-right-bottom">
             <strong class="has-text-right"
                ><b>Contact</b><br />Wesley Ford<br />
-               <a href="mailto:wes@wesdev.pro"> wes@wesdev.pro </a>
+               <a :href="'mailto:' + $config.myEmail">
+                  {{ $config.myEmail }}
+               </a>
             </strong>
          </div>
       </div>
