@@ -8,8 +8,6 @@
 export default {
    async asyncData({ $content, params }) {
       const article = await $content('articles', params.slug).fetch()
-      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
-      console.warn(article)
       return { article }
    },
    head: {

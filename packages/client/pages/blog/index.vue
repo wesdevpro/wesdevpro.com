@@ -54,9 +54,6 @@ export default {
       )
          .slice()
          .sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt))
-
-      /* eslint no-console: ["error", { allow: ["warn", "error"] }] */
-      console.warn(list)
       return { list }
    },
 }

@@ -1,9 +1,9 @@
 <template>
    <section class="section has-text-left">
-      <h2 class="title is-2">Welcome</h2>
+      <h2 class="title is-2 has-text-centered">Welcome</h2>
       <div class="media box" style="z-index: 1">
-         <figure class="image is-48x48 media-left">
-            <img class="is-rounded" src="@/assets/logo.png" />
+         <figure class="image is-96x96 media-left">
+            <img class="is-rounded" src="@/assets/me.jpg" />
          </figure>
          <p class="media-content typedtext" style="text-indent: 1em"></p>
       </div>
@@ -21,16 +21,19 @@ export default {
          ],
          typeSpeed: 15,
          cursorChar: '_',
-         onComplete() {
-            const alsotyped = new Typedjs('.alsotyped', {
-               strings: ['P.s Use the navigationbar to navigate my website!'],
-               typeSpeed: 15,
-               cursorChar: '_',
-            })
-            return alsotyped
-         },
       })
       return specialTyped
    },
 }
 </script>
+
+<style lang="scss" scoped>
+.media.box {
+   @media (max-width: calc(769px + (2 * 0.75rem))) {
+      flex-direction: column;
+      figure {
+         margin: 0 auto 1rem auto;
+      }
+   }
+}
+</style>
