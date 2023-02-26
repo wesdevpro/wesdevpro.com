@@ -56,8 +56,8 @@ export default {
          { path: '#blob2' },
          { path: '#blob1' },
          {
-            duration: 3000,
-            repeat: 999,
+            duration: 4000,
+            repeat: 99999,
             yoyo: true,
          }
       ).start()
