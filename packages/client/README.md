@@ -1,1 +1,0 @@
-# wesdevpro client-side
