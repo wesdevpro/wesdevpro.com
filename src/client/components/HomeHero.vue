@@ -8,7 +8,7 @@
                     In the meantime, please check back or follow me on social media for updates.
                     My apologies for any inconvenience this may cause, and appreciate your patience and
                     understanding. Have a great day 😅</p>
-                <button class="btn btn-primary">Get Started</button>
+                <!-- <button class="btn btn-primary">Get Started</button> -->
             </div>
         </div>
     </div>
