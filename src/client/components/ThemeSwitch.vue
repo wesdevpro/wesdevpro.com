@@ -3,10 +3,12 @@ const colorMode = useColorMode()
 </script> -->
 
 <template>
-    <div class="flex grid-flow-col">
-        <icon icon="quill:sun" class="text-neutral text-lg"/>
+    <div class="flex grid-flow-col text-neutral">
+        <!-- <icon icon="quill:sun" class="text-neutral text-lg"/> -->
+        <span class="i-mdi-weather-sunny text-lg m-auto"></span>
         <input type="checkbox" class="toggle mx-2 m-auto" ref="toggleSwitch" @change="toggleTheme"/>
-        <icon icon="mdi:weather-night" class="text-neutral text-lg"/>
+        <span class="i-mdi-weather-night text-lg m-auto"></span>
+        <!-- <icon icon="mdi:weather-night" class="text-neutral text-lg"/> -->
     </div>
 </template>
 

@@ -22,11 +22,11 @@
         <div class="navbar-end">
             <div>
                 <ul class="menu menu-vertical lg:menu-horizontal">
-                    <li v-for="social in socialLinks" class="text-neutral text-lg">
+                    <!-- <li v-for="social in socialLinks" class="text-neutral text-lg">
                         <a :href="social.link">
                             <icon :icon="social.icon"></icon>
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <ThemeSwitch></ThemeSwitch>
