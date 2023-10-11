@@ -4,7 +4,7 @@ useHead({
     meta: [
         {
             name: 'description',
-            content: ''
+            content: "The home of wesdevpro's expertise, skills, portfolio, collaborations, and contact information."
         },
     ],
 })
