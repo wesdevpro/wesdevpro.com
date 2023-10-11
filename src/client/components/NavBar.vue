@@ -6,7 +6,7 @@
                     <figure>
                         <img :src="navLogo" class="navbar-brand" alt="wesdepro's Logo" />
                     </figure>
-                    <span class="text-neutral">wesdepro</span>
+                    <span class="text-neutral">wesdevpro</span>
                 </a>
             </div>
             <div class="hidden w-full md:flex md:items-center md:w-auto">
@@ -21,9 +21,9 @@
         </div>
         <div class="navbar-end">
             <!-- <p class="text-neutral">I'm using an Iconify Icon! <icon icon="mdi:black-mesa" /></p> -->
-            <div class="hidden w-full md:flex md:items-center md:w-auto">
+            <div>
                 <ul class="menu menu-vertical lg:menu-horizontal">
-                    <li v-for="social in socialLinks" class="text-white">
+                    <li v-for="social in socialLinks" class="text-white text-lg">
                         <a :href="social.link">
                             <icon :icon="social.icon"></icon>
                         </a>
