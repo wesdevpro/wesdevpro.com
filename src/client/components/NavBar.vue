@@ -1,17 +1,17 @@
 <template>
-    <div class="navbar bg-gray-500">
+    <div class="navbar bg-accent">
         <div class="navbar-start">
             <div>
                 <a class="btn btn-ghost normal-case text-xl">
                     <figure>
                         <img :src="navLogo" class="navbar-brand" alt="wesdepro's Logo" />
                     </figure>
-                    <span class="text-white">wesdepro</span>
+                    <span class="text-neutral">wesdepro</span>
                 </a>
             </div>
             <div class="hidden w-full md:flex md:items-center md:w-auto">
                 <ul class="menu menu-vertical lg:menu-horizontal">
-                    <li v-for="navroute in navRoutes" class="text-white">
+                    <li v-for="navroute in navRoutes" class="text-neutral">
                         <NuxtLink :to="{ path: navroute.path }" tag="router-link" exact-active-class="is-active">
                             {{ navroute.title }}
                         </NuxtLink>
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="navbar-end">
-            <!-- <p class="text-white">I'm using an Iconify Icon! <icon icon="mdi:black-mesa" /></p> -->
+            <!-- <p class="text-neutral">I'm using an Iconify Icon! <icon icon="mdi:black-mesa" /></p> -->
             <div class="hidden w-full md:flex md:items-center md:w-auto">
                 <ul class="menu menu-vertical lg:menu-horizontal">
                     <li v-for="social in socialLinks" class="text-white">

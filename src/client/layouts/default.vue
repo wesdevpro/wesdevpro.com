@@ -14,10 +14,6 @@ export default {
                     title: 'Home',
                     path: '/'
                 },
-                {
-                    title: 'Home1',
-                    path: '/'
-                }
             ]
         }
     }
