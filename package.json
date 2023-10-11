@@ -1,12 +1,11 @@
 {
-  "name": "wesdevprowebsite",
-  "version": "1.0.0",
-  "description": "Personal website for outreach made for and by wesdevpro",
+  "name": "root",
+  "private": true,
   "workspaces": [
     "src/*"
   ],
-  "repository": "https://github.com/wesdevpro/wesdevpro.git",
-  "author": "Wesley Ford <wes@wesdev.pro>",
-  "license": "MIT",
-  "private": true
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^7.3.0"
+  }
 }

@@ -1,10 +1,31 @@
 {
   "name": "client",
-  "version": "1.0.0",
-  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Personal website for outreach made for and by @wesdevpro",
+  "keywords": [
+    "vite",
+    "vuejs",
+    "nuxtjs",
+    "static-site",
+    "netlify",
+    "developer",
+    "fullstack",
+    "devops"
+  ],
+  "author": "Wesley Ford <wes@wesdev.pro>",
+  "homepage": "https://wesdevpro.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wesdevpro/wesdevpro.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wesdevpro/wesdevpro/issues"
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "dev:host": "nuxt dev --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -13,7 +34,9 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
-    "daisyui": "^3.6.4",
-    "nuxt": "^3.7.0"
+    "daisyui": "^3.9.2",
+    "nuxt": "^3.7.4",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
   }
 }
