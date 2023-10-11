@@ -9,18 +9,33 @@
                     <span class="text-white">wesdepro</span>
                 </a>
             </div>
-            <div>
+            <div class="hidden w-full md:flex md:items-center md:w-auto">
                 <ul class="menu menu-vertical lg:menu-horizontal">
-                    <li v-for="navroute in navRoutes">
+                    <li v-for="navroute in navRoutes" class="text-white">
                         <NuxtLink :to="{ path: navroute.path }" tag="router-link" exact-active-class="is-active">
-                            {{navroute.title}}
+                            {{ navroute.title }}
                         </NuxtLink>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="navbar-end">
-
+            <!-- <p class="text-white">I'm using an Iconify Icon! <icon icon="mdi:black-mesa" /></p> -->
+            <div class="hidden w-full md:flex md:items-center md:w-auto">
+                <ul class="menu menu-vertical lg:menu-horizontal">
+                    <li v-for="social in socialLinks" class="text-white">
+                        <a :href="social.link">
+                            <icon :icon="social.icon"></icon>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <ThemeSwitch></ThemeSwitch>
+            <div class="cursor-pointer md:hidden block">
+                <button class="btn btn-ghost auto">
+                    <span class="i-fa-solid-bars auto text-xl"></span>
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -47,7 +62,25 @@ export default {
     },
     data() {
         return {
-            navLogo: brandLogo
+            navLogo: brandLogo,
+            socialLinks: [
+                {
+                    icon: 'fa:github',
+                    link: 'https://github.com/wesdevpro'
+                },
+                {
+                    icon: 'fa-brands:instagram',
+                    link: 'https://www.instagram.com/wesdevpro/'
+                },
+                {
+                    icon: 'fa6-brands:square-x-twitter',
+                    link: 'https://twitter.com/wesdevpro'
+                }, // https://ko-fi.com/wesdevpro
+                {
+                    icon: 'bxs:coffee',
+                    link: 'https://ko-fi.com/wesdevpro'
+                }
+            ]
         }
     }
 }
