@@ -1,5 +1,5 @@
 
-# Contributor Covenant Code of Conduct
+# wesdevpro's Code of Conduct
 
 ## Our Pledge
 
