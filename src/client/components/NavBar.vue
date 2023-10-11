@@ -1,5 +1,5 @@
 <template>
-    <div class="navbar bg-accent">
+    <div class="navbar bg-primary">
         <div class="navbar-start">
             <div>
                 <a class="btn btn-ghost normal-case text-xl">
@@ -11,8 +11,8 @@
             </div>
             <div class="hidden w-full md:flex md:items-center md:w-auto">
                 <ul class="menu menu-vertical lg:menu-horizontal">
-                    <li v-for="navroute in navRoutes" class="text-neutral">
-                        <NuxtLink :to="{ path: navroute.path }" tag="router-link" exact-active-class="is-active">
+                    <li v-for="navroute in navRoutes">
+                        <NuxtLink :to="{ path: navroute.path }" tag="router-link" exact-active-class="is-active" class="text-neutral">
                             {{ navroute.title }}
                         </NuxtLink>
                     </li>
@@ -20,17 +20,16 @@
             </div>
         </div>
         <div class="navbar-end">
-            <!-- <p class="text-neutral">I'm using an Iconify Icon! <icon icon="mdi:black-mesa" /></p> -->
             <div>
                 <ul class="menu menu-vertical lg:menu-horizontal">
-                    <li v-for="social in socialLinks" class="text-white text-lg">
+                    <li v-for="social in socialLinks" class="text-neutral text-lg">
                         <a :href="social.link">
                             <icon :icon="social.icon"></icon>
                         </a>
                     </li>
                 </ul>
             </div>
-            <!-- <ThemeSwitch></ThemeSwitch> -->
+            <ThemeSwitch></ThemeSwitch>
             <div class="cursor-pointer md:hidden block">
                 <button class="btn btn-ghost auto">
                     <span class="i-fa-solid-bars auto text-xl"></span>
