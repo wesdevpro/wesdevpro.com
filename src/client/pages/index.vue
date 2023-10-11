@@ -1,6 +1,17 @@
+<script setup lang="ts">
+useHead({
+    title: 'Home · wesdevpro',
+    meta: [
+        {
+            name: 'description',
+            content: "The home of wesdevpro's expertise, skills, portfolio, collaborations, and contact information."
+        },
+    ],
+})
+</script>
+
 <template>
-    <div class="hero min-h-screen"
-        :style="{ backgroundImage: `url(${heroImageURL})` }">
+    <div class="hero min-h-screen" :style="{ backgroundImage: `url(${heroImageURL})` }">
         <div class="hero-overlay bg-opacity-60"></div>
         <div class="hero-content text-center text-neutral-content">
             <div class="max-w-md">
@@ -13,13 +24,13 @@
     </div>
 </template>
 
-<script>
+<script lang="ts">
 import heroImageURL from '~/assets/hero-image.jpg'
 
 export default
-{
-    data() {
-    return { heroImageURL }
+    {
+        data() {
+            return { heroImageURL }
+        }
     }
-}
 </script>
