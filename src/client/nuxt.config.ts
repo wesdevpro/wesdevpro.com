@@ -6,11 +6,9 @@ export default defineNuxtConfig({
       link: [{ rel: 'canonical', href: 'https://wesdevpro.com' }],
     }
   },
-  devtools: { enabled: true },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/color-mode'],
   colorMode: {
-    preference: 'light', // default theme
+    preference: 'system', // default theme
     dataValue: 'theme', // activate data-theme in <html> tag
-    classSuffix: '',
   },
 })
