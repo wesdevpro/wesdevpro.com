@@ -30,7 +30,7 @@
                     </li>
                 </ul>
             </div>
-            <ThemeSwitch></ThemeSwitch>
+            <!-- <ThemeSwitch></ThemeSwitch> -->
             <div class="cursor-pointer md:hidden block">
                 <button class="btn btn-ghost auto">
                     <span class="i-fa-solid-bars auto text-xl"></span>
