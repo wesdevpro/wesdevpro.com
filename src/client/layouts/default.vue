@@ -9,10 +9,15 @@
 export default {
     data() {
         return {
-            layoutRoutes: [{
-                title: 'Home',
-                path: '/'
-            }
+            layoutRoutes: [
+                {
+                    title: 'Home',
+                    path: '/'
+                },
+                {
+                    title: 'Home1',
+                    path: '/'
+                }
             ]
         }
     }
