@@ -2,6 +2,7 @@
     <div>
         <NavBar :navRoutes="layoutRoutes" />
         <slot />
+        <NavFooter></NavFooter>
     </div>
 </template>
 
