@@ -35,6 +35,7 @@
     "@nuxt/devtools": "latest",
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/tailwindcss": "^6.8.0",
+    "@tailwindcss/typography": "^0.5.10",
     "daisyui": "^3.9.2",
     "nuxt": "^3.7.4",
     "vue": "^3.3.4",
