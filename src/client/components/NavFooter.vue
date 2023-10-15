@@ -7,8 +7,11 @@
         <nav class="md:place-self-center md:justify-self-end">
             <div class="grid grid-flow-col gap-4">
                 <a v-for="social in socialLinks" :href="social.link">
-                    <icon :icon="social.icon" class="text-neutral text-lg"></icon>
+                    <icon :icon="social.icon" class="text-lg m-auto"></icon>
                 </a>
+            </div>
+            <div class="text-center">
+                <p class="text-neutral">wesdevpro  - 2023&copy;</p>
             </div>
         </nav>
     </footer>

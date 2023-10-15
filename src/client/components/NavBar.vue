@@ -22,17 +22,17 @@
         <div class="navbar-end">
             <div>
                 <ul class="menu menu-vertical lg:menu-horizontal">
-                    <!-- <li v-for="social in socialLinks" class="text-neutral text-lg">
+                    <li v-for="social in socialLinks" class="text-neutral text-lg">
                         <a :href="social.link">
-                            <icon :icon="social.icon"></icon>
+                            <icon :icon="social.icon" class="text-lg m-auto"></icon>
                         </a>
-                    </li> -->
+                    </li>
                 </ul>
             </div>
             <ThemeSwitch></ThemeSwitch>
             <div class="cursor-pointer md:hidden block">
                 <button class="btn btn-ghost auto">
-                    <span class="i-fa-solid-bars auto text-xl"></span>
+                    <span class="i-fa-solid-bars auto text-xl text-neutral"></span>
                 </button>
             </div>
         </div>
