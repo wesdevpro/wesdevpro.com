@@ -1,21 +1,18 @@
 {
   "name": "server",
   "version": "0.0.1",
-  "type": "module",
-  "description": "Backend for the wesdevpro official website",
-  "keywords": [
-    "backend",
-    "nodejs",
-    "expressjs",
-    "fullstack",
-    "wizards"
-  ],
+  "description": "> TODO: description",
   "author": "Wesley Ford <wes@wesdev.pro>",
-  "homepage": "https://wesdevpro.com/",
-  "main": "index.js",
+  "homepage": "https://wesdevpro.com",
+  "license": "MIT",
+  "main": "lib/server.js",
   "directories": {
+    "lib": "lib",
     "test": "__tests__"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wesdevpro/wesdevpro.git"
@@ -25,10 +22,5 @@
   },
   "bugs": {
     "url": "https://github.com/wesdevpro/wesdevpro/issues"
-  },
-  "devDependencies": {
-    "axios": "^1.5.1",
-    "express": "^4.18.2",
-    "nodemon": "^3.0.1"
   }
 }
