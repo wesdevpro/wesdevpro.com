@@ -1,9 +1,0 @@
-{
-  "name": "root",
-  "workspaces": [
-    "src/*"
-  ],
-  "devDependencies": {
-    "lerna": "^7.3.0"
-  }
-}
