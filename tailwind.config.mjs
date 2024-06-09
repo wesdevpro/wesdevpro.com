@@ -1,33 +1,25 @@
-import daisyui from 'daisyui'
-import themes from 'daisyui/src/theming/themes'
-
 /** @type {import('tailwindcss').Config} */
 export default {
    content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
    theme: {
-      extend: {},
-   },
-   plugins: [daisyui],
-   daisyui: {
-      themes: [
-         {
-            light: {
-               ...themes["[data-theme=light]"],
-               primary: "#004571",
-               secondary: "#96BBCA",
-               accent: "#015B93",
-               neutral: "#000B14",
-               "base-100": "#F2F3F1",
-            },
-            dark: {
-               ...themes["[data-theme=dark]"],
-               primary: "#8FD4FF",
-               secondary: "#355A69",
-               accent: "#6CC6FE",
-               neutral: "#EBF6FF",
-               "base-100": "#0D0E0C",
-            }
-         }
-      ],
+      extend: {
+         fontSize: {
+            sm: '0.750rem',
+            base: '1rem',
+            xl: '1.333rem',
+            '2xl': '1.777rem',
+            '3xl': '2.369rem',
+            '4xl': '3.158rem',
+            '5xl': '4.210rem',
+         },
+         fontFamily: {
+            heading: 'Roboto',
+            body: 'Montserrat',
+         },
+         fontWeight: {
+            normal: '400',
+            bold: '700',
+         },
+      },
    }
 }
