@@ -1,7 +1,5 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
-import NavBar     from '@components/navigation/NavBar.astro';
-import NavFooter  from '@components/navigation/NavFooter.astro';
 
 export interface Props {
 	title: string;
@@ -19,9 +17,9 @@ const {
 ---
 
 <BaseLayout {title} {contentType} {description} {image}>
-    <NavBar />
-    <main class="">
+   <h2>NavBar Here :)</h2>
+   <main class="">
         <slot />
     </main>
-    <NavFooter />
+    <h2>Footer Here :) </h2>
 </BaseLayout>
