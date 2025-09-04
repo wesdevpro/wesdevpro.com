@@ -1,0 +1,120 @@
+:root {
+   /* CSS Variables */
+   --bulma-primary-h: 210deg;
+   --bulma-primary-s: 62%;
+   --bulma-primary-l: 25%;
+
+   --bulma-secondary-h: 198deg;
+   --bulma-secondary-s: 28%;
+   --bulma-secondary-l: 70%;
+
+   --bulma-accent-h: 210deg;
+   --bulma-accent-s: 77%;
+   --bulma-accent-l: 34%;
+
+   --bulma-text-h: 243deg;
+   --bulma-text-s: 76%;
+   --bulma-text-l: 5%;
+
+   --bulma-background-h: 240deg;
+   --bulma-background-s: 60%;
+   --bulma-background-l: 99%;
+}
+
+@media (prefers-color-scheme: light) {
+   :root {
+      /* CSS Variables */
+      --bulma-primary-h: 210deg;
+      --bulma-primary-s: 62%;
+      --bulma-primary-l: 25%;
+
+      --bulma-secondary-h: 198deg;
+      --bulma-secondary-s: 28%;
+      --bulma-secondary-l: 70%;
+
+      --bulma-accent-h: 210deg;
+      --bulma-accent-s: 77%;
+      --bulma-accent-l: 34%;
+
+      --bulma-text-h: 243deg;
+      --bulma-text-s: 76%;
+      --bulma-text-l: 5%;
+
+      --bulma-background-h: 240deg;
+      --bulma-background-s: 60%;
+      --bulma-background-l: 99%;
+   }
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+      /* CSS Variables */
+      --bulma-primary-h: 210deg;
+      --bulma-primary-s: 60%;
+      --bulma-primary-l: 76%;
+
+      --bulma-secondary-h: 200deg;
+      --bulma-secondary-s: 27%;
+      --bulma-secondary-l: 30%;
+
+      --bulma-accent-h: 210deg;
+      --bulma-accent-s: 77%;
+      --bulma-accent-l: 66%;
+
+      --bulma-text-h: 240deg;
+      --bulma-text-s: 67%;
+      --bulma-text-l: 96%;
+
+      --bulma-background-h: 240deg;
+      --bulma-background-s: 100%;
+      --bulma-background-l: 1%;
+   }
+}
+
+[data-theme=light],
+.theme-light {
+   /* CSS Variables */
+   --bulma-primary-h: 210deg;
+   --bulma-primary-s: 62%;
+   --bulma-primary-l: 25%;
+
+   --bulma-secondary-h: 198deg;
+   --bulma-secondary-s: 28%;
+   --bulma-secondary-l: 70%;
+
+   --bulma-accent-h: 210deg;
+   --bulma-accent-s: 77%;
+   --bulma-accent-l: 34%;
+
+   --bulma-text-h: 243deg;
+   --bulma-text-s: 76%;
+   --bulma-text-l: 5%;
+
+   --bulma-background-h: 240deg;
+   --bulma-background-s: 60%;
+   --bulma-background-l: 99%;
+}
+
+[data-theme=dark],
+.theme-dark {
+   /* CSS Variables */
+   --bulma-primary-h: 210deg;
+   --bulma-primary-s: 60%;
+   --bulma-primary-l: 76%;
+
+   --bulma-secondary-h: 200deg;
+   --bulma-secondary-s: 27%;
+   --bulma-secondary-l: 30%;
+
+   --bulma-accent-h: 210deg;
+   --bulma-accent-s: 77%;
+   --bulma-accent-l: 66%;
+
+   --bulma-text-h: 240deg;
+   --bulma-text-s: 67%;
+   --bulma-text-l: 96%;
+
+   --bulma-background-h: 240deg;
+   --bulma-background-s: 100%;
+   --bulma-background-l: 1%;
+}

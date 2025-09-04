@@ -1,0 +1,29 @@
+@charset "utf-8";
+
+
+
+$buefy-custom-colors: (
+  "secondary": hsl(210deg, 77%, 34%),
+  "accent": hsl(198deg, 28%, 70%),
+) !default;
+
+@forward "bulma/sass" with (
+    $primary: hsl(210deg, 62%, 25%),
+    $background: hsl(240deg, 60%, 99%),
+    $text: hsl(247deg, 75%, 5%),
+    $link: hsl(198deg, 28%, 70%),
+    $custom-colors: $buefy-custom-colors,
+);
+
+
+// Import Buefy styles
+@use "buefy/src/scss/buefy";
+
+@use "@fortawesome/fontawesome-free/scss/_variables" with (
+  $font-path: "/fonts"
+);
+
+@use "@fortawesome/fontawesome-free/scss/fontawesome" as *;
+@use "@fortawesome/fontawesome-free/scss/regular" as *;
+@use "@fortawesome/fontawesome-free/scss/solid" as *;
+@use "@fortawesome/fontawesome-free/scss/brands" as *;
