@@ -1,0 +1,147 @@
+:root {
+   --bulma-primary-h: 224deg;
+   --bulma-primary-s: 76%;
+   --bulma-primary-l: 48%;
+
+   --bulma-secondary-h: 208deg;
+   --bulma-secondary-s: 40%;
+   --bulma-secondary-l: 34%;
+
+   --bulma-accent-h: 175deg;
+   --bulma-accent-s: 77%;
+   --bulma-accent-l: 26%;
+
+   --bulma-text-h: 222deg;
+   --bulma-text-s: 47%;
+   --bulma-text-l: 11%;
+
+   --bulma-background-h: 0deg;
+   --bulma-background-s: 0%;
+   --bulma-background-l: 100%;
+
+   --color-base: hsl(var(--bulma-background-h), var(--bulma-background-s), var(--bulma-background-l));
+   --color-base-elevated: hsl(240deg, 64%, 100%);
+   --color-surface-1: color-mix(in srgb, var(--color-base) 94%, white);
+   --color-surface-2: color-mix(in srgb, var(--color-base) 90%, var(--bulma-secondary));
+   --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 35%, var(--color-base));
+   --color-text-strong: hsl(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-l));
+   --color-text: color-mix(in srgb, var(--color-text-strong) 88%, transparent);
+   --color-text-muted: color-mix(in srgb, var(--color-text-strong) 62%, transparent);
+   --color-border: color-mix(in srgb, var(--color-text-strong) 13%, transparent);
+   --color-border-strong: color-mix(in srgb, var(--color-text-strong) 22%, transparent);
+   --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 16%, transparent);
+   --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 15%, transparent);
+   --color-shadow: color-mix(in srgb, var(--color-text-strong) 10%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+   :root {
+   --bulma-primary-h: 224deg;
+   --bulma-primary-s: 76%;
+   --bulma-primary-l: 48%;
+
+   --bulma-secondary-h: 211deg;
+   --bulma-secondary-s: 29%;
+   --bulma-secondary-l: 56%;
+
+   --bulma-accent-h: 172deg;
+   --bulma-accent-s: 65%;
+   --bulma-accent-l: 50%;
+
+   --bulma-text-h: 210deg;
+   --bulma-text-s: 40%;
+   --bulma-text-l: 98%;
+
+      --bulma-background-h: 220deg;
+      --bulma-background-s: 38%;
+      --bulma-background-l: 3%;
+
+      --color-base: hsl(var(--bulma-background-h), var(--bulma-background-s), var(--bulma-background-l));
+      --color-base-elevated: hsl(248deg, 32%, 14%);
+      --color-surface-1: color-mix(in srgb, var(--color-base) 88%, var(--bulma-secondary));
+      --color-surface-2: color-mix(in srgb, var(--color-base) 82%, var(--bulma-secondary));
+      --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 50%, var(--color-base));
+      --color-text-strong: hsl(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-l));
+      --color-text: color-mix(in srgb, var(--color-text-strong) 90%, transparent);
+      --color-text-muted: color-mix(in srgb, var(--color-text-strong) 70%, transparent);
+      --color-border: color-mix(in srgb, var(--color-text-strong) 15%, transparent);
+      --color-border-strong: color-mix(in srgb, var(--color-text-strong) 28%, transparent);
+      --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 21%, transparent);
+      --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 20%, transparent);
+      --color-shadow: color-mix(in srgb, black 35%, transparent);
+   }
+}
+
+[data-theme=light],
+.theme-light {
+   --bulma-primary-h: 224deg;
+   --bulma-primary-s: 76%;
+   --bulma-primary-l: 48%;
+
+   --bulma-secondary-h: 208deg;
+   --bulma-secondary-s: 40%;
+   --bulma-secondary-l: 34%;
+
+   --bulma-accent-h: 175deg;
+   --bulma-accent-s: 77%;
+   --bulma-accent-l: 26%;
+
+   --bulma-text-h: 222deg;
+   --bulma-text-s: 47%;
+   --bulma-text-l: 11%;
+
+   --bulma-background-h: 0deg;
+   --bulma-background-s: 0%;
+   --bulma-background-l: 100%;
+
+   --color-base: hsl(var(--bulma-background-h), var(--bulma-background-s), var(--bulma-background-l));
+   --color-base-elevated: hsl(240deg, 64%, 100%);
+   --color-surface-1: color-mix(in srgb, var(--color-base) 94%, white);
+   --color-surface-2: color-mix(in srgb, var(--color-base) 90%, var(--bulma-secondary));
+   --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 35%, var(--color-base));
+   --color-text-strong: hsl(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-l));
+   --color-text: color-mix(in srgb, var(--color-text-strong) 88%, transparent);
+   --color-text-muted: color-mix(in srgb, var(--color-text-strong) 62%, transparent);
+   --color-border: color-mix(in srgb, var(--color-text-strong) 13%, transparent);
+   --color-border-strong: color-mix(in srgb, var(--color-text-strong) 22%, transparent);
+   --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 16%, transparent);
+   --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 15%, transparent);
+   --color-shadow: color-mix(in srgb, var(--color-text-strong) 10%, transparent);
+}
+
+[data-theme=dark],
+.theme-dark {
+   --bulma-primary-h: 224deg;
+   --bulma-primary-s: 76%;
+   --bulma-primary-l: 48%;
+
+   --bulma-secondary-h: 211deg;
+   --bulma-secondary-s: 29%;
+   --bulma-secondary-l: 56%;
+
+   --bulma-accent-h: 172deg;
+   --bulma-accent-s: 65%;
+   --bulma-accent-l: 50%;
+
+   --bulma-text-h: 210deg;
+   --bulma-text-s: 40%;
+   --bulma-text-l: 98%;
+
+   --bulma-background-h: 220deg;
+   --bulma-background-s: 38%;
+   --bulma-background-l: 3%;
+
+   --color-base: hsl(var(--bulma-background-h), var(--bulma-background-s), var(--bulma-background-l));
+   --color-base-elevated: hsl(248deg, 32%, 14%);
+   --color-surface-1: color-mix(in srgb, var(--color-base) 88%, var(--bulma-secondary));
+   --color-surface-2: color-mix(in srgb, var(--color-base) 82%, var(--bulma-secondary));
+   --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 50%, var(--color-base));
+   --color-text-strong: hsl(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-l));
+   --color-text: color-mix(in srgb, var(--color-text-strong) 90%, transparent);
+   --color-text-muted: color-mix(in srgb, var(--color-text-strong) 70%, transparent);
+   --color-border: color-mix(in srgb, var(--color-text-strong) 15%, transparent);
+   --color-border-strong: color-mix(in srgb, var(--color-text-strong) 28%, transparent);
+   --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 21%, transparent);
+   --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 20%, transparent);
+   --color-shadow: color-mix(in srgb, black 35%, transparent);
+}

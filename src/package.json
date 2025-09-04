@@ -1,0 +1,33 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:bulma && nuxt build",
+    "build:bulma": "sass --load-path=node_modules ./app/assets/sass/buefy.scss ./app/assets/styles/buefy.css",
+    "start": "npm run build:bulma -- --watch",
+    "dev": "nuxt dev",
+    "build:dev": "npm run build:bulma && nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/content": "^3.12.0",
+    "@nuxtjs/color-mode": "^4.0.0",
+    "@nuxtjs/robots": "^6.0.6",
+    "@nuxtjs/sitemap": "^8.0.12",
+    "better-sqlite3": "^12.8.0",
+    "buefy": "^3.0.5",
+    "kute.js": "^2.2.4",
+    "nuxt": "^4.4.2",
+    "vue": "^3.5.32",
+    "vue-router": "^5.0.4"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@nuxt/eslint": "^1.15.2",
+    "eslint": "^10.2.0",
+    "sass": "^1.99.0"
+  }
+}
