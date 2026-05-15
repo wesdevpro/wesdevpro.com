@@ -1,5 +1,3 @@
-# 
-#
 name: Website Build Test
 
 on:
@@ -12,13 +10,22 @@ on:
 
 jobs:
   build:
-    needs: type-check
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: 'Install Node.js 22'
+      - name: Install Node.js 22
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: src/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: src
+
+      - name: Build
+        run: npm run build
+        working-directory: src
