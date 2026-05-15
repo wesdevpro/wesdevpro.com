@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 $buefy-custom-colors: (
-  "secondary": hsl(207deg, 82%, 92%),
-  "accent": hsl(253deg, 90%, 66%),
+  "secondary": hsl(210deg, 30%, 90%),
+  "accent": hsl(175deg, 65%, 48%),
 ) !default;
 
 @use "@fortawesome/fontawesome-free/scss/_variables" with (
@@ -16,10 +16,10 @@ $buefy-custom-colors: (
 
 
 @forward "bulma/sass" with (
-  $primary: hsl(209deg, 73%, 42%),
+  $primary: hsl(224deg, 76%, 48%),
   $background: hsl(240deg, 60%, 99%),
   $text: hsl(219deg, 52%, 10%),
-  $link: hsl(209deg, 73%, 42%),
+  $link: hsl(224deg, 76%, 48%),
     $custom-colors: $buefy-custom-colors,
 );
 

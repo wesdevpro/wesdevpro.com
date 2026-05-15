@@ -24,7 +24,7 @@ During the COVID period, Wesley helped create Analyst, a platform designed to su
 
 The work behind Analyst introduced Wesley to Buefy, a lightweight Vue.js UI library. After discovering that the project was no longer actively maintained, he connected with contributors including Kikuo and began assisting with the migration to Vue 3. He has continued contributing to Buefy and remains involved in its ongoing development.
 
-Wesley currently serves as a Software Engineer at SouthState Bank, where he builds and maintains multiple C# applications across Blazor, MVC, backend services, and scheduled jobs. He supports multiple business units across the bank and stays involved in the latest IT initiatives at the bank.
+Wesley currently serves as a Software Engineer in fintech, where he builds and maintains multiple C# applications across Blazor, MVC, backend services, and scheduled jobs. He supports multiple business units and stays involved in the latest IT initiatives.
 
 ## What This Site Is For
 

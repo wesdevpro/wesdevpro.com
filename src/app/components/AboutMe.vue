@@ -4,13 +4,13 @@
             <header class="section-header">
                 <p class="section-header__eyebrow">About</p>
                 <h2 class="title section-header__title">Engineering work built on clarity, reliability, and maintainability.</h2>
-                <p class="section-header__subtitle">I currently work at SouthState Bank, building dependable digital solutions while continuing to grow through open source and architecture-focused practice.</p>
+                <p class="section-header__subtitle">I currently work in fintech, building dependable digital solutions while continuing to grow through open source and architecture-focused practice.</p>
             </header>
             <div class="columns is-variable is-8">
                 <div class="column is-7">
                     <h3 class="title is-3">What I Focus On</h3>
-                    <p class="is-size-5">I help build and maintain software across SouthState&apos;s technology ecosystem, with an emphasis on scalable architecture and user-centered implementation.</p>
-                    <p>Before joining full time, I contributed to Buefy&apos;s Vue 3 migration and later interned at SouthState, supporting improvements across both frontend and backend systems.</p>
+                    <p class="is-size-5">I help build and maintain software across a financial services technology ecosystem, with an emphasis on scalable architecture and user-centered implementation.</p>
+                    <p>Before joining full time, I contributed to Buefy&apos;s Vue 3 migration and later interned in the financial sector, supporting improvements across both frontend and backend systems.</p>
                 </div>
                 <div class="column is-5">
                     <div class="about-highlights box surface-panel">

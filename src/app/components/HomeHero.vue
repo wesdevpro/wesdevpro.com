@@ -12,7 +12,7 @@ import heroDesk from '~/assets/images/hero-desk.svg?raw'
                         </div>
                     </div>
                     <div class="column is-half">
-                  <p class="eyebrow">Software Engineer at SouthState Bank</p>
+                  <p class="eyebrow">Software Engineer in Fintech</p>
                 <h1 class="title">Building clear, dependable, user-focused software.</h1>
                 <p class="subtitle is-4">I am Wesley Ford. I work across frontend and full-stack systems, and I share practical lessons from product development and open source work.</p>
             <div class="hero-actions">
