@@ -67,6 +67,18 @@ export default defineNuxtConfig({
   },
   vite: {
     build: {
+      // Bulma 1.0.4's compiled CSS (via buefy.scss's `@forward "bulma/sass"`)
+      // ships a sidebar-component media query that uses a CSS custom property
+      // inside the media condition itself — e.g.
+      // `@media (max-width: calc(var(--bulma-sidebar-mobile-breakpoint) - 1px))`
+      // — which is invalid per the CSS spec (media features can't depend on
+      // custom properties). This was always present in the bulma dependency
+      // (unpinned via that `@forward`, unrelated to this rebuild's changes);
+      // it only started hard-failing once a newer Vite pulled in lightningcss
+      // as the default CSS minifier, which validates strictly where esbuild's
+      // minifier doesn't. Pinning back to esbuild avoids the failure without
+      // patching Bulma's own output or pinning it to an older version.
+      cssMinify: "esbuild",
       rollupOptions: {
         output: {
           manualChunks(id) {
