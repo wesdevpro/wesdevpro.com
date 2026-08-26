@@ -15,17 +15,39 @@ export default defineContentConfig({
         author: z.string(),
       }),
     }),
-    projects: defineCollection({
-      source: "projects/*.md",
+    work: defineCollection({
+      source: "work/*.md",
       type: "page",
       schema: z.object({
         name: z.string(),
         description: z.string().optional(),
-        tags: z.array(z.string()).optional(),
+        client: z.string().optional(), // omit for non-client work (Buefy, Analyst) — never guess
+        sector: z.string().optional(),
+        tags: z.array(z.string()).optional(), // doubles as "stack" metadata, rendered mono
         date: z.coerce.date(),
-        repoUrl: z.string(),
+        order: z.number().optional(), // explicit sort key: 1 = Imagine Land Works, 2 = Buefy, 3 = Analyst
+        featured: z.boolean().optional(), // drives the has-keyline treatment on the Work index
+        repoUrl: z.string().optional(), // client work may have no public repo
         coverImage: z.string().optional(),
-        collaberators: z.array(z.string()).optional(),
+        screenshots: z.array(z.string()).optional(),
+        testimonial: z.object({
+          quote: z.string(),
+          author: z.string(),
+          business: z.string().optional(),
+        }).optional(), // entire object optional — never author a placeholder quote
+        collaborators: z.array(z.string()).optional(),
+      }),
+    }),
+    services: defineCollection({
+      source: "services/*.md",
+      type: "page",
+      schema: z.object({
+        title: z.string(),
+        whoFor: z.string().optional(),
+        includes: z.array(z.string()).optional(),
+        excludes: z.array(z.string()).optional(),
+        startingPrice: z.string().optional(), // omit entirely, never a literal placeholder string
+        order: z.number().optional(),
       }),
     }),
     authors: defineCollection({

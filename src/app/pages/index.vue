@@ -1,17 +1,21 @@
 <template>
   <div class="home-page">
     <HomeHero />
-    <AboutMe />
+    <HomeProof />
+    <HomeServices />
+    <HomeFeaturedWork />
+    <HomeOpenSource />
+    <ProcessSection />
     <ContactHero />
   </div>
 </template>
 
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Software Engineer and Builder',
-  description: 'wesdevpro personal website featuring software engineering projects, technical writing, and career updates.',
-  ogTitle: 'wesdevpro · Software Engineer and Builder',
-  ogDescription: 'Explore projects, blog posts, and the work behind the wesdevpro brand.',
+  title: 'Websites and Systems for Small Businesses',
+  description: 'wesdevpro builds websites and integrates the systems behind them for small businesses.',
+  ogTitle: 'wesdevpro · Websites and Systems for Small Businesses',
+  ogDescription: 'wesdevpro builds websites and integrates the systems behind them for small businesses.',
   ogImage: '/images/wesdevpro-banner.jpg',
   twitterCard: 'summary_large_image'
 })

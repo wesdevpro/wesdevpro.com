@@ -3,9 +3,10 @@ name: Analyst
 description: "A startup-era prototype focused on trader guidance using news signals, AI support, and personalized metrics."
 tags: ["fintech", "vue", "nuxt", "prototype"]
 date: "09-20-2025"
+order: 3
 repoUrl: "https://github.com/ntohq/analyst"
 coverImage: "/images/wesdevpro-banner.jpg"
-collaberators: ["ntohq"]
+collaborators: ["ntohq"]
 ---
 
 Analyst was an early-stage product concept built to help traders evaluate opportunities faster with contextual market insights.

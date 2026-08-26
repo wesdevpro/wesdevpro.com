@@ -1,86 +1,26 @@
-:root {
-  --font-family-ui: "Inter", "Segoe UI", "SF Pro Text", "Roboto", "Helvetica Neue", "Arial", sans-serif;
-  --font-family-reading: "Inter", "Segoe UI", "SF Pro Text", "Roboto", "Helvetica Neue", "Arial", sans-serif;
-  --font-family-code: "Inconsolata", "Hack", "SF Mono", "Roboto Mono", "Source Code Pro", "Ubuntu Mono", monospace;
-
-  --step--1: clamp(0.86rem, 0.85rem + 0.04vw, 0.9rem);
-  --step-0: clamp(1rem, 0.97rem + 0.16vw, 1.08rem);
-  --step-1: clamp(1.13rem, 1.08rem + 0.24vw, 1.26rem);
-  --step-2: clamp(1.35rem, 1.26rem + 0.43vw, 1.58rem);
-  --step-3: clamp(1.66rem, 1.52rem + 0.69vw, 2.05rem);
-  --step-4: clamp(2.02rem, 1.82rem + 1.04vw, 2.62rem);
-
-  --radius-sm: 0.65rem;
-  --radius-md: 1rem;
-  --radius-lg: 1.35rem;
-  --radius-pill: 999px;
-}
-
-html {
-  font-size: 16px;
-}
+/* Font-family, --step-*, and --radius-* tokens now live in tokens.css (loaded first).
+   Global element defaults (html, body, headings, p/li, small, a, :focus-visible) are
+   also covered by tokens.css's base layer — only Bulma-specific classes not reached
+   by that framework-agnostic layer are extended here. */
 
 body,
 .navbar,
 .footer {
-  transition: background-color 260ms ease, color 260ms ease, border-color 260ms ease;
+  transition: background-color var(--dur-slow) var(--ease-standard), color var(--dur-slow) var(--ease-standard), border-color var(--dur-slow) var(--ease-standard);
 }
 
-body {
-  min-height: 100vh;
-  color: var(--color-text);
-  font-family: var(--font-family-reading);
-  font-size: var(--step-0);
-  line-height: 1.68;
-  background:
-    radial-gradient(980px 520px at -8% -12%, color-mix(in srgb, var(--bulma-accent) 11%, transparent), transparent 64%),
-    radial-gradient(900px 500px at 108% -12%, color-mix(in srgb, var(--bulma-primary) 20%, transparent), transparent 60%),
-    linear-gradient(160deg, color-mix(in srgb, var(--color-base) 88%, var(--color-base-elevated)) 0%, var(--color-base) 100%);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 .title,
 .subtitle {
-  color: var(--color-text-strong);
-  font-family: var(--font-family-ui);
-  letter-spacing: -0.015em;
+  color: var(--text-strong);
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-display);
   text-wrap: balance;
 }
 
-p,
-li {
-  color: var(--color-text);
-}
-
-small,
 .is-size-7,
 .meta-text {
-  color: var(--color-text-muted);
-}
-
-a {
-  color: var(--bulma-primary);
-  text-decoration-thickness: 1.2px;
-  text-underline-offset: 0.17em;
-}
-
-a:hover {
-  color: color-mix(in srgb, var(--bulma-accent) 72%, var(--bulma-primary));
-}
-
-a:focus-visible,
-button:focus-visible,
-[role="button"]:focus-visible,
-input:focus-visible,
-textarea:focus-visible,
-select:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--bulma-accent) 74%, white);
-  outline-offset: 2px;
+  color: var(--text-muted);
 }
 
 .navbar {
@@ -124,8 +64,9 @@ select:focus-visible {
 .site-navbar .navbar-item {
   color: var(--color-text);
   font-size: var(--step--1);
-  font-weight: 650;
-  letter-spacing: 0.02em;
+  font-family: var(--font-ui);
+  font-weight: var(--weight-nav);
+  letter-spacing: var(--tracking-nav);
 }
 
 .site-navbar .navbar-item.router-link-active,
@@ -144,11 +85,11 @@ select:focus-visible {
   right: 0.8rem;
   bottom: 0.7rem;
   height: 1.5px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--bulma-primary) 88%, transparent);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 220ms ease;
+  transition: transform var(--dur-base) var(--ease-standard);
 }
 
 .site-navbar .navbar-item.is-nav-link:hover::after,
@@ -168,11 +109,11 @@ select:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+  transition: transform var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), background-color var(--dur-fast) var(--ease-standard);
 }
 
 .theme-toggle:hover {
-  transform: translateY(-1px);
+  transform: translateY(var(--lift-hover));
   border-color: var(--color-border-strong);
   background: var(--color-surface-2);
 }
@@ -195,12 +136,24 @@ select:focus-visible {
 .eyebrow,
 .listing-header__eyebrow,
 .section-header__eyebrow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45em;
   margin-bottom: 0.62rem;
-  color: color-mix(in srgb, var(--bulma-primary) 74%, var(--color-text-strong));
-  font-size: 0.78rem;
-  font-weight: 750;
-  letter-spacing: 0.15em;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: var(--weight-eyebrow);
+  letter-spacing: var(--tracking-eyebrow);
   text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.eyebrow::before,
+.listing-header__eyebrow::before,
+.section-header__eyebrow::before {
+  content: var(--label-marker);
+  color: var(--accent-teal);
+  font-weight: var(--weight-bold);
 }
 
 .listing-header__title,
@@ -213,18 +166,30 @@ select:focus-visible {
 .listing-header__subtitle,
 .section-header__subtitle,
 .lede {
-  max-width: 58ch;
+  max-width: var(--measure-lede);
   color: var(--color-text-muted);
   font-size: var(--step-1);
-  line-height: 1.63;
+  line-height: var(--leading-prose);
 }
 
 .card,
 .box {
-  border: 1px solid var(--color-border);
+  border: var(--border-hairline);
   border-radius: var(--radius-lg);
-  background: var(--color-surface-1);
-  box-shadow: 0 20px 45px var(--color-shadow);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard), transform var(--dur-base) var(--ease-standard);
+}
+
+/* SIGNATURE 2: spec-sheet keyline — apply to a minority of cards only */
+.card.has-keyline {
+  border-top: var(--keyline-width) solid var(--keyline-accent);
+  border-top-left-radius: var(--radius-sm);
+  border-top-right-radius: var(--radius-sm);
+}
+
+.card.has-keyline-primary {
+  border-top-color: var(--keyline-primary);
 }
 
 .listing-grid {
@@ -236,27 +201,30 @@ select:focus-visible {
   flex-direction: column;
   height: 100%;
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: var(--border-hairline);
   border-radius: var(--radius-lg);
-  background: linear-gradient(165deg, var(--color-surface-1), color-mix(in srgb, var(--color-surface-1) 88%, var(--color-surface-3)));
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+  transition: transform var(--dur-base) var(--ease-standard), box-shadow var(--dur-base) var(--ease-standard), border-color var(--dur-base) var(--ease-standard), background-color var(--dur-base) var(--ease-standard);
 }
 
 .content-card:hover,
 .content-card:focus-within {
-  transform: translateY(-5px);
-  border-color: color-mix(in srgb, var(--bulma-primary) 38%, var(--color-border));
-  box-shadow: 0 26px 46px var(--color-shadow);
+  transform: translateY(var(--lift-hover));
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .content-card__media-link {
   display: block;
 }
 
-.content-card__media {
+.content-card__media,
+.media-placeholder {
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  background: linear-gradient(155deg, color-mix(in srgb, var(--bulma-primary) 26%, var(--color-surface-2)), color-mix(in srgb, var(--bulma-accent) 30%, var(--color-surface-2)));
+  border-radius: var(--radius-lg);
+  background: var(--gradient-media);
 }
 
 .content-card__media img {
@@ -286,9 +254,10 @@ select:focus-visible {
 .content-card__author {
   margin: 0;
   color: var(--color-text-muted);
-  font-size: 0.79rem;
-  font-weight: 650;
-  letter-spacing: 0.03em;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
 }
 
 .content-card__title {
@@ -326,20 +295,28 @@ select:focus-visible {
 .content-card__tag {
   display: inline-flex;
   align-items: center;
-  min-height: 1.95rem;
-  padding: 0.32rem 0.72rem;
-  border: 1px solid color-mix(in srgb, var(--bulma-primary) 18%, transparent);
-  border-radius: var(--radius-pill);
-  background: var(--color-primary-soft);
-  color: color-mix(in srgb, var(--bulma-primary) 84%, var(--color-text-strong));
-  font-size: 0.76rem;
-  font-weight: 700;
+  min-height: 1.7rem;
+  padding: 0.2em 0.5em;
+  border: var(--border-hairline);
+  border-radius: var(--radius-sm);
+  background: var(--surface-card);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
 }
 
 .content-card__tag--muted {
-  background: color-mix(in srgb, var(--color-text-strong) 8%, transparent);
+  background: transparent;
   border-color: var(--color-border);
   color: var(--color-text-muted);
+}
+
+.content-card__tag--accent {
+  color: var(--accent-teal);
+  background: var(--color-accent-soft);
+  border-color: transparent;
 }
 
 .content-card__footer {
@@ -349,7 +326,7 @@ select:focus-visible {
 
 .content-card__cta,
 .content-card__secondary-link {
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   letter-spacing: 0.01em;
 }
 
@@ -380,6 +357,17 @@ select:focus-visible {
   color: var(--color-text-muted);
 }
 
+.button {
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-semibold);
+  transition: background-color var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard), transform var(--dur-fast) var(--ease-standard);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -387,16 +375,11 @@ select:focus-visible {
   margin-top: 1.55rem;
 }
 
-.hero-actions .button {
-  border-radius: var(--radius-pill);
-  font-weight: 700;
-}
-
 .surface-panel {
-  border: 1px solid var(--color-border);
+  border: var(--border-hairline);
   border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, var(--color-surface-1), var(--color-surface-2));
-  box-shadow: 0 20px 36px var(--color-shadow);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-panel);
 }
 
 .site-footer {
@@ -429,6 +412,15 @@ select:focus-visible {
   color: var(--color-text-strong);
 }
 
+.site-footer__legal {
+  margin-top: 0.9rem;
+}
+
+.site-footer__legal p {
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
 .blog-index .container.is-max-widescreen {
   max-width: 92rem;
 }
@@ -439,9 +431,9 @@ select:focus-visible {
   gap: 0.85rem;
   margin-top: 1rem;
   padding: 0.92rem;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface-2);
+  border: var(--border-hairline);
+  border-radius: var(--radius-lg);
+  background: var(--surface-raised);
 }
 
 .author-card__avatar {
@@ -452,14 +444,15 @@ select:focus-visible {
 }
 
 .author-card__name {
-  font-weight: 700;
-  line-height: 1.2;
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
 }
 
 .author-card__meta {
   margin: 0;
   color: var(--color-text-muted);
-  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
 }
 
 .detail-page {
@@ -495,14 +488,14 @@ select:focus-visible {
 
 .detail-page__meta-item {
   color: var(--color-text-muted);
-  font-size: 0.82rem;
-  font-weight: 650;
-  letter-spacing: 0.03em;
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
 }
 
 .detail-page__prose {
-  max-width: 72ch;
+  max-width: var(--measure-prose);
 }
 
 .detail-page__prose .content,
@@ -514,7 +507,7 @@ select:focus-visible {
 
 .detail-page__prose .content {
   font-size: var(--step-0);
-  line-height: 1.72;
+  line-height: var(--leading-prose);
 }
 
 .detail-page__prose .content h2,
@@ -526,14 +519,14 @@ select:focus-visible {
 }
 
 .detail-page__prose .content img {
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  box-shadow: 0 12px 30px var(--color-shadow);
+  border-radius: var(--radius-lg);
+  border: var(--border-hairline);
+  box-shadow: var(--shadow-soft);
 }
 
 .detail-page__prose .content pre,
 .detail-page__prose .content code {
-  font-family: var(--font-family-code);
+  font-family: var(--font-mono);
 }
 
 .empty-page {
@@ -541,9 +534,63 @@ select:focus-visible {
   margin: 4rem auto;
   padding: 1.5rem;
   text-align: center;
-  border: 1px solid var(--color-border);
+  border: var(--border-hairline);
   border-radius: var(--radius-lg);
-  background: var(--color-surface-1);
+  background: var(--surface-card);
+}
+
+/* Buefy-generated form fields: mono uppercase labels, tight radius, teal focus */
+.field .label {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: var(--weight-eyebrow);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.input,
+.textarea,
+.select select {
+  border-radius: var(--radius-md);
+  border-color: var(--color-border);
+  transition: border-color var(--dur-fast) var(--ease-standard);
+}
+
+.input:hover,
+.textarea:hover,
+.select select:hover {
+  border-color: var(--color-border-strong);
+}
+
+.input:focus-visible,
+.textarea:focus-visible,
+.select select:focus-visible {
+  border-color: var(--bulma-accent);
+  box-shadow: none;
+}
+
+/* The one allowed entrance motion: fade + rise, fires once. JS toggles
+   .is-visible via IntersectionObserver; reduced-motion is neutralized here
+   in CSS so no JS branching is needed for that case. */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--dur-slow) var(--ease-standard), transform var(--dur-slow) var(--ease-standard);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 1023px) {

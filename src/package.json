@@ -19,7 +19,6 @@
     "@nuxtjs/sitemap": "^8.0.12",
     "better-sqlite3": "^12.8.0",
     "buefy": "^3.0.5",
-    "kute.js": "^2.2.4",
     "nuxt": "^4.4.2",
     "vue": "^3.5.32",
     "vue-router": "^5.0.4"

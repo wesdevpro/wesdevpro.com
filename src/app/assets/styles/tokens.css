@@ -1,0 +1,429 @@
+/* wesdevpro design system — complete token layer (single file).
+   Drop into your project and link/import it once, before any component CSS.
+   Values are verbatim from the design system; do not round them. */
+
+
+/* ==== fonts.css ==== */
+/* wesdevpro webfonts — the three-voice system
+ * Space Grotesk  → display / headings (engineered grotesque, monospace lineage)
+ * Inter          → body & UI
+ * Inconsolata    → mono · the signature voice (eyebrows, labels, metadata, code)
+ * All served from Google Fonts; importing the Google CSS ships the @font-face
+ * closure to consumers. Self-host these three families for offline use.
+ */
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;650;700;750;800&family=Inconsolata:wght@400;500;600;700&display=swap");
+
+
+/* ==== colors.css ==== */
+/* ============================================================
+   wesdevpro · Color system
+   Mirrors the production Nuxt/Bulma site. Hue/sat/lightness are
+   declared as HSL channels so light & dark themes share one
+   surface/text mixing recipe. Resolved hex values are noted in
+   comments for quick reference.
+
+   Cascade order is deliberate:
+     1. :root                       → light defaults (+ derived/semantic tokens)
+     2. @media prefers dark :root   → dark, when the OS asks and no explicit theme
+     3. [data-theme="light"]        → explicit light, wins over the media query
+     4. [data-theme="dark"]         → explicit dark, wins over everything
+   ============================================================ */
+
+:root {
+  /* --- Brand HSL channels (light) ------------------------- */
+  --bulma-primary-h: 224deg;   /* @kind other */ /* royal blue ~ #1f50d6 */
+  --bulma-primary-s: 76%;
+  --bulma-primary-l: 48%;
+
+  --bulma-secondary-h: 208deg; /* @kind other */ /* steel blue ~ #34597a */
+  --bulma-secondary-s: 40%;
+  --bulma-secondary-l: 34%;
+
+  --bulma-accent-h: 175deg;    /* @kind other */ /* deep teal ~ #0f756d */
+  --bulma-accent-s: 77%;
+  --bulma-accent-l: 26%;
+
+  --bulma-text-h: 222deg;      /* @kind other */ /* ink navy ~ #0f1a2e */
+  --bulma-text-s: 47%;
+  --bulma-text-l: 11%;
+
+  --bulma-background-h: 0deg;  /* @kind other */ /* white */
+  --bulma-background-s: 0%;
+  --bulma-background-l: 100%;
+
+  /* --- Resolved brand colors (theme-independent recipe) --- */
+  --bulma-primary: hsl(var(--bulma-primary-h), var(--bulma-primary-s), var(--bulma-primary-l));
+  --bulma-secondary: hsl(var(--bulma-secondary-h), var(--bulma-secondary-s), var(--bulma-secondary-l));
+  --bulma-accent: hsl(var(--bulma-accent-h), var(--bulma-accent-s), var(--bulma-accent-l));
+  --color-base: hsl(var(--bulma-background-h), var(--bulma-background-s), var(--bulma-background-l));
+  --color-text-strong: hsl(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-l));
+
+  /* --- Surfaces (light) ----------------------------------- */
+  --color-base-elevated: hsl(224deg, 50%, 98%);
+  --color-surface-1: color-mix(in srgb, var(--color-base) 96%, hsl(224deg, 50%, 92%));
+  --color-surface-2: color-mix(in srgb, var(--color-base) 90%, var(--bulma-secondary));
+  --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 35%, var(--color-base));
+
+  /* --- Text (light) --------------------------------------- */
+  --color-text: color-mix(in srgb, var(--color-text-strong) 88%, transparent);
+  --color-text-muted: color-mix(in srgb, var(--color-text-strong) 62%, transparent);
+
+  /* --- Lines & soft fills (light) ------------------------- */
+  --color-border: color-mix(in srgb, var(--color-text-strong) 13%, transparent);
+  --color-border-strong: color-mix(in srgb, var(--color-text-strong) 22%, transparent);
+  --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 16%, transparent);
+  --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 15%, transparent);
+  --color-shadow: color-mix(in srgb, var(--color-text-strong) 10%, transparent);
+
+  /* --- Semantic aliases (theme-independent) --------------- */
+  --text-strong: var(--color-text-strong);
+  --text-body: var(--color-text);
+  --text-muted: var(--color-text-muted);
+  --text-link: var(--bulma-primary);
+  --text-on-primary: #ffffff;
+
+  --surface-page: var(--color-base);
+  --surface-card: var(--color-surface-1);
+  --surface-raised: var(--color-surface-2);
+  --surface-sunken: var(--color-surface-3);
+
+  --border-subtle: var(--color-border);
+  --border-strong: var(--color-border-strong);
+
+  --accent-primary: var(--bulma-primary);
+  --accent-teal: var(--bulma-accent);
+  --accent-steel: var(--bulma-secondary);
+}
+
+/* ---- Dark token recipe, shared by media-query + explicit dark ---- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bulma-primary-h: 224deg; /* @kind other */
+    --bulma-primary-s: 76%;
+    --bulma-primary-l: 48%;
+
+    --bulma-secondary-h: 211deg; /* @kind other */ /* lighter steel ~ #7693af */
+    --bulma-secondary-s: 29%;
+    --bulma-secondary-l: 56%;
+
+    --bulma-accent-h: 172deg; /* @kind other */ /* bright teal ~ #2ed3bd */
+    --bulma-accent-s: 65%;
+    --bulma-accent-l: 50%;
+
+    --bulma-text-h: 210deg; /* @kind other */ /* near white */
+    --bulma-text-s: 40%;
+    --bulma-text-l: 98%;
+
+    --bulma-background-h: 220deg; /* @kind other */ /* near-black navy ~ #050810 */
+    --bulma-background-s: 38%;
+    --bulma-background-l: 3%;
+
+    --color-base-elevated: hsl(248deg, 32%, 14%);
+    --color-surface-1: color-mix(in srgb, var(--color-base) 88%, var(--bulma-secondary));
+    --color-surface-2: color-mix(in srgb, var(--color-base) 82%, var(--bulma-secondary));
+    --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 50%, var(--color-base));
+    --color-text: color-mix(in srgb, var(--color-text-strong) 90%, transparent);
+    --color-text-muted: color-mix(in srgb, var(--color-text-strong) 70%, transparent);
+    --color-border: color-mix(in srgb, var(--color-text-strong) 15%, transparent);
+    --color-border-strong: color-mix(in srgb, var(--color-text-strong) 28%, transparent);
+    --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 21%, transparent);
+    --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 20%, transparent);
+    --color-shadow: color-mix(in srgb, black 35%, transparent);
+  }
+}
+
+/* ---- Explicit light theme — beats the media query above ---- */
+[data-theme="light"],
+.theme-light {
+  --bulma-primary-h: 224deg; /* @kind other */
+  --bulma-primary-s: 76%;
+  --bulma-primary-l: 48%;
+
+  --bulma-secondary-h: 208deg; /* @kind other */
+  --bulma-secondary-s: 40%;
+  --bulma-secondary-l: 34%;
+
+  --bulma-accent-h: 175deg; /* @kind other */
+  --bulma-accent-s: 77%;
+  --bulma-accent-l: 26%;
+
+  --bulma-text-h: 222deg; /* @kind other */
+  --bulma-text-s: 47%;
+  --bulma-text-l: 11%;
+
+  --bulma-background-h: 0deg; /* @kind other */
+  --bulma-background-s: 0%;
+  --bulma-background-l: 100%;
+
+  --color-base-elevated: hsl(224deg, 50%, 98%);
+  --color-surface-1: color-mix(in srgb, var(--color-base) 96%, hsl(224deg, 50%, 92%));
+  --color-surface-2: color-mix(in srgb, var(--color-base) 90%, var(--bulma-secondary));
+  --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 35%, var(--color-base));
+  --color-text: color-mix(in srgb, var(--color-text-strong) 88%, transparent);
+  --color-text-muted: color-mix(in srgb, var(--color-text-strong) 62%, transparent);
+  --color-border: color-mix(in srgb, var(--color-text-strong) 13%, transparent);
+  --color-border-strong: color-mix(in srgb, var(--color-text-strong) 22%, transparent);
+  --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 16%, transparent);
+  --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 15%, transparent);
+  --color-shadow: color-mix(in srgb, var(--color-text-strong) 10%, transparent);
+}
+
+/* ---- Explicit dark theme — wins over everything ---- */
+[data-theme="dark"],
+.theme-dark {
+  --bulma-primary-h: 224deg; /* @kind other */
+  --bulma-primary-s: 76%;
+  --bulma-primary-l: 48%;
+
+  --bulma-secondary-h: 211deg; /* @kind other */
+  --bulma-secondary-s: 29%;
+  --bulma-secondary-l: 56%;
+
+  --bulma-accent-h: 172deg; /* @kind other */
+  --bulma-accent-s: 65%;
+  --bulma-accent-l: 50%;
+
+  --bulma-text-h: 210deg; /* @kind other */
+  --bulma-text-s: 40%;
+  --bulma-text-l: 98%;
+
+  --bulma-background-h: 220deg; /* @kind other */
+  --bulma-background-s: 38%;
+  --bulma-background-l: 3%;
+
+  --color-base-elevated: hsl(248deg, 32%, 14%);
+  --color-surface-1: color-mix(in srgb, var(--color-base) 88%, var(--bulma-secondary));
+  --color-surface-2: color-mix(in srgb, var(--color-base) 82%, var(--bulma-secondary));
+  --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 50%, var(--color-base));
+  --color-text: color-mix(in srgb, var(--color-text-strong) 90%, transparent);
+  --color-text-muted: color-mix(in srgb, var(--color-text-strong) 70%, transparent);
+  --color-border: color-mix(in srgb, var(--color-text-strong) 15%, transparent);
+  --color-border-strong: color-mix(in srgb, var(--color-text-strong) 28%, transparent);
+  --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 21%, transparent);
+  --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 20%, transparent);
+  --color-shadow: color-mix(in srgb, black 35%, transparent);
+}
+
+
+/* ==== typography.css ==== */
+/* ============================================================
+   wesdevpro · Typography — the three-voice system
+
+   DISPLAY  Space Grotesk  → headings, hero, section titles.
+            Engineered grotesque with a monospace lineage; it's
+            the "crafted / distinctive" voice and the cure for the
+            all-Inter "default" tell.
+   BODY/UI  Inter          → paragraphs, controls, nav, buttons.
+   MONO     Inconsolata    → eyebrows, labels, metadata, tags, code.
+            THE SIGNATURE VOICE — the engineer's register that makes
+            the brand un-templated. Use it for short, structural text.
+   ============================================================ */
+
+:root {
+  /* --- Families ------------------------------------------- */
+  --font-family-display: "Space Grotesk", "Inter", "Segoe UI", "Helvetica Neue", "Arial", sans-serif;
+  --font-family-ui: "Inter", "Segoe UI", "SF Pro Text", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --font-family-reading: "Inter", "Segoe UI", "SF Pro Text", "Roboto", "Helvetica Neue", "Arial", sans-serif;
+  --font-family-code: "Inconsolata", "Hack", "SF Mono", "Roboto Mono", "Source Code Pro", "Ubuntu Mono", monospace;
+
+  /* Semantic aliases */
+  --font-display: var(--font-family-display); /* headings */
+  --font-ui: var(--font-family-ui);           /* controls, nav, buttons */
+  --font-body: var(--font-family-reading);    /* paragraphs */
+  --font-mono: var(--font-family-code);        /* signature: eyebrows, labels, code */
+
+  /* --- Fluid type scale (Utopia-style clamps) ------------- */
+  --step--1: clamp(0.86rem, 0.85rem + 0.04vw, 0.9rem); /* @kind other */   /* fine print, captions */
+  --step-0: clamp(1rem, 0.97rem + 0.16vw, 1.08rem); /* @kind other */       /* body */
+  --step-1: clamp(1.13rem, 1.08rem + 0.24vw, 1.26rem); /* @kind other */    /* lede, large body */
+  --step-2: clamp(1.35rem, 1.26rem + 0.43vw, 1.58rem); /* @kind other */    /* card title / h4 */
+  --step-3: clamp(1.66rem, 1.52rem + 0.69vw, 2.05rem); /* @kind other */    /* h3 */
+  --step-4: clamp(2.02rem, 1.82rem + 1.04vw, 2.62rem); /* @kind other */    /* h1 / section title */
+
+  /* --- Weights -------------------------------------------- */
+  --weight-regular: 400; /* @kind other */
+  --weight-medium: 500; /* @kind other */
+  --weight-semibold: 600; /* @kind other */
+  --weight-nav: 650; /* @kind other */
+  --weight-bold: 700; /* @kind other */
+  --weight-eyebrow: 600; /* @kind other */
+  --weight-black: 800; /* @kind other */
+
+  /* Display weights skew lighter — Space Grotesk reads heavy. */
+  --weight-display: 600; /* @kind other */
+  --weight-display-strong: 700; /* @kind other */
+  /* (display weights skew lighter — Space Grotesk reads heavy) */
+
+  /* --- Line heights --------------------------------------- */
+  --leading-tight: 1.08; /* @kind other */
+  --leading-snug: 1.18; /* @kind other */
+  --leading-body: 1.68; /* @kind other */
+  --leading-prose: 1.72; /* @kind other */
+
+  /* --- Letter spacing ------------------------------------- */
+  --tracking-display: -0.02em; /* @kind other */
+  --tracking-title: -0.015em; /* @kind other */
+  --tracking-nav: 0.01em; /* @kind other */
+  --tracking-eyebrow: 0.14em; /* @kind other */
+  --tracking-label: 0.08em; /* @kind other */
+
+  /* --- Signature marker (logo's < / > motif) -------------- */
+  --label-marker: "/"; /* @kind other */
+}
+
+
+/* ==== spacing.css ==== */
+/* ============================================================
+   wesdevpro · Spacing, radii & layout
+   Radii tightened for a precise, engineered base — the standout
+   budget is spent on signatures (mono labels, keyline cards),
+   not on softness.
+   ============================================================ */
+
+:root {
+  /* --- Radii (tight & intentional) ------------------------ */
+  --radius-sm: 0.1875rem; /* 3px  · tags, code chips, small inputs */
+  --radius-md: 0.375rem;  /* 6px  · buttons, inputs */
+  --radius-lg: 0.625rem;  /* 10px · cards, panels, media */
+  --radius-pill: 999px;   /* avatars, theme toggle only — NOT buttons */
+
+  /* --- Spacing scale (rem) -------------------------------- */
+  --space-3xs: 0.25rem;  /* 4 */
+  --space-2xs: 0.5rem;   /* 8 */
+  --space-xs: 0.75rem;   /* 12 */
+  --space-sm: 1rem;      /* 16 */
+  --space-md: 1.4rem;    /* ~22 · card padding */
+  --space-lg: 2rem;      /* 32 */
+  --space-xl: 3rem;      /* 48 */
+  --space-2xl: 4.8rem;   /* section rhythm cap */
+
+  /* --- Section rhythm (fluid) ----------------------------- */
+  --section-y: clamp(2.6rem, 2.1rem + 1.8vw, 4.8rem); /* @kind spacing */
+  --section-header-gap: clamp(1.45rem, 1.2rem + 1.1vw, 2.5rem); /* @kind spacing */
+
+  /* --- Layout containers ---------------------------------- */
+  --container-desktop: 60rem;     /* is-max-desktop */
+  --container-widescreen: 92rem;  /* blog / wide listings */
+  --measure-prose: 72ch;          /* long-form reading width */
+  --measure-lede: 58ch;           /* subtitle / lede width */
+
+  --navbar-height: 4.75rem;
+}
+
+
+/* ==== effects.css ==== */
+/* ============================================================
+   wesdevpro · Effects — elevation, borders, signatures, motion
+   Border-led & flat. The old soft "marketing float" shadows are
+   gone; depth now comes from hairline borders and a teal keyline.
+   ============================================================ */
+
+:root {
+  /* --- Elevation (flat, border-led) ----------------------- */
+  --shadow-card: 0 1px 2px var(--color-shadow);        /* resting card */
+  --shadow-card-hover: 0 3px 10px var(--color-shadow); /* hovered card */
+  --shadow-panel: 0 1px 2px var(--color-shadow);       /* surface panel */
+  --shadow-soft: 0 1px 3px var(--color-shadow);        /* inline media */
+
+  /* --- Borders -------------------------------------------- */
+  --border-hairline: 1px solid var(--color-border);
+  --border-emphasis: 1px solid var(--color-border-strong);
+
+  /* --- SIGNATURE: spec-sheet keyline ---------------------- */
+  /* A 2px teal top rule turns a card into a "component spec".
+     This is where the standout budget is spent — apply it to
+     featured / interactive cards. */
+  --keyline-width: 2px;
+  --keyline-accent: var(--bulma-accent);   /* teal = the 20% craft accent */
+  --keyline-primary: var(--bulma-primary); /* blue = the 80% core accent */
+
+  /* --- Focus ---------------------------------------------- */
+  --focus-ring: 2px solid color-mix(in srgb, var(--bulma-accent) 74%, white);
+  --focus-offset: 2px;
+
+  /* --- Motion (precise, not bouncy) ----------------------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --dur-fast: 140ms;  /* @kind other */
+  --dur-base: 180ms;  /* @kind other */
+  --dur-slow: 240ms;  /* @kind other */
+  --lift-hover: -1px; /* @kind other */
+
+  /* --- Surfaces are flat; gradients reserved for real imagery --- */
+  --gradient-page: var(--color-base);        /* page is clean — no ambient wash */
+  --gradient-panel: var(--color-surface-1);  /* panels are flat surfaces */
+  --gradient-card: var(--color-surface-1);   /* cards are flat surfaces */
+  /* Kept: media placeholder for blog covers — blue→teal mirrors the 80/20 */
+  --gradient-media: linear-gradient(135deg, color-mix(in srgb, var(--bulma-primary) 30%, var(--color-surface-2)), color-mix(in srgb, var(--bulma-accent) 32%, var(--color-surface-2)));
+}
+
+
+/* ==== base.css ==== */
+/* ============================================================
+   wesdevpro · Base / element defaults
+   Brand reading defaults + the signature ambient page gradient.
+   Consumers get sensible body type and links out of the box.
+   ============================================================ */
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--color-text);
+  font-family: var(--font-family-reading);
+  font-size: var(--step-0);
+  line-height: var(--leading-body);
+  background: var(--color-base);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* NOTE: no background-color transition on <body>. Chromium fails to
+   recompute a var()-derived background on the root-level element when
+   the custom property changes via [data-theme], leaving the page stuck
+   on the previous theme's canvas. Theme switches are instant here;
+   individual components may transition their own colors safely. */
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-strong);
+  font-family: var(--font-family-display);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: balance;
+  line-height: var(--leading-tight);
+}
+
+p, li {
+  color: var(--color-text);
+  text-wrap: pretty;
+}
+
+small {
+  color: var(--color-text-muted);
+}
+
+a {
+  color: var(--bulma-primary);
+  text-decoration-thickness: 1.2px;
+  text-underline-offset: 0.17em;
+  transition: color var(--dur-fast) var(--ease-standard);
+}
+
+a:hover {
+  color: color-mix(in srgb, var(--bulma-accent) 72%, var(--bulma-primary));
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-family-code);
+}
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+::selection {
+  background: var(--color-primary-soft);
+}
