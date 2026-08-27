@@ -14,6 +14,7 @@
           <p class="eyebrow mt-6">Buefy</p>
           <p class="mt-2">I'm the lead maintainer of Buefy, an open source component library for Vue, and I led its migration from Vue 2 to Vue 3.</p>
           <p class="mt-3">Maintaining a library other developers build on is a specific kind of discipline. You can't break someone's site with an update. You inherit decisions made years before you showed up and you have to live with them. Every shortcut you take comes back as somebody else's bug report.</p>
+          <PullQuote class="about-pull-quote">Every shortcut you take comes back as somebody else's bug report.</PullQuote>
           <p class="mt-3">That changed how I build everything else, including client work.</p>
 
           <p class="eyebrow mt-6">Background</p>
@@ -86,5 +87,9 @@ useSeoMeta({
 
 .facts-list li + li {
   margin-top: 0.45rem;
+}
+
+.about-pull-quote {
+  margin: 1.5rem 0;
 }
 </style>

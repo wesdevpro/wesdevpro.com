@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// (touched to force a full dev-server restart after adding several new
+// auto-imported components mid-session — see the reconciliation pass)
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   modules: [

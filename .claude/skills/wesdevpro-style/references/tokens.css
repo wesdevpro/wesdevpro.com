@@ -16,11 +16,13 @@
 
 /* ==== colors.css ==== */
 /* ============================================================
-   wesdevpro · Color system
-   Mirrors the production Nuxt/Bulma site. Hue/sat/lightness are
-   declared as HSL channels so light & dark themes share one
-   surface/text mixing recipe. Resolved hex values are noted in
-   comments for quick reference.
+   wesdevpro · Color system — paper / ink / accent (three-role model)
+   Reconciliation pass: teal is promoted to the sole accent; blue is
+   reclassified as ink/structure and no longer carries a distinct
+   brand identity. Surfaces, text, and borders are flat hex, tuned
+   against the warm paper base rather than derived via color-mix off
+   a cool navy-tinted recipe (that recipe picked up a muddy cast once
+   the base went warm).
 
    Cascade order is deliberate:
      1. :root                       → light defaults (+ derived/semantic tokens)
@@ -30,12 +32,19 @@
    ============================================================ */
 
 :root {
-  /* --- Brand HSL channels (light) ------------------------- */
-  --bulma-primary-h: 224deg;   /* @kind other */ /* royal blue ~ #1f50d6 */
-  --bulma-primary-s: 76%;
-  --bulma-primary-l: 48%;
+  /* --- Bulma/Buefy channel mirror --------------------------
+     The old royal-blue primary (formerly --bulma-primary-h/-s/-l: 224deg/76%/48%)
+     is retired — deleted from the token layer per the reconciliation pass.
+     Blue is ink/structure now, not an accent, so Bulma's --bulma-primary
+     mirrors the same channels as --bulma-accent (teal): this keeps every
+     is-primary Buefy component (buttons, focus, active states — the full
+     tint/shade ramp generated in buefy.css) on the new accent without
+     touching that compiled file. */
+  --bulma-primary-h: 175deg;   /* @kind other */ /* teal ~ #0f756d — mirrors --bulma-accent */
+  --bulma-primary-s: 77%;
+  --bulma-primary-l: 26%;
 
-  --bulma-secondary-h: 208deg; /* @kind other */ /* steel blue ~ #34597a */
+  --bulma-secondary-h: 208deg; /* @kind other */ /* steel blue ~ #34597a — Bulma-internal plumbing only, not a brand role */
   --bulma-secondary-s: 40%;
   --bulma-secondary-l: 34%;
 
@@ -51,36 +60,42 @@
   --bulma-background-s: 0%;
   --bulma-background-l: 100%;
 
-  /* --- Resolved brand colors (theme-independent recipe) --- */
+  /* --- Resolved brand colors (theme-independent recipe, Bulma-facing) --- */
   --bulma-primary: hsl(var(--bulma-primary-h), var(--bulma-primary-s), var(--bulma-primary-l));
   --bulma-secondary: hsl(var(--bulma-secondary-h), var(--bulma-secondary-s), var(--bulma-secondary-l));
   --bulma-accent: hsl(var(--bulma-accent-h), var(--bulma-accent-s), var(--bulma-accent-l));
-  --color-base: hsl(var(--bulma-background-h), var(--bulma-background-s), var(--bulma-background-l));
-  --color-text-strong: hsl(var(--bulma-text-h), var(--bulma-text-s), var(--bulma-text-l));
 
-  /* --- Surfaces (light) ----------------------------------- */
-  --color-base-elevated: hsl(224deg, 50%, 98%);
-  --color-surface-1: color-mix(in srgb, var(--color-base) 96%, hsl(224deg, 50%, 92%));
-  --color-surface-2: color-mix(in srgb, var(--color-base) 90%, var(--bulma-secondary));
-  --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 35%, var(--color-base));
+  /* --- Paper / Ink / Accent (light) ------------------------ */
+  --color-base:            #FAF8F4;  /* warm off-white paper, not cream, not stark white */
+  --color-base-elevated:   #FFFFFF;  /* cards lift by going whiter than the page */
+  --color-surface-2:       #F0EDE7;
+  --color-surface-3:       #DDD8CF;
+  --color-surface-1:       color-mix(in srgb, var(--color-base) 96%, var(--color-surface-2)); /* not a named D2 role — re-based on the new flat paper tones instead of the old navy-tinted recipe */
 
-  /* --- Text (light) --------------------------------------- */
-  --color-text: color-mix(in srgb, var(--color-text-strong) 88%, transparent);
-  --color-text-muted: color-mix(in srgb, var(--color-text-strong) 62%, transparent);
+  --color-ink:             #14181C;  /* near-black, faint cool cast */
+  --color-ink-deep:        #002F5A;  /* logo navy — deep headings, structural (non-accent) keyline */
+  --color-text-strong:     var(--color-ink);
+  --color-text:            #2A2F35;
+  --color-text-muted:      #6B6F75;
 
-  /* --- Lines & soft fills (light) ------------------------- */
-  --color-border: color-mix(in srgb, var(--color-text-strong) 13%, transparent);
-  --color-border-strong: color-mix(in srgb, var(--color-text-strong) 22%, transparent);
-  --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 16%, transparent);
-  --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 15%, transparent);
-  --color-shadow: color-mix(in srgb, var(--color-text-strong) 10%, transparent);
+  --color-border:          #E3DED5;
+  --color-border-strong:   #C9C2B6;
+
+  --color-accent:          #0F756D;  /* unchanged value, promoted role */
+  --color-accent-soft:     #DCE9E7;
+  --color-on-accent:       #FAF8F4;  /* type reversed out of accent bands */
+  --color-link:            #00537F;  /* sits between logo navy and logo teal */
+  --color-focus:           #4D9993;
+
+  --color-primary-soft: var(--color-accent-soft); /* primary no longer has a distinct identity from accent */
+  --color-shadow: color-mix(in srgb, var(--color-ink) 10%, transparent); /* alpha kept — compositing is the point (D6) */
 
   /* --- Semantic aliases (theme-independent) --------------- */
   --text-strong: var(--color-text-strong);
-  --text-body: var(--color-text);
+  --color-text-body: var(--color-text); /* renamed from --text-body — the old name is now the size token in typography.css */
   --text-muted: var(--color-text-muted);
-  --text-link: var(--bulma-primary);
-  --text-on-primary: #ffffff;
+  --text-link: var(--color-link);
+  --text-on-primary: var(--color-on-accent);
 
   --surface-page: var(--color-base);
   --surface-card: var(--color-surface-1);
@@ -90,7 +105,6 @@
   --border-subtle: var(--color-border);
   --border-strong: var(--color-border-strong);
 
-  --accent-primary: var(--bulma-primary);
   --accent-teal: var(--bulma-accent);
   --accent-steel: var(--bulma-secondary);
 }
@@ -98,11 +112,11 @@
 /* ---- Dark token recipe, shared by media-query + explicit dark ---- */
 @media (prefers-color-scheme: dark) {
   :root {
-    --bulma-primary-h: 224deg; /* @kind other */
-    --bulma-primary-s: 76%;
-    --bulma-primary-l: 48%;
+    --bulma-primary-h: 172deg; /* @kind other */ /* bright teal ~ #2ed3bd — mirrors --bulma-accent */
+    --bulma-primary-s: 65%;
+    --bulma-primary-l: 50%;
 
-    --bulma-secondary-h: 211deg; /* @kind other */ /* lighter steel ~ #7693af */
+    --bulma-secondary-h: 211deg; /* @kind other */ /* lighter steel ~ #7693af — Bulma-internal plumbing only */
     --bulma-secondary-s: 29%;
     --bulma-secondary-l: 56%;
 
@@ -114,30 +128,55 @@
     --bulma-text-s: 40%;
     --bulma-text-l: 98%;
 
-    --bulma-background-h: 220deg; /* @kind other */ /* near-black navy ~ #050810 */
-    --bulma-background-s: 38%;
-    --bulma-background-l: 3%;
+    --bulma-background-h: 220deg; /* @kind other */ /* neutral gray, not near-black navy */
+    --bulma-background-s: 6%;
+    --bulma-background-l: 11%;
 
-    --color-base-elevated: hsl(248deg, 32%, 14%);
-    --color-surface-1: color-mix(in srgb, var(--color-base) 88%, var(--bulma-secondary));
-    --color-surface-2: color-mix(in srgb, var(--color-base) 82%, var(--bulma-secondary));
-    --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 50%, var(--color-base));
-    --color-text: color-mix(in srgb, var(--color-text-strong) 90%, transparent);
-    --color-text-muted: color-mix(in srgb, var(--color-text-strong) 70%, transparent);
-    --color-border: color-mix(in srgb, var(--color-text-strong) 15%, transparent);
-    --color-border-strong: color-mix(in srgb, var(--color-text-strong) 28%, transparent);
-    --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 21%, transparent);
-    --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 20%, transparent);
+    /* Gray, not black — a near-black navy read as too heavy/harsh. */
+    --color-base:            #1A1B1D;
+    --color-base-elevated:   #242628;
+    --color-surface-2:       #1F2022;
+    --color-surface-3:       #38393C;
+    --color-surface-1:       color-mix(in srgb, var(--color-base) 88%, var(--color-surface-2));
+
+    --color-ink:             #F6F4F0;
+    --color-ink-deep:        #F6F4F0;  /* no separate deep-navy needed once ink is already near-white */
+    --color-text-strong:     var(--color-ink);
+    --color-text:            #DFE1E3;
+    --color-text-muted:      #A9ADB1;
+
+    --color-border:          #2B2C2F;
+    --color-border-strong:   #47494C;
+
+    --color-accent:          #2DD2BC;
+    --color-accent-soft:     #0D302E;
+    --color-on-accent:       #06231F;  /* dark type on bright teal — do NOT reverse white out of #2DD2BC, it's too bright to carry it */
+    --color-link:            #29ADC4;
+    --color-focus:           #64DECD;
+
+    --color-primary-soft: var(--color-accent-soft);
     --color-shadow: color-mix(in srgb, black 35%, transparent);
+
+    /* Buefy's own is-primary "invert" text color is a build-time Sass
+       decision baked into buefy.css as a fixed lightness (100% = white),
+       correct for the old dark blue but illegible on this theme's bright
+       teal (#2DD2BC). Override the lightness channel here — it feeds
+       --bulma-button-color-l, --bulma-notification-color-l,
+       --bulma-tag-color-l, --bulma-table-color, and --bulma-file-cta-color-l
+       in buefy.css, so this one override fixes contrast across every
+       is-primary-themed Buefy component in dark mode without touching that
+       compiled file. Light mode is untouched — white-on-dark-teal there is
+       already correct. */
+    --bulma-primary-invert-l: 10%;
   }
 }
 
 /* ---- Explicit light theme — beats the media query above ---- */
 [data-theme="light"],
 .theme-light {
-  --bulma-primary-h: 224deg; /* @kind other */
-  --bulma-primary-s: 76%;
-  --bulma-primary-l: 48%;
+  --bulma-primary-h: 175deg; /* @kind other */
+  --bulma-primary-s: 77%;
+  --bulma-primary-l: 26%;
 
   --bulma-secondary-h: 208deg; /* @kind other */
   --bulma-secondary-s: 40%;
@@ -155,25 +194,37 @@
   --bulma-background-s: 0%;
   --bulma-background-l: 100%;
 
-  --color-base-elevated: hsl(224deg, 50%, 98%);
-  --color-surface-1: color-mix(in srgb, var(--color-base) 96%, hsl(224deg, 50%, 92%));
-  --color-surface-2: color-mix(in srgb, var(--color-base) 90%, var(--bulma-secondary));
-  --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 35%, var(--color-base));
-  --color-text: color-mix(in srgb, var(--color-text-strong) 88%, transparent);
-  --color-text-muted: color-mix(in srgb, var(--color-text-strong) 62%, transparent);
-  --color-border: color-mix(in srgb, var(--color-text-strong) 13%, transparent);
-  --color-border-strong: color-mix(in srgb, var(--color-text-strong) 22%, transparent);
-  --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 16%, transparent);
-  --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 15%, transparent);
-  --color-shadow: color-mix(in srgb, var(--color-text-strong) 10%, transparent);
+  --color-base:            #FAF8F4;
+  --color-base-elevated:   #FFFFFF;
+  --color-surface-2:       #F0EDE7;
+  --color-surface-3:       #DDD8CF;
+  --color-surface-1:       color-mix(in srgb, var(--color-base) 96%, var(--color-surface-2));
+
+  --color-ink:             #14181C;
+  --color-ink-deep:        #002F5A;
+  --color-text-strong:     var(--color-ink);
+  --color-text:            #2A2F35;
+  --color-text-muted:      #6B6F75;
+
+  --color-border:          #E3DED5;
+  --color-border-strong:   #C9C2B6;
+
+  --color-accent:          #0F756D;
+  --color-accent-soft:     #DCE9E7;
+  --color-on-accent:       #FAF8F4;
+  --color-link:            #00537F;
+  --color-focus:           #4D9993;
+
+  --color-primary-soft: var(--color-accent-soft);
+  --color-shadow: color-mix(in srgb, var(--color-ink) 10%, transparent);
 }
 
 /* ---- Explicit dark theme — wins over everything ---- */
 [data-theme="dark"],
 .theme-dark {
-  --bulma-primary-h: 224deg; /* @kind other */
-  --bulma-primary-s: 76%;
-  --bulma-primary-l: 48%;
+  --bulma-primary-h: 172deg; /* @kind other */
+  --bulma-primary-s: 65%;
+  --bulma-primary-l: 50%;
 
   --bulma-secondary-h: 211deg; /* @kind other */
   --bulma-secondary-s: 29%;
@@ -188,20 +239,35 @@
   --bulma-text-l: 98%;
 
   --bulma-background-h: 220deg; /* @kind other */
-  --bulma-background-s: 38%;
-  --bulma-background-l: 3%;
+  --bulma-background-s: 6%;
+  --bulma-background-l: 11%;
 
-  --color-base-elevated: hsl(248deg, 32%, 14%);
-  --color-surface-1: color-mix(in srgb, var(--color-base) 88%, var(--bulma-secondary));
-  --color-surface-2: color-mix(in srgb, var(--color-base) 82%, var(--bulma-secondary));
-  --color-surface-3: color-mix(in srgb, var(--bulma-secondary) 50%, var(--color-base));
-  --color-text: color-mix(in srgb, var(--color-text-strong) 90%, transparent);
-  --color-text-muted: color-mix(in srgb, var(--color-text-strong) 70%, transparent);
-  --color-border: color-mix(in srgb, var(--color-text-strong) 15%, transparent);
-  --color-border-strong: color-mix(in srgb, var(--color-text-strong) 28%, transparent);
-  --color-primary-soft: color-mix(in srgb, var(--bulma-primary) 21%, transparent);
-  --color-accent-soft: color-mix(in srgb, var(--bulma-accent) 20%, transparent);
+  --color-base:            #1A1B1D;
+  --color-base-elevated:   #242628;
+  --color-surface-2:       #1F2022;
+  --color-surface-3:       #38393C;
+  --color-surface-1:       color-mix(in srgb, var(--color-base) 88%, var(--color-surface-2));
+
+  --color-ink:             #F6F4F0;
+  --color-ink-deep:        #F6F4F0;
+  --color-text-strong:     var(--color-ink);
+  --color-text:            #DFE1E3;
+  --color-text-muted:      #A9ADB1;
+
+  --color-border:          #2B2C2F;
+  --color-border-strong:   #47494C;
+
+  --color-accent:          #2DD2BC;
+  --color-accent-soft:     #0D302E;
+  --color-on-accent:       #06231F;
+  --color-link:            #29ADC4;
+  --color-focus:           #64DECD;
+
+  --color-primary-soft: var(--color-accent-soft);
   --color-shadow: color-mix(in srgb, black 35%, transparent);
+
+  /* See the @media dark block above for why this exists. */
+  --bulma-primary-invert-l: 10%;
 }
 
 
@@ -240,22 +306,13 @@
   --step-3: clamp(1.66rem, 1.52rem + 0.69vw, 2.05rem); /* @kind other */    /* h3 */
   --step-4: clamp(2.02rem, 1.82rem + 1.04vw, 2.62rem); /* @kind other */    /* h1 / section title */
 
-  /* --- Editorial reading scale (added for the editorial direction pass) ---
+  /* --- Editorial reading scale ------------------------------
      Body is the anchor; headings derive from it. Fixed sizes, not fluid
      clamps, unlike --step-*. Coexists with --step-* above rather than
-     replacing it — nothing asked for --step-* to be removed, and other
-     recipes (section header, tags) still reference it.
-     FLAGGED FOR WESLEY: the spec for this pass named the body-copy size
-     token `--text-body`, but that name is already taken by the color alias
-     `--text-body: var(--color-text);` a few sections up (colors.css block).
-     Since :root blocks cascade in source order, redeclaring --text-body
-     here would silently overwrite that color alias with "1.125rem" instead
-     of a color — a real bug, not a style choice. Named it --text-body-size
-     instead to avoid that collision. Rename either token if you'd rather
-     have the literal name free for one of them. */
+     replacing it — other recipes (section header, tags) still reference it. */
   --text-caption:    0.8125rem; /* 13px  Inconsolata, captions and metadata */
   --text-small:      0.9375rem; /* 15px  labels, tags, fine print */
-  --text-body-size:  1.125rem;  /* 18px  Inter, all body prose */
+  --text-body:       1.125rem;  /* 18px  Inter, all body prose */
   --text-lead:       1.375rem;  /* 22px  standfirst / deck */
   --text-h3:         1.5rem;    /* 24px */
   --text-h2:         2rem;      /* 32px */
@@ -277,13 +334,12 @@
   /* (display weights skew lighter — Space Grotesk reads heavy) */
 
   /* --- Line heights --------------------------------------- */
-  /* --leading-tight is repurposed here from "all headings" to "h3 and
-     smaller" specifically, paired with the new --leading-heading for
-     h1/h2 — see the base.css h1-h6 split below, updated to match. */
-  --leading-tight: 1.25; /* @kind other */ /* h3 and smaller (was 1.08, applied to all headings) */
+  /* --leading-tight is h3 and smaller; h1/h2 read looser via --leading-heading
+     (see the base.css h1-h6 split below). */
+  --leading-tight: 1.25; /* @kind other */ /* h3 and smaller */
   --leading-heading: 1.15; /* @kind other */ /* h1 and h2 */
   --leading-snug: 1.18; /* @kind other */
-  --leading-body: 1.7; /* @kind other */ /* was 1.68, retuned for 18px body */
+  --leading-body: 1.7; /* @kind other */
   --leading-prose: 1.72; /* @kind other */
   --leading-lead: 1.55; /* @kind other */
 
@@ -331,9 +387,9 @@
   /* --- Layout containers ---------------------------------- */
   --container-desktop: 60rem;     /* is-max-desktop */
   --container-widescreen: 92rem;  /* blog / wide listings */
-  --measure-prose: 68ch;          /* long-form reading width — retuned from 72ch for the editorial pass */
-  --measure-lede: 58ch;           /* subtitle / lede width — kept for the existing section-header .lede pattern */
-  --measure-lead: 54ch;           /* standfirst / deck width — new, distinct from --measure-lede above */
+  --measure-prose: 68ch;          /* long-form reading width */
+  --measure-lede: 58ch;           /* subtitle / lede width — existing section-header .lede pattern */
+  --measure-lead: 54ch;           /* standfirst / deck width — distinct from --measure-lede above */
   --measure-caption: 44ch;        /* figure caption width */
 
   --navbar-height: 4.75rem;
@@ -371,15 +427,15 @@
   --border-emphasis: 1px solid var(--color-border-strong);
 
   /* --- SIGNATURE: spec-sheet keyline ---------------------- */
-  /* A 2px teal top rule turns a card into a "component spec".
-     This is where the standout budget is spent — apply it to
-     featured / interactive cards. */
+  /* A 2px top rule turns a card into a "component spec". Teal is the
+     signature/craft accent; ink is the structural (non-accent) variant —
+     there is no second brand color anymore, just accent vs. structure. */
   --keyline-width: 2px;
-  --keyline-accent: var(--bulma-accent);   /* teal = the 20% craft accent */
-  --keyline-primary: var(--bulma-primary); /* blue = the 80% core accent */
+  --keyline-accent: var(--color-accent);    /* teal = the signature accent */
+  --keyline-primary: var(--color-ink-deep); /* ink = structural, not a color accent */
 
   /* --- Focus ---------------------------------------------- */
-  --focus-ring: 2px solid color-mix(in srgb, var(--bulma-accent) 74%, white);
+  --focus-ring: 2px solid var(--color-focus);
   --focus-offset: 2px;
 
   /* --- Motion (precise, not bouncy) ----------------------- */
@@ -389,12 +445,7 @@
   --dur-slow: 240ms;  /* @kind other */
   --lift-hover: -1px; /* @kind other */
 
-  /* --- Figure & caption ------------------------------------
-     Reuses existing color/radius tokens — no new color values for
-     captions (--color-text-muted is correct) and no new radius (media
-     already means --radius-lg per the "tight radii" rule above; the
-     spec for this pass referenced a --radius-media alias that doesn't
-     exist in this file, so this points straight at --radius-lg). */
+  /* --- Figure & caption ------------------------------------ */
   --figure-gap: 0.75rem;         /* figure to caption */
   --caption-border-top: 1px;     /* hairline, pairs with --color-border */
   --figure-radius: var(--radius-lg);
@@ -403,8 +454,11 @@
   --gradient-page: var(--color-base);        /* page is clean — no ambient wash */
   --gradient-panel: var(--color-surface-1);  /* panels are flat surfaces */
   --gradient-card: var(--color-surface-1);   /* cards are flat surfaces */
-  /* Kept: media placeholder for blog covers — blue→teal mirrors the 80/20 */
-  --gradient-media: linear-gradient(135deg, color-mix(in srgb, var(--bulma-primary) 30%, var(--color-surface-2)), color-mix(in srgb, var(--bulma-accent) 32%, var(--color-surface-2)));
+  /* Kept: media placeholder for blog covers — the logo's own navy→teal wash.
+     Built from --color-ink-deep/--color-accent directly rather than the
+     Bulma primary/accent channels above, since --bulma-primary now mirrors
+     teal too (D1) — deriving from those would collapse this to teal→teal. */
+  --gradient-media: linear-gradient(135deg, color-mix(in srgb, var(--color-ink-deep) 30%, var(--color-surface-2)), color-mix(in srgb, var(--color-accent) 32%, var(--color-surface-2)));
 }
 
 
@@ -445,8 +499,7 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
 }
 
-/* Split from the old single "all headings get --leading-tight" rule:
-   h1/h2 read looser (--leading-heading), h3 and smaller stay tight. */
+/* Split: h1/h2 read looser (--leading-heading), h3 and smaller stay tight. */
 h1, h2 {
   line-height: var(--leading-heading);
 }
@@ -465,21 +518,31 @@ small {
 }
 
 a {
-  color: var(--bulma-primary);
+  color: var(--color-link);
   text-decoration-thickness: 1.2px;
   text-underline-offset: 0.17em;
   transition: color var(--dur-fast) var(--ease-standard);
 }
 
 a:hover {
-  color: color-mix(in srgb, var(--bulma-accent) 72%, var(--bulma-primary));
+  color: var(--color-accent);
 }
 
 code, pre, kbd, samp {
   font-family: var(--font-family-code);
 }
 
-:focus-visible {
+/* Scoped to genuinely interactive elements, not a bare :focus-visible on
+   everything — some component libraries render tabindex="0" on container
+   elements for internal reasons, and a universal selector would draw the
+   accent outline around the whole container when it (rather than a real
+   control inside it) receives focus. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
   outline: var(--focus-ring);
   outline-offset: var(--focus-offset);
 }

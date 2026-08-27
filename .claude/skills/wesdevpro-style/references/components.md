@@ -2,7 +2,7 @@
 
 Framework-agnostic CSS against the tokens in `tokens.css`. Port the declarations into whatever the host stack uses (Vue SFC `<style>`, Bulma override, CSS module, styled component) — keep the values.
 
-Structural defaults assumed from `tokens.css` base layer: headings are already Space Grotesk, body is Inter, `code`/`pre` are Inconsolata, links are blue → teal on hover, `:focus-visible` already draws the teal ring.
+Structural defaults assumed from `tokens.css` base layer: headings are already Space Grotesk, body is Inter, `code`/`pre` are Inconsolata, links are `--color-link` → teal on hover, `:focus-visible` already draws the teal ring.
 
 ---
 
@@ -24,7 +24,7 @@ Every section, and featured cards, open with this. It is the brand's label voice
 }
 .eyebrow::before {
   content: var(--label-marker);           /* "/" */
-  color: var(--bulma-accent);             /* teal — the signal */
+  color: var(--color-accent);             /* teal — the signal */
   font-weight: var(--weight-bold);
 }
 ```
@@ -33,22 +33,16 @@ Every section, and featured cards, open with this. It is the brand's label voice
 <p class="eyebrow">Selected Work</p>
 ```
 
-Rules: one eyebrow per section. Never sentence case. Never blue or ink — the slash is always teal. Don't stack an eyebrow directly above another eyebrow.
+Rules: one eyebrow per section. Never sentence case. Never ink or link-blue — the slash is always teal. Don't stack an eyebrow directly above another eyebrow.
 
 ## Section header
 
-Must work off-center on the editorial grid (not a centered stack) and must be able to carry a standfirst underneath, in addition to the plain `.lede`.
+Not a centered stack, and must be able to carry a standfirst underneath, in addition to the plain `.lede`. Reserve the true off-center 2-8 grid-column treatment for `ArticleHeader` on genuine narrow-prose case-study pages with a margin column alongside them — a plain listing-page `SectionHeader` (Home sections, Services, Work index, Blog index, About, Contact) sits above content that spans the full container width (card grids, two-column layouts), so constraining the header itself to a narrow column makes it look cramped next to what's below it, not asymmetric on purpose. Asymmetry here comes from the subtitle's own reading-width cap, not from squeezing the whole header block.
 
 ```css
 .section { padding-block: var(--section-y); }
 .section-header {
-  display: grid;
-  grid-template-columns: repeat(var(--grid-columns), 1fr);
-  gap: var(--space-2xs) var(--grid-gutter);
   margin-bottom: var(--section-header-gap);
-}
-.section-header > * {
-  grid-column: var(--grid-prose-start) / span var(--grid-prose-span);  /* off-center: columns 2-8, not centered */
 }
 .section-header h2 {
   margin: 0;
@@ -66,7 +60,7 @@ Must work off-center on the editorial grid (not a centered stack) and must be ab
 }
 ```
 
-A `.standfirst` (see the new recipe below) can follow the `h2`/`.lede` directly in the same grid — it inherits the same column placement. Only center a section header when there's a specific reason to; asymmetry is the default.
+A `.standfirst` (see the recipe below) can follow the `h2`/`.lede` directly. Only center a section header when there's a specific reason to (`.section-header--centered`).
 
 ## SIGNATURE 2 — Card + keyline
 
@@ -104,11 +98,11 @@ Cards carry prose now, not three bullets — a 60 to 90 word body is the target 
 
 /* the keyline: featured / interactive cards */
 .card.has-keyline {
-  border-top: var(--keyline-width) solid var(--keyline-accent);  /* teal: craft, OSS, featured */
+  border-top: var(--keyline-width) solid var(--keyline-accent);  /* teal: craft, OSS, featured — the signature */
   border-top-left-radius: var(--radius-sm);
   border-top-right-radius: var(--radius-sm);
 }
-.card.has-keyline-primary { border-top-color: var(--keyline-primary); }  /* blue: core work */
+.card.has-keyline-primary { border-top-color: var(--keyline-primary); }  /* ink: structural/core work — not a second accent color, just the non-teal variant */
 ```
 
 Use the keyline on a **minority** of cards in any view — if every card has one, it stops being a spec sheet.
@@ -139,11 +133,13 @@ Tight radius, Inter labels, Title Case, ASCII arrow `->` for forward CTAs. No pi
 .btn:active { transform: translateY(1px); }
 
 .btn--primary {
-  background: var(--bulma-primary);
-  color: var(--text-on-primary);
+  background: var(--color-accent);
+  color: var(--color-on-accent);          /* theme-aware reversal — dark text on the bright dark-mode teal, never hardcoded white */
+  border-color: var(--color-accent);
 }
 .btn--primary:hover {
-  background: color-mix(in srgb, var(--bulma-primary) 88%, var(--bulma-accent));
+  transform: translateY(var(--lift-hover));
+  box-shadow: var(--shadow-card-hover);
 }
 
 .btn--light {
@@ -156,22 +152,33 @@ Tight radius, Inter labels, Title Case, ASCII arrow `->` for forward CTAs. No pi
   transform: translateY(var(--lift-hover));
 }
 
+/* outline/ghost default to ink, not accent — teal is reserved for the hover
+   state so it stays a high-concentration signal rather than a default color */
 .btn--outline {
   background: transparent;
-  border-color: var(--bulma-primary);
-  color: var(--bulma-primary);
+  border-color: var(--color-border-strong);
+  color: var(--color-text-strong);
 }
 .btn--outline:hover {
-  border-color: var(--bulma-accent);
-  color: var(--bulma-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .btn--ghost {
   background: transparent;
-  color: var(--bulma-primary);
+  color: var(--color-text-strong);
   padding-inline: 0.35em;
 }
-.btn--ghost:hover { color: var(--bulma-accent); }
+.btn--ghost:hover { color: var(--color-accent); }
+
+/* on an accent band only (see AccentBand recipe below) — a button that reads
+   correctly against a solid teal background rather than against paper */
+.btn--onband {
+  background: var(--color-on-accent);
+  color: var(--color-accent);
+  border-color: var(--color-on-accent);
+}
+.btn--onband:hover { transform: translateY(var(--lift-hover)); }
 ```
 
 ## Tag / metadata chip
@@ -191,7 +198,7 @@ Mono voice, 3px radius, quiet fill.
   padding: 0.2em 0.5em;
 }
 .tag--accent {
-  color: var(--bulma-accent);
+  color: var(--color-accent);
   background: var(--color-accent-soft);
   border-color: transparent;
 }
@@ -237,7 +244,7 @@ Sticky, translucent, hairline-bottom. Blur is chrome only.
   inset-inline: 0;
   bottom: -0.35em;
   height: 2px;
-  background: var(--bulma-accent);
+  background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-base) var(--ease-standard);
@@ -246,7 +253,54 @@ Sticky, translucent, hairline-bottom. Blur is chrome only.
 .navbar__link[aria-current="page"]::after { transform: scaleX(1); }
 ```
 
-Logo lockup: `assets/wesdevpro-full-logo-no-sub.svg` at ~28–32px tall; `wesdevpro-profile-logo.svg` for avatars/favicons.
+### NavBrand — mark + live text, not a flattened lockup
+
+`wesdevpro-full-logo-no-sub.svg` was a single flattened image; it's replaced by the mark SVG plus a **live text** wordmark, not a second image. `wesdevpro-text.svg` exists but its glyphs are Illustrator-outlined paths — the source font can't be recovered from that file, so rather than guess a typeface from vector shapes, the wordmark is reproduced in Space Grotesk (the site's own display voice) as real, selectable, styleable text.
+
+```css
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+.site-brand__mark {                       /* wesdevpro-profile-logo.svg — the diamond mark, unmodified */
+  display: block;
+  height: 1.6em;                          /* sized relative to the wordmark next to it */
+  width: auto;
+  flex: none;
+}
+.site-brand__word {                       /* live text — not an image */
+  font-family: var(--font-family-display); /* Space Grotesk */
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+  color: #002F5A;                          /* the logo's own fixed navy ink — a brand constant, not --color-ink-deep */
+}
+.site-brand__word--accent {
+  color: #006089;                          /* the logo's own fixed teal ink — a brand constant, never --color-accent */
+}
+/* dark mode: the wordmark's fixed navy/teal ink needs a light-enough
+   backdrop — pill radius + soft shadow, not a hairline border, so it reads
+   as an intentional chip. Muted gray (--logo-chip-bg), not stark white.
+   Re-verify contrast whenever --color-base (dark) moves; currently tuned
+   against #1A1B1D. */
+[data-theme="dark"] .site-brand,
+.theme-dark .site-brand {
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: var(--logo-chip-bg);
+  box-shadow: var(--shadow-soft);
+}
+```
+
+```html
+<a class="navbar-item site-brand" href="/">
+  <img class="site-brand__mark" src="~/assets/images/wesdevpro-profile-logo.svg" alt="">
+  <span class="site-brand__word" aria-hidden="true">wesdev<span class="site-brand__word--accent">pro</span></span>
+  <span class="visually-hidden">wesdevpro</span>
+</a>
+```
+
+The mark SVG stays unmodified — this recomposes an existing asset with new markup, it doesn't redraw it. `wesdevpro-profile-logo.svg` also still serves standalone as an avatar/favicon. The two fixed hex values above are a deliberate, documented exception to "tokens only" — they're the logo's own brand-constant ink, not theme-variable UI color, and must never be swapped for a token.
 
 ## Inputs
 
@@ -272,7 +326,7 @@ Logo lockup: `assets/wesdevpro-full-logo-no-sub.svg` at ~28–32px tall; `wesdev
   transition: border-color var(--dur-fast) var(--ease-standard);
 }
 .input:hover, .textarea:hover { border-color: var(--color-border-strong); }
-.input:focus-visible, .textarea:focus-visible { border-color: var(--bulma-accent); }
+.input:focus-visible, .textarea:focus-visible { border-color: var(--color-accent); }
 .textarea { line-height: var(--leading-body); resize: vertical; }
 ```
 
@@ -332,7 +386,7 @@ Reuses the eyebrow's teal `/` as the opener rather than inventing a new mark —
 }
 .pull-quote::before {
   content: var(--label-marker);           /* "/" — the eyebrow marker, reused */
-  color: var(--accent-teal);
+  color: var(--color-accent);
   margin-right: 0.25em;
 }
 .pull-quote cite {
@@ -485,11 +539,134 @@ Primarily for `/buefy`. Replaces stat cards — bordered, dense, Inconsolata num
 .media {
   aspect-ratio: 16 / 9;
   border-radius: var(--radius-lg);
-  background: var(--gradient-media);      /* blue → teal, mirrors the 80/20 */
+  background: var(--gradient-media);      /* the logo's own navy → teal wash */
 }
 ```
 
 Use only for cover/blog imagery that has no real asset yet. Never as a hero, section, or page background.
+
+## EmphasisWord
+
+A single word inside a Space Grotesk headline, set in Inconsolata to make the mono voice do one more job instead of reaching for a fourth (script/serif) display face. Use it **at most once per page** — twice is a bug, not a stronger effect.
+
+```css
+.emphasis {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 1.08em;      /* optical size-match — Inconsolata runs smaller than Space Grotesk at the same nominal size; verify by rendering, don't assume the multiplier */
+  color: var(--color-accent);
+  letter-spacing: -0.01em;
+  /* no underline, no background, no italic */
+}
+```
+
+```html
+<h1>Websites that <span class="emphasis">outlast</span> the developer who built them.</h1>
+```
+
+## AccentBand — full-bleed teal section
+
+The concentrated end of the accent budget: a full-bleed section reversed out of solid teal. Use sparingly — at least one on Home and Services (per the page-reassembly pass), never on every section.
+
+```css
+.band {
+  background: var(--color-accent);
+  color: var(--color-on-accent);          /* dark text in dark mode — #2DD2BC is too bright for reversed white */
+}
+.band h2, .band h3 { color: var(--color-on-accent); }
+.band .eyebrow { color: color-mix(in srgb, var(--color-on-accent) 75%, transparent); }
+.band .eyebrow::before { color: var(--color-on-accent); }  /* the slash reverses too — it can't stay teal on a teal band */
+.band p { color: color-mix(in srgb, var(--color-on-accent) 88%, transparent); }
+```
+
+Buttons on a band use `.btn--onband` (see Buttons above), not `.btn--primary` — a teal-on-teal primary button disappears.
+
+## FAQ accordion
+
+`/services` only, not Home — see the Density minimums for answer length (40–80 words). Plain disclosure semantics; no third signature, no new iconography beyond a rotate on the existing marker.
+
+```css
+.faq-item {
+  border-bottom: var(--border-hairline);
+}
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-display);
+  color: var(--color-text-strong);
+  cursor: pointer;
+  list-style: none;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {                /* reuse the eyebrow slash, rotated as a disclosure marker */
+  content: var(--label-marker);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  transform: rotate(90deg);
+  transition: transform var(--dur-fast) var(--ease-standard);
+}
+.faq-item[open] summary::after { transform: rotate(0deg); }
+.faq-item p {
+  padding-bottom: var(--space-md);
+  max-width: var(--measure-prose);
+  color: var(--color-text-muted);
+}
+```
+
+```html
+<details class="faq-item">
+  <summary>How does pricing work?</summary>
+  <p>Answer, 40–80 words.</p>
+</details>
+```
+
+## Asymmetric proof tile
+
+Not a three-up stat row — that pattern advertises how few strong numbers exist. One genuinely strong number gets the large tile; a second, differently-sized tile can carry a supporting figure or an honest `TODO`.
+
+```css
+.proof {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;       /* asymmetric on purpose — never 1fr 1fr 1fr */
+  gap: var(--grid-gutter);
+  align-items: stretch;
+}
+.proof-stat--big .proof-stat__value {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: var(--weight-display-strong);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-ink);
+}
+.proof-stat__value.is-pending {           /* honest placeholder, never a fabricated number */
+  font-family: var(--font-mono);
+  font-size: var(--text-h2);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2xs) var(--space-xs);
+  display: inline-block;
+  letter-spacing: 0;
+}
+.proof-stat__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  color: var(--color-text-muted);
+  margin-top: var(--space-xs);
+}
+@media (max-width: 900px) {
+  .proof { grid-template-columns: 1fr; }
+}
+```
 
 ## Footer
 

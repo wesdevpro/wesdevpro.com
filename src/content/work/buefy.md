@@ -8,6 +8,9 @@ featured: true
 repoUrl: "https://github.com/buefy/buefy"
 coverImage: "https://buefy.org/static/img/buefy-banner.png"
 collaborators: ["kikuo", "buefy-vue3-development-team"]
+stat:
+  value: "2.8M"
+  label: "Downloads, all-time"
 ---
 
 I'm the lead maintainer of Buefy, an open source component library for Vue,
@@ -24,3 +27,11 @@ and I led its migration from Vue 2 to Vue 3.
 Buefy's components now run on Vue 3 without the Vue 2 compatibility shims the
 project relied on before. The migration is live in the published package: it
 sees 2.8M downloads all-time, and 194.6K in the past 28 days.
+
+| Metric | Value |
+| --- | --- |
+| Downloads, all-time | 2.8M |
+| Downloads, last 28 days | 194.6K |
+| Repository | [buefy/buefy](https://github.com/buefy/buefy) |
+| Migration | Vue 2 → Vue 3 |
+| Role | Lead maintainer |

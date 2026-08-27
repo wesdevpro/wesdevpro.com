@@ -16,7 +16,13 @@ $buefy-custom-colors: (
 
 
 @forward "bulma/sass" with (
-  $primary: hsl(224deg, 76%, 48%),
+  // $primary was the old royal-blue (#1D4FD7-equivalent), retired per the
+  // reconciliation pass — blue is ink/structure now, teal is the one accent.
+  // This mirrors --bulma-primary-h/-s/-l's light-theme value in tokens.css,
+  // which is what actually renders (the runtime custom property wins over
+  // whatever Sass bakes in here); kept in sync so a `build:bulma` rebuild
+  // doesn't reintroduce the old blue as this file's baked-in default.
+  $primary: hsl(175deg, 77%, 26%),
   $background: hsl(240deg, 60%, 99%),
   $text: hsl(219deg, 52%, 10%),
   $link: hsl(224deg, 76%, 48%),

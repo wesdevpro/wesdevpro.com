@@ -8,7 +8,7 @@
           </div>
           <div class="column is-half">
             <p class="eyebrow">wesdevpro</p>
-            <h1 class="title">I build websites for small businesses, and I make sure the systems behind them actually work together.</h1>
+            <h1 class="title">I build websites for small businesses, and I make sure the systems behind them actually work <EmphasisWord>together</EmphasisWord>.</h1>
             <p class="subtitle is-4">One person handles the design, the build, and the systems it runs on, from the first call to launch.</p>
             <div class="hero-actions">
               <NuxtLink to="/contact" class="button is-primary is-medium">Start a Project -&gt;</NuxtLink>

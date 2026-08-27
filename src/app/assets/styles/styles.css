@@ -43,25 +43,39 @@ body,
 .site-brand {
   display: inline-flex;
   align-items: center;
+  gap: 0.5rem;
   margin-right: 0.2rem;
 }
 
-.site-brand__lockup {
+.site-brand__mark {
   display: block;
   width: auto;
-  height: clamp(2.6rem, 2.2rem + 1.2vw, 3.6rem);
+  height: clamp(1.9rem, 1.6rem + 0.9vw, 2.6rem);
+  flex: none;
 }
 
-.site-brand--compact .site-brand__lockup {
-  height: clamp(2rem, 1.8rem + 0.6vw, 2.6rem);
+.site-brand__word {
+  display: inline-block;
+  font-size: clamp(1.2rem, 1.05rem + 0.55vw, 1.6rem);
+  line-height: 1;
 }
 
-/* The wordmark's ink is fixed dark navy for light surfaces — in dark mode
-   it needs a light backdrop rather than being recolored (see tokens.css).
+.site-brand--compact .site-brand__mark {
+  height: clamp(1.45rem, 1.3rem + 0.45vw, 1.85rem);
+}
+
+.site-brand--compact .site-brand__word {
+  font-size: clamp(0.95rem, 0.85rem + 0.35vw, 1.2rem);
+}
+
+/* The wordmark's ink is fixed dark navy/teal for light surfaces — in dark mode
+   it needs a light-enough backdrop rather than being recolored (see tokens.css).
    Pill radius + a soft shadow instead of a hairline border, so it reads as
-   an intentional chip rather than a flat rectangle cut into the navbar. */
-[data-theme="dark"] .site-brand__lockup,
-.theme-dark .site-brand__lockup {
+   an intentional chip rather than a flat rectangle cut into the navbar.
+   --logo-chip-bg is a muted gray, not stark white — tuned against the dark
+   base #1A1B1D. */
+[data-theme="dark"] .site-brand,
+.theme-dark .site-brand {
   padding: 0.3rem 0.65rem;
   border-radius: var(--radius-pill);
   background: var(--logo-chip-bg);
@@ -84,7 +98,7 @@ body,
 
 .site-navbar .navbar-item.router-link-active,
 .site-navbar .navbar-item.router-link-exact-active {
-  color: var(--bulma-primary);
+  color: var(--color-accent);
 }
 
 .site-navbar .navbar-item.is-nav-link {
@@ -99,7 +113,7 @@ body,
   bottom: 0.7rem;
   height: 1.5px;
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--bulma-primary) 88%, transparent);
+  background: var(--color-accent);
   transform: scaleX(0);
   transform-origin: left;
   transition: transform var(--dur-base) var(--ease-standard);
@@ -146,6 +160,19 @@ body,
   margin-bottom: clamp(1.45rem, 1.2rem + 1.1vw, 2.5rem);
 }
 
+/* Matches the width of whatever content sits below it — these are listing
+   pages (card grids, two-column bio) that span the full container, not
+   narrow article prose, so constraining the header to a narrow editorial
+   column made it look cramped next to wider content. Asymmetry comes from
+   the subtitle's own reading-width cap (.lede / __subtitle, below), not
+   from squeezing the whole header block. The true off-center 2-8 column
+   treatment belongs to ArticleHeader, for genuine narrow-prose case-study
+   pages with a margin column alongside them. */
+.section-header--centered,
+.listing-header--centered {
+  text-align: center;
+}
+
 .eyebrow,
 .listing-header__eyebrow,
 .section-header__eyebrow {
@@ -165,7 +192,7 @@ body,
 .listing-header__eyebrow::before,
 .section-header__eyebrow::before {
   content: var(--label-marker);
-  color: var(--accent-teal);
+  color: var(--color-accent);
   font-weight: var(--weight-bold);
 }
 
@@ -285,7 +312,7 @@ body,
 
 .content-card__title-link:hover,
 .content-card__title-link:focus-visible {
-  color: var(--bulma-primary);
+  color: var(--color-accent);
 }
 
 .content-card__summary {
@@ -327,7 +354,7 @@ body,
 }
 
 .content-card__tag--accent {
-  color: var(--accent-teal);
+  color: var(--color-accent);
   background: var(--color-accent-soft);
   border-color: transparent;
 }
@@ -343,15 +370,19 @@ body,
   letter-spacing: 0.01em;
 }
 
+/* Default to --color-link, not the accent — every card's CTA rendering in
+   teal by default is exactly the diffuse-decorative-teal anti-pattern the
+   three-role model rules out. Teal is reserved for the hover state, same as
+   the global `a`/`a:hover` pattern in tokens.css. */
 .content-card__cta {
-  color: var(--bulma-primary);
+  color: var(--color-link);
 }
 
 .content-card__cta:hover,
 .content-card__cta:focus-visible,
 .content-card__secondary-link:hover,
 .content-card__secondary-link:focus-visible {
-  color: color-mix(in srgb, var(--bulma-accent) 68%, var(--bulma-primary));
+  color: var(--color-accent);
 }
 
 .content-card__secondary-link {
@@ -360,9 +391,15 @@ body,
 }
 
 .home-hero .title {
-  font-size: clamp(2.05rem, 1.7rem + 1.7vw, 3.25rem);
-  line-height: 1.1;
+  font-size: var(--text-display); /* the one site-wide use — homepage hero only */
+  line-height: var(--leading-heading);
   max-width: 18ch;
+}
+
+@media (max-width: 900px) {
+  .home-hero .title {
+    font-size: clamp(2rem, 1.7rem + 1.2vw, var(--text-h1));
+  }
 }
 
 .home-hero .subtitle {
@@ -399,7 +436,7 @@ body,
   border-top: 1px solid var(--color-border);
   margin-top: 2rem;
   padding: 1.25rem 0 1.5rem;
-  background: color-mix(in srgb, var(--color-surface-1) 70%, transparent);
+  background: var(--color-surface-2); /* flat hex, not a color-mix soft fill — D6 */
 }
 
 .site-footer .site-brand {
@@ -427,11 +464,18 @@ body,
 
 .site-footer__legal {
   margin-top: 0.9rem;
+  text-align: right;
 }
 
 .site-footer__legal p {
   color: var(--color-text-muted);
   margin: 0;
+}
+
+@media (max-width: 1023px) {
+  .site-footer__legal {
+    text-align: center;
+  }
 }
 
 .blog-index .container.is-max-widescreen {
@@ -542,6 +586,40 @@ body,
   font-family: var(--font-mono);
 }
 
+/* Data table recipe — dense, bordered, mono numerics read like a spec sheet.
+   Primarily surfaces on /work/buefy, where a plain markdown table renders
+   through ContentRenderer. */
+.detail-page__prose .content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  margin: 1.5rem 0;
+}
+
+.detail-page__prose .content th,
+.detail-page__prose .content td {
+  padding: var(--space-2xs) var(--space-sm);
+  border-bottom: var(--border-hairline);
+  text-align: left;
+}
+
+.detail-page__prose .content th {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-weight: var(--weight-medium);
+}
+
+.detail-page__prose .content td {
+  color: var(--color-text-strong);
+}
+
+.detail-page__prose .content tbody tr:last-child th,
+.detail-page__prose .content tbody tr:last-child td {
+  border-bottom: none;
+}
+
 .empty-page {
   max-width: 56ch;
   margin: 4rem auto;
@@ -580,7 +658,7 @@ body,
 .input:focus-visible,
 .textarea:focus-visible,
 .select select:focus-visible {
-  border-color: var(--bulma-accent);
+  border-color: var(--color-accent);
   box-shadow: none;
 }
 

@@ -11,21 +11,25 @@ Run this before calling work done, and as the audit pass when refactoring an exi
 ## Type
 
 - [ ] Every heading is Space Grotesk, weight 600/700, `letter-spacing: -0.02em`.
-- [ ] Body, nav, buttons, inputs are Inter; body line-height 1.68, prose 1.72, `text-wrap: pretty`.
+- [ ] Body, nav, buttons, inputs are Inter; body line-height 1.7, prose 1.72, `text-wrap: pretty`.
 - [ ] Every eyebrow, tag, date, read-time, stack label, and code span is Inconsolata. (If a surface has no mono anywhere, it will read templated.)
+- [ ] No fourth (script/serif/display) face anywhere — the emphasis word reuses Inconsolata, not a new family.
 - [ ] Title Case on headings/nav/buttons; sentence case in body.
-- [ ] Sizes come from the `--step-*` clamps.
+- [ ] Sizes come from the `--step-*` clamps or the editorial reading scale (`--text-*`), not one-off values.
 
 ## Signatures
 
 - [ ] Each major section opens with an UPPERCASE mono eyebrow prefixed by a **teal** `/`.
 - [ ] The 2px keyline appears on featured/interactive cards — and on a minority of cards, not all of them.
 - [ ] No third signature invented (no new decorative motif, badge shape, or ornament).
+- [ ] `.emphasis` (the mono-word-in-headline treatment) appears **at most once per page**. Twice is a bug.
 
 ## Color
 
-- [ ] Blue carries the bulk; teal appears only in signatures, OSS/craft callouts, and hover emphasis.
+- [ ] Paper (warm off-white) carries the bulk of surface area; ink (near-black / logo navy) carries text and structure; teal is the one accent, concentrated rather than scattered — not a diffuse decorative tint on every card.
 - [ ] Text uses `--color-text` / `--color-text-strong` / `--color-text-muted`, never raw opacity on ink.
+- [ ] No `color-mix()` in any border, background, or fill declaration — only in shadows, hover/overlay compositing, and the media-placeholder gradient. The known, permitted exceptions: `--color-shadow`, `--gradient-media`, and the sticky-navbar/mobile-menu translucency that pairs with `backdrop-filter: blur()` (a functional glass effect, not a decorative tint). A plain background tint with no blur pairing (e.g. the footer) does not qualify — flatten it.
+- [ ] `--color-on-accent` is correct per theme: light text reversed out of teal in **light** mode, dark text reversed out of teal in **dark** mode (`#2DD2BC` is too bright to carry white).
 
 ## Surfaces & depth
 
@@ -52,7 +56,7 @@ Run this before calling work done, and as the audit pass when refactoring an exi
 
 - [ ] First person, no emoji, no exclamation marks, no hype.
 - [ ] Forward CTAs use the ASCII arrow `->`.
-- [ ] Logos are the SVG assets, unmodified, on light surfaces; icons are Font Awesome `fas`/`fab`, functional only.
+- [ ] The mark SVG is unmodified and unrecolored. `NavBrand` composes the mark alongside a live-text wordmark (Space Grotesk, fixed brand-ink hex) rather than the flattened lockup image; the dark-mode chip gives the fixed-ink wordmark a light backdrop. Icons are Font Awesome `fas`/`fab`, functional only.
 
 ## Editorial
 
@@ -65,6 +69,8 @@ Run this before calling work done, and as the audit pass when refactoring an exi
 - [ ] Every section meets its density minimum (see `SKILL.md`), or carries a marked `TODO`.
 - [ ] No fabricated prose, quotes, metrics, prices, or imagery.
 - [ ] Section padding varies by importance rather than being uniform.
+- [ ] Proof stats are asymmetric (one large tile + a differently-sized tile), never a uniform three-up row.
+- [ ] `/services`' FAQ is present, not on Home; answers meet the 40–80 word range or carry a marked `TODO(wesley)` where they encode an undecided business term (pricing, maintenance).
 
 ## Build
 

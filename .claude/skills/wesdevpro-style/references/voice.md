@@ -12,7 +12,7 @@ Talk about wiring systems together, removing seams, making things work as one �
 
 - **First person:** "I am Wesley Ford", "I currently work in fintech", "What I Focus On". Direct address for CTAs: "Let's Connect", "Reach out".
 - **No hype:** no exclamation marks, no superlatives, no growth-marketing language, no emoji. Calm delivery, sharp substance.
-- **80/20 subject split:** ~80% custom integrations + web design across the stack; ~20% open-source craft (Buefy / Vue 3 maintainership, the tinkerer streak) shown as proof of range, not noise.
+- **Subject split, not a color rule:** ~80% custom integrations + web design across the stack; ~20% open-source craft (Buefy / Vue 3 maintainership, the tinkerer streak) shown as proof of range, not noise. This is about subject matter only — it has no relationship to the color system's paper/ink/accent split (`SKILL.md`), which is a separate 75/20/5 area ratio.
 - **Casing:** Title Case for page titles, section headings, nav items, button labels. Sentence case for body and subtitles. Eyebrows are UPPERCASE mono with the teal `/`.
 - **Sentence shape:** one idea per sentence. Subtitles run 1–2 lines, ~58 characters wide.
 - **Caption voice:** a caption states what the image shows and why it matters. It is not the nearby heading restated and it is not alt text. Present tense, sentence case, one or two sentences, capped at 44 characters of measure (`--measure-caption`). Never decorative.

@@ -37,6 +37,10 @@ export default defineContentConfig({
           business: z.string().optional(),
         }).optional(), // entire object optional — never author a placeholder quote
         collaborators: z.array(z.string()).optional(),
+        stat: z.object({
+          value: z.string(),
+          label: z.string(),
+        }).optional(), // one real, structured headline figure for the asymmetric proof tile — never a placeholder value
       }),
     }),
     services: defineCollection({

@@ -118,7 +118,8 @@ useSeoMeta({
 }
 
 .contact-form__error {
-  color: var(--bulma-primary);
+  color: var(--color-ink-deep);
+  font-weight: var(--weight-semibold);
   margin-bottom: 0.75rem;
 }
 

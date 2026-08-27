@@ -1,33 +1,39 @@
 <template>
-  <section v-if="hasAnyStat" class="section home-proof">
+  <section v-if="bigStat" class="section home-proof">
     <div class="container is-max-desktop">
-      <div class="home-proof__row">
-        <ProofStat v-for="stat in stats" :key="stat.label" :label="stat.label" :value="stat.value" />
+      <div class="proof">
+        <ProofStat big :value="bigStat.value" :label="bigStat.label" />
+        <ProofStat value="TODO(wesley)" pending label="Years shipping software" />
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-// TODO(wesley): fill in real figures — none of these are invented placeholders,
-// they're left undefined on purpose until you supply them. ProofStat renders
-// nothing per-stat when value is absent, and this whole strip collapses if
-// every stat is empty.
-const stats: { label: string; value?: string | number }[] = [
-  { label: 'Years shipping software', value: undefined }, // TODO(wesley): years shipping
-  { label: 'Buefy downloads', value: undefined }, // TODO(wesley): Buefy npm download/usage figure
-  { label: 'Stacks worked in', value: undefined }, // TODO(wesley): e.g. "Vue, Nuxt, .NET" if you want this as a stat rather than prose
-]
+// The one genuinely strong number (Buefy's real download count) gets the
+// large tile; padding it out to a three-up row would advertise how few
+// strong numbers exist. The second tile renders a visible, honest TODO
+// marker rather than a fabricated figure or an empty gap — replace the
+// literal string once Wesley supplies a real number.
+const { data: buefy } = await useAsyncData('home-proof-buefy', () => {
+  return queryCollection('work').where('name', '=', 'Buefy').first()
+})
 
-const hasAnyStat = computed(() => stats.some((stat) => stat.value !== undefined && stat.value !== null && stat.value !== ''))
+const bigStat = computed(() => buefy.value?.stat)
 </script>
 
 <style scoped>
-.home-proof__row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-xl);
-  justify-content: center;
-  text-align: center;
+.proof {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: var(--space-lg);
+  align-items: stretch;
+}
+
+@media (max-width: 700px) {
+  .proof {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
 }
 </style>

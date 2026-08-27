@@ -1,21 +1,10 @@
 <template>
   <article v-if="post" class="detail-page section is-medium">
-    <header class="detail-page__header surface-panel">
-      <p class="eyebrow">{{ post.concept ? 'Concept' : 'Project' }}</p>
-      <h1 class="detail-page__title">{{ post.name }}</h1>
-      <p v-if="post.description" class="detail-page__description">{{ post.description }}</p>
-      <div class="detail-page__meta">
-        <span v-if="post.concept" class="detail-page__meta-item">Concept — not a delivered engagement</span>
-        <span v-if="post.client || post.sector" class="detail-page__meta-item">
-          {{ [post.client, post.sector].filter(Boolean).join(' · ') }}
-        </span>
-        <span v-if="post.date" class="detail-page__meta-item">Updated {{ formatDate(post.date) }}</span>
-        <a v-if="post.repoUrl" class="detail-page__meta-item" :href="post.repoUrl" target="_blank" rel="noopener">
-          Repository
-        </a>
-        <span v-if="post.tags?.length" class="detail-page__meta-item">Stack: {{ post.tags.join(', ') }}</span>
-      </div>
-    </header>
+    <ArticleHeader
+      :title="post.name"
+      :standfirst="post.description"
+      :meta="articleMeta"
+    />
 
     <div v-if="post.screenshots?.length" class="detail-page__screenshots">
       <MediaFrame v-for="src in post.screenshots" :key="src" :src="src" :alt="`${post.name} screenshot`" />
@@ -27,12 +16,13 @@
       </div>
     </section>
 
-    <blockquote v-if="post.testimonial" class="detail-page__testimonial surface-panel">
-      <p>&ldquo;{{ post.testimonial.quote }}&rdquo;</p>
-      <cite>
-        {{ post.testimonial.author }}<span v-if="post.testimonial.business">, {{ post.testimonial.business }}</span>
-      </cite>
-    </blockquote>
+    <PullQuote
+      v-if="post.testimonial"
+      class="detail-page__testimonial"
+      :attribution="[post.testimonial.author, post.testimonial.business].filter(Boolean).join(', ')"
+    >
+      {{ post.testimonial.quote }}
+    </PullQuote>
   </article>
   <section v-else class="empty-page">
     <h1>Page Not Found</h1>
@@ -57,6 +47,19 @@ function formatDate(date: string | Date) {
     day: 'numeric'
   })
 }
+
+const articleMeta = computed(() => {
+  if (!post.value) return []
+  const items: { label: string; value: string }[] = []
+  if (post.value.concept) items.push({ label: 'Status', value: 'Concept — not a delivered engagement' })
+  if (post.value.client || post.value.sector) {
+    items.push({ label: 'Client', value: [post.value.client, post.value.sector].filter(Boolean).join(' · ') })
+  }
+  if (post.value.date) items.push({ label: 'Updated', value: formatDate(post.value.date) })
+  if (post.value.repoUrl) items.push({ label: 'Repository', value: 'View source', href: post.value.repoUrl })
+  if (post.value.tags?.length) items.push({ label: 'Stack', value: post.value.tags.join(', ') })
+  return items
+})
 
 function seoTitle(name?: string, concept?: boolean) {
   if (!name) return 'Work'
@@ -88,19 +91,5 @@ useSeoMeta({
 
 .detail-page__testimonial {
   margin-top: 2rem;
-  padding: var(--space-md);
-}
-
-.detail-page__testimonial p {
-  font-size: var(--step-1);
-  color: var(--color-text-strong);
-  margin: 0 0 0.5rem;
-}
-
-.detail-page__testimonial cite {
-  font-style: normal;
-  color: var(--color-text-muted);
-  font-family: var(--font-mono);
-  font-size: var(--step--1);
 }
 </style>

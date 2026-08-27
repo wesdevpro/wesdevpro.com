@@ -5,7 +5,7 @@ description: Apply the wesdevpro visual style (Wesley Ford's personal brand — 
 
 # wesdevpro style
 
-Blue-and-teal, reading-first, **editorial and engineered**. Magazine structure on a component-spec chassis: strong typographic hierarchy, real body copy at measure, captioned photography, flat surfaces, hairline borders, tight radii, three type voices, exactly two signatures.
+Paper, ink, and teal — reading-first, **editorial and engineered**. Magazine structure on a component-spec chassis: strong typographic hierarchy, real body copy at measure, captioned photography, flat surfaces, hairline borders, tight radii, three type voices, exactly two signatures.
 
 > Positioning: *make the parts work together so cleanly you stop noticing the seams.*
 > Brand: wesdevpro / Wesley Ford — custom integrations and web design across the stack.
@@ -17,22 +17,22 @@ The brand's enemy is looking **templated / default** (stock Bulma + Inter SaaS p
 The second enemy is looking **empty**. An editorial layout promises content. A magazine grid running thin prose reads worse than a minimal layout running thin prose, because the structure visibly advertises what is missing. If a section does not have the content to fill an editorial treatment, the fix is content, never padding, never a fallback to three-bullet cards.
 
 1. **Teal `/` eyebrow** — every section label is UPPERCASE Inconsolata, `letter-spacing: 0.14em`, opened by a teal `/`. E.g. `/ SELECTED WORK`, `/ WRITING`, `/ CONTACT`.
-2. **Spec-sheet keyline** — a **2px** top rule (teal for craft/featured, blue for core) turns a card into a component spec. This is the depth signal; heavy shadows are not.
+2. **Spec-sheet keyline** — a **2px** top rule (teal for craft/featured, ink for structural/core) turns a card into a component spec. This is the depth signal; heavy shadows are not.
 
-Never add a third signature. If a design needs more interest, tighten structure instead. Figures, captions, pull quotes, sidenotes, and the margin column are editorial furniture, not additional signatures — don't count them toward a third, and don't treat the new furniture as license to invent one.
+Never add a third signature. If a design needs more interest, tighten structure instead. Figures, captions, pull quotes, sidenotes, and the margin column are editorial furniture, not additional signatures — don't count them toward a third, and don't treat the new furniture as license to invent one. The emphasis-word treatment (below, under type voices) is not a third signature either — it's the existing mono voice doing a new job, not a new mark.
 
 ## Non-negotiables
 
 - **Tokens only.** No hardcoded hex, font names, radii, shadows, or durations. Everything references the custom properties in `references/tokens.css` — copy that file in and link it once, before component CSS.
-- **Three type voices.** Space Grotesk = all headings (600/700, tracking `-0.02em`). Inter = body, nav, buttons, controls (line-height 1.7, prose 1.72, `text-wrap: pretty`). Inconsolata = eyebrows, labels, tags, metadata, code. All-Inter is the #1 default tell — never ship it.
-- **80/20 color.** Blue carries ~80% (the core: integrations + web). Teal is the ~20% craft signal — signatures, OSS callouts, hover emphasis only. General-purpose teal kills the signal. **Documented exception:** the `/buefy` page is teal-forward and is the one permitted exception to this rule, because that page is entirely the craft signal. No other page may claim it.
-- **Flat and border-led.** Solid fills; hairline `1px` borders; `--shadow-card` (`0 1px 2px`) resting, `--shadow-card-hover` (`0 3px 10px`) on hover; hover lift **-1px**. No ambient radial washes, no gradient sheen, no `0 20px 45px` floats, no textures, no patterns. The only allowed gradient is `--gradient-media` (blue→teal) for cover-image placeholders.
+- **Three type voices — no fourth.** Space Grotesk = all headings (600/700, tracking `-0.02em`). Inter = body, nav, buttons, controls (line-height 1.7, prose 1.72, `text-wrap: pretty`). Inconsolata = eyebrows, labels, tags, metadata, code — **and emphasis**: a single word inside a Space Grotesk headline can be set in Inconsolata 600 at `var(--color-accent)`, sized up slightly to optically match the surrounding display type (see `.emphasis` in `references/components.md`). At most once per page. A fourth (script/serif/display) face was considered and rejected: monospace-inside-sans is a more truthful signal for a library maintainer's brand than a script face, and the one-word-in-script gesture is a design cliché. All-Inter is the #1 default tell — never ship it.
+- **Paper / ink / accent — the three-role color model.** Paper (warm off-white base, ~75% of any view) is what everything sits on. Ink (near-black text, logic navy for deep headings and the structural keyline, ~20%) carries all reading and structure — it is not an accent and never was interchangeable with one. Teal is the **one** accent (~5% of area, but concentrated: fewer, larger, bolder placements — a full-bleed band with reversed type, a primary CTA, a keyline, a bullet marker — rather than diffuse small touches on every card). A teal hover state on a link is correct; teal as a third-tier decorative tint on eight small elements per page is not. **Documented exception:** `/buefy` runs denser and more mono-forward than any other page — code samples, data tables, a teal-forward reading of the same one accent — because that page is entirely the craft signal. It is not a color-rule exception anymore (teal is site-wide now); it's a density and register exception. No other page matches its density.
+- **Flat and border-led.** Solid fills; hairline `1px` borders; `--shadow-card` (`0 1px 2px`) resting, `--shadow-card-hover` (`0 3px 10px`) on hover; hover lift **-1px**. No ambient radial washes, no gradient sheen, no `0 20px 45px` floats, no textures, no patterns. The only allowed gradient is `--gradient-media` (the logo's own navy→teal) for cover-image placeholders.
 - **Tight radii.** Tags/small inputs 3px, buttons/inputs 6px, cards/panels/media 10px. Pills are for avatars and the theme toggle **only** — never buttons.
 - **Precise motion.** `cubic-bezier(0.2, 0, 0, 1)`, 140–240ms. No bounces, no infinite loops, no parallax, no hover scale. Motion confirms interaction; it never decorates.
-- **Both themes.** Light + dark from one recipe: `:root` → `@media (prefers-color-scheme: dark) :root` → `[data-theme="light"]` → `[data-theme="dark"]`, in that cascade order, so an explicit toggle beats the OS.
-- **Focus always.** 2px teal-tinted outline at 2px offset on every interactive element.
+- **Both themes.** Light + dark from one recipe: `:root` → `@media (prefers-color-scheme: dark) :root` → `[data-theme="light"]` → `[data-theme="dark"]`, in that cascade order, so an explicit toggle beats the OS. Dark theme reverses **dark** type out of the accent band (`--color-on-accent`), not white — `#2DD2BC` is too bright to carry white text. Never swap that reversal.
+- **Focus always.** 2px teal-tinted outline (`--color-focus`) at 2px offset on every interactive element.
 - **Icons:** Font Awesome 6.5.1 from CDN — `fas` solid, `fab` for GitHub/LinkedIn. Small and functional only. No emoji, ever.
-- **Logos:** use the SVGs in `assets/`. Never redraw the wordmark or diamond mark; place the wordmark on light surfaces.
+- **Logos:** use the diamond mark SVG (`wesdevpro-profile-logo.svg`) in `assets/` unmodified — never redraw it. `NavBrand` composes that mark alongside a **live-text** wordmark (Space Grotesk, not an image) rather than the single flattened `wesdevpro-full-logo-no-sub.svg` lockup: `wesdevpro-text.svg` exists but its glyphs are Illustrator-outlined paths with no recoverable font, so the wordmark is reproduced in the site's own display voice instead of guessed at from vector shapes. The wordmark keeps the logo's fixed brand ink (`#002F5A` navy, `#006089` logo-teal) as literal hex — a deliberate, documented exception to "tokens only," since these are brand constants, not theme-variable UI color, and are never substituted for `--color-ink-deep` or `--color-accent`. Place the wordmark on light surfaces (or the dark-mode chip backdrop, see `components.md`).
 
 ## Layout
 
@@ -50,8 +50,9 @@ Sections carry prose, not bullet triplets. Minimums, so this is checkable rather
 - Any process step: 40 words minimum
 - Any index entry: a 25-word standfirst minimum
 - Any case study: 600 words minimum
+- Any FAQ answer (`/services` only — see `components.md`'s FAQ recipe): 40–80 words
 
-Below the minimum, the section is not ready. Mark it `TODO` rather than shipping it thin or restyling it smaller to hide the gap.
+Below the minimum, the section is not ready. Mark it `TODO` rather than shipping it thin or restyling it smaller to hide the gap. The same discipline applies to proof numbers: one genuinely strong number at large display size beats padding it out to a three-up row that advertises how few strong numbers exist.
 
 ## Files in this skill
 
