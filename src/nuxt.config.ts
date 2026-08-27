@@ -59,6 +59,18 @@ export default defineNuxtConfig({
     client: false,
     server: true,
   },
+  features: {
+    // Netlify prerender failed with a Rollup error resolving an internal
+    // chunk-reference placeholder ("!~{00z}~") inside the auto-generated
+    // error-500 page's style chunk — this feature (per-component critical
+    // CSS inlining for SSR) is the source of those fragile per-route
+    // "-styles.mjs" chunks, and its own upstream comment cites known
+    // SSR/client hash-mismatch bugs in this Vite/Nuxt version combination
+    // (nuxt/nuxt#35591, vitejs/vite#22957). Disabling it only turns off
+    // that inlining optimization — CSS still loads via normal <link> tags,
+    // no visual or behavioral change.
+    inlineStyles: false,
+  },
   colorMode: {
     preference: "system",
     fallback: "light",
