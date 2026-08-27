@@ -130,13 +130,13 @@
 
     --bulma-background-h: 220deg; /* @kind other */ /* neutral gray, not near-black navy */
     --bulma-background-s: 6%;
-    --bulma-background-l: 11%;
+    --bulma-background-l: 16%;
 
     /* Gray, not black — a near-black navy read as too heavy/harsh. */
-    --color-base:            #1A1B1D;
-    --color-base-elevated:   #242628;
-    --color-surface-2:       #1F2022;
-    --color-surface-3:       #38393C;
+    --color-base:            #26282A;
+    --color-base-elevated:   #313335;
+    --color-surface-2:       #2C2E30;
+    --color-surface-3:       #46484B;
     --color-surface-1:       color-mix(in srgb, var(--color-base) 88%, var(--color-surface-2));
 
     --color-ink:             #F6F4F0;
@@ -145,8 +145,8 @@
     --color-text:            #DFE1E3;
     --color-text-muted:      #A9ADB1;
 
-    --color-border:          #2B2C2F;
-    --color-border-strong:   #47494C;
+    --color-border:          #3A3C3F;
+    --color-border-strong:   #56585B;
 
     --color-accent:          #2DD2BC;
     --color-accent-soft:     #0D302E;
@@ -240,12 +240,12 @@
 
   --bulma-background-h: 220deg; /* @kind other */
   --bulma-background-s: 6%;
-  --bulma-background-l: 11%;
+  --bulma-background-l: 16%;
 
-  --color-base:            #1A1B1D;
-  --color-base-elevated:   #242628;
-  --color-surface-2:       #1F2022;
-  --color-surface-3:       #38393C;
+  --color-base:            #26282A;
+  --color-base-elevated:   #313335;
+  --color-surface-2:       #2C2E30;
+  --color-surface-3:       #46484B;
   --color-surface-1:       color-mix(in srgb, var(--color-base) 88%, var(--color-surface-2));
 
   --color-ink:             #F6F4F0;
@@ -254,8 +254,8 @@
   --color-text:            #DFE1E3;
   --color-text-muted:      #A9ADB1;
 
-  --color-border:          #2B2C2F;
-  --color-border-strong:   #47494C;
+  --color-border:          #3A3C3F;
+  --color-border-strong:   #56585B;
 
   --color-accent:          #2DD2BC;
   --color-accent-soft:     #0D302E;

@@ -56,7 +56,7 @@ Run this before calling work done, and as the audit pass when refactoring an exi
 
 - [ ] First person, no emoji, no exclamation marks, no hype.
 - [ ] Forward CTAs use the ASCII arrow `->`.
-- [ ] The mark SVG is unmodified and unrecolored. `NavBrand` composes the mark alongside a live-text wordmark (Space Grotesk, fixed brand-ink hex) rather than the flattened lockup image; the dark-mode chip gives the fixed-ink wordmark a light backdrop. Icons are Font Awesome `fas`/`fab`, functional only.
+- [ ] The mark SVG is unmodified and unrecolored. `NavBrand` composes the mark alongside a live-text wordmark (Space Grotesk) rather than the flattened lockup image — fixed brand-ink hex in light mode, site ink/accent tokens in dark mode, no background chip. Icons are Font Awesome `fas`/`fab`, functional only.
 
 ## Editorial
 

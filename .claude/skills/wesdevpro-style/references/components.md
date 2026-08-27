@@ -273,22 +273,22 @@ Sticky, translucent, hairline-bottom. Blur is chrome only.
   font-family: var(--font-family-display); /* Space Grotesk */
   font-weight: var(--weight-bold);
   letter-spacing: -0.02em;
-  color: #002F5A;                          /* the logo's own fixed navy ink — a brand constant, not --color-ink-deep */
+  color: #002F5A;                          /* light mode: the logo's own fixed navy ink — a brand constant, not --color-ink-deep */
 }
 .site-brand__word--accent {
-  color: #006089;                          /* the logo's own fixed teal ink — a brand constant, never --color-accent */
+  color: #006089;                          /* light mode: the logo's own fixed teal ink — a brand constant, never --color-accent */
 }
-/* dark mode: the wordmark's fixed navy/teal ink needs a light-enough
-   backdrop — pill radius + soft shadow, not a hairline border, so it reads
-   as an intentional chip. Muted gray (--logo-chip-bg), not stark white.
-   Re-verify contrast whenever --color-base (dark) moves; currently tuned
-   against #1A1B1D. */
-[data-theme="dark"] .site-brand,
-.theme-dark .site-brand {
-  padding: 0.3rem 0.65rem;
-  border-radius: var(--radius-pill);
-  background: var(--logo-chip-bg);
-  box-shadow: var(--shadow-soft);
+/* dark mode: no background chip — a pill/chip treatment was tried and
+   rejected (read as a distracting light blob around the brand). This is
+   live text this pass built, not a fixed brand asset, so it's simpler to
+   make the *color* theme-aware instead of propping it up with a backdrop. */
+[data-theme="dark"] .site-brand__word,
+.theme-dark .site-brand__word {
+  color: var(--color-ink);
+}
+[data-theme="dark"] .site-brand__word--accent,
+.theme-dark .site-brand__word--accent {
+  color: var(--color-accent);
 }
 ```
 
@@ -300,7 +300,7 @@ Sticky, translucent, hairline-bottom. Blur is chrome only.
 </a>
 ```
 
-The mark SVG stays unmodified — this recomposes an existing asset with new markup, it doesn't redraw it. `wesdevpro-profile-logo.svg` also still serves standalone as an avatar/favicon. The two fixed hex values above are a deliberate, documented exception to "tokens only" — they're the logo's own brand-constant ink, not theme-variable UI color, and must never be swapped for a token.
+The mark SVG stays unmodified — this recomposes an existing asset with new markup, it doesn't redraw it. `wesdevpro-profile-logo.svg` also still serves standalone as an avatar/favicon. The light-mode fixed hex values above are a deliberate, documented exception to "tokens only" — they're the logo's own brand-constant ink, not theme-variable UI color. The dark-mode override intentionally breaks from that and uses real tokens instead, since that treatment is this site's own choice, not a brand-fixed value — and no background chip is used to prop up legibility.
 
 ## Inputs
 

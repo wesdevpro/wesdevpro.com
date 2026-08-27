@@ -68,20 +68,6 @@ body,
   font-size: clamp(0.95rem, 0.85rem + 0.35vw, 1.2rem);
 }
 
-/* The wordmark's ink is fixed dark navy/teal for light surfaces — in dark mode
-   it needs a light-enough backdrop rather than being recolored (see tokens.css).
-   Pill radius + a soft shadow instead of a hairline border, so it reads as
-   an intentional chip rather than a flat rectangle cut into the navbar.
-   --logo-chip-bg is a muted gray, not stark white — tuned against the dark
-   base #1A1B1D. */
-[data-theme="dark"] .site-brand,
-.theme-dark .site-brand {
-  padding: 0.3rem 0.65rem;
-  border-radius: var(--radius-pill);
-  background: var(--logo-chip-bg);
-  box-shadow: var(--shadow-soft);
-  box-sizing: content-box;
-}
 
 .site-navbar .navbar-start,
 .site-navbar .navbar-end {

@@ -25,9 +25,11 @@ withDefaults(
         source font can't be recovered from that file (Illustrator exports
         outline the glyphs to paths, stripping all font metadata), so the
         wordmark is reproduced in Space Grotesk, the site's own display
-        voice, rather than guessed at from an SVG. Colors are the logo's
-        fixed brand ink (#002F5A navy / #006089 logo-teal) — not UI tokens,
-        never substituted for --color-ink-deep or --color-accent.
+        voice, rather than guessed at from an SVG. Since this is live text
+        built this session (not a fixed brand asset), it's theme-aware:
+        the logo's own fixed ink (navy/teal) on light surfaces, but the
+        site's own ink/accent tokens in dark mode — no background chip
+        needed to keep it legible.
       -->
       <span class="site-brand__word" aria-hidden="true">wesdev<span class="site-brand__word--accent">pro</span></span>
       <span class="visually-hidden">wesdevpro</span>
@@ -44,6 +46,16 @@ withDefaults(
 
 .site-brand__word--accent {
    color: #006089;
+}
+
+[data-theme="dark"] .site-brand__word,
+.theme-dark .site-brand__word {
+   color: var(--color-ink);
+}
+
+[data-theme="dark"] .site-brand__word--accent,
+.theme-dark .site-brand__word--accent {
+   color: var(--color-accent);
 }
 
 .visually-hidden {
