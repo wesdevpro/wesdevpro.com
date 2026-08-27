@@ -54,6 +54,18 @@ Run this before calling work done, and as the audit pass when refactoring an exi
 - [ ] Forward CTAs use the ASCII arrow `->`.
 - [ ] Logos are the SVG assets, unmodified, on light surfaces; icons are Font Awesome `fas`/`fab`, functional only.
 
+## Editorial
+
+- [ ] No body paragraph exceeds `--measure-prose`, at any breakpoint.
+- [ ] Every figure has a caption and a separate alt attribute.
+- [ ] No page is a centered single-column stack.
+- [ ] Margin column content is present and readable on mobile, not hidden.
+- [ ] No page shows more than five type sizes.
+- [ ] `--text-display` appears exactly once across the whole site.
+- [ ] Every section meets its density minimum (see `SKILL.md`), or carries a marked `TODO`.
+- [ ] No fabricated prose, quotes, metrics, prices, or imagery.
+- [ ] Section padding varies by importance rather than being uniform.
+
 ## Build
 
 - [ ] Builds and dev-runs with no new console errors; routes and content unchanged unless the task said otherwise.

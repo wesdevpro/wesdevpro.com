@@ -1,10 +1,11 @@
 <template>
   <article v-if="post" class="detail-page section is-medium">
     <header class="detail-page__header surface-panel">
-      <p class="eyebrow">Project</p>
+      <p class="eyebrow">{{ post.concept ? 'Concept' : 'Project' }}</p>
       <h1 class="detail-page__title">{{ post.name }}</h1>
       <p v-if="post.description" class="detail-page__description">{{ post.description }}</p>
       <div class="detail-page__meta">
+        <span v-if="post.concept" class="detail-page__meta-item">Concept — not a delivered engagement</span>
         <span v-if="post.client || post.sector" class="detail-page__meta-item">
           {{ [post.client, post.sector].filter(Boolean).join(' · ') }}
         </span>
@@ -21,7 +22,9 @@
     </div>
 
     <section class="detail-page__prose">
-      <ContentRenderer :value="post" />
+      <div class="content">
+        <ContentRenderer :value="post" />
+      </div>
     </section>
 
     <blockquote v-if="post.testimonial" class="detail-page__testimonial surface-panel">
@@ -55,11 +58,22 @@ function formatDate(date: string | Date) {
   })
 }
 
+function seoTitle(name?: string, concept?: boolean) {
+  if (!name) return 'Work'
+  return concept ? `${name} (Concept) · Work` : `${name} · Work`
+}
+
+function seoDescription(description?: string, concept?: boolean) {
+  const fallback = 'Project details and implementation notes by wesdevpro.'
+  const text = description ?? fallback
+  return concept ? `Concept site — ${text}` : text
+}
+
 useSeoMeta({
-  title: () => (post.value?.name ? `${post.value.name} · Work` : 'Work'),
-  description: () => post.value?.description ?? 'Project details and implementation notes by wesdevpro.',
-  ogTitle: () => (post.value?.name ? `${post.value.name} · Work` : 'Work · wesdevpro'),
-  ogDescription: () => post.value?.description ?? 'Project details and implementation notes by wesdevpro.',
+  title: () => seoTitle(post.value?.name, post.value?.concept),
+  description: () => seoDescription(post.value?.description, post.value?.concept),
+  ogTitle: () => (post.value?.name ? seoTitle(post.value.name, post.value.concept) : 'Work · wesdevpro'),
+  ogDescription: () => seoDescription(post.value?.description, post.value?.concept),
   ogImage: () => post.value?.coverImage || '/images/wesdevpro-banner.jpg',
   twitterCard: 'summary_large_image'
 })

@@ -18,7 +18,9 @@
     </header>
 
     <section class="detail-page__prose">
-      <ContentRenderer :value="post" />
+      <div class="content">
+        <ContentRenderer :value="post" />
+      </div>
     </section>
   </article>
   <section v-else class="empty-page">

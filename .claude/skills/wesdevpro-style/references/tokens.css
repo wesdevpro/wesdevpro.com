@@ -240,6 +240,28 @@
   --step-3: clamp(1.66rem, 1.52rem + 0.69vw, 2.05rem); /* @kind other */    /* h3 */
   --step-4: clamp(2.02rem, 1.82rem + 1.04vw, 2.62rem); /* @kind other */    /* h1 / section title */
 
+  /* --- Editorial reading scale (added for the editorial direction pass) ---
+     Body is the anchor; headings derive from it. Fixed sizes, not fluid
+     clamps, unlike --step-*. Coexists with --step-* above rather than
+     replacing it — nothing asked for --step-* to be removed, and other
+     recipes (section header, tags) still reference it.
+     FLAGGED FOR WESLEY: the spec for this pass named the body-copy size
+     token `--text-body`, but that name is already taken by the color alias
+     `--text-body: var(--color-text);` a few sections up (colors.css block).
+     Since :root blocks cascade in source order, redeclaring --text-body
+     here would silently overwrite that color alias with "1.125rem" instead
+     of a color — a real bug, not a style choice. Named it --text-body-size
+     instead to avoid that collision. Rename either token if you'd rather
+     have the literal name free for one of them. */
+  --text-caption:    0.8125rem; /* 13px  Inconsolata, captions and metadata */
+  --text-small:      0.9375rem; /* 15px  labels, tags, fine print */
+  --text-body-size:  1.125rem;  /* 18px  Inter, all body prose */
+  --text-lead:       1.375rem;  /* 22px  standfirst / deck */
+  --text-h3:         1.5rem;    /* 24px */
+  --text-h2:         2rem;      /* 32px */
+  --text-h1:         2.75rem;   /* 44px  max on any article page */
+  --text-display:    3.5rem;    /* 56px  homepage hero only, once per site */
+
   /* --- Weights -------------------------------------------- */
   --weight-regular: 400; /* @kind other */
   --weight-medium: 500; /* @kind other */
@@ -255,10 +277,15 @@
   /* (display weights skew lighter — Space Grotesk reads heavy) */
 
   /* --- Line heights --------------------------------------- */
-  --leading-tight: 1.08; /* @kind other */
+  /* --leading-tight is repurposed here from "all headings" to "h3 and
+     smaller" specifically, paired with the new --leading-heading for
+     h1/h2 — see the base.css h1-h6 split below, updated to match. */
+  --leading-tight: 1.25; /* @kind other */ /* h3 and smaller (was 1.08, applied to all headings) */
+  --leading-heading: 1.15; /* @kind other */ /* h1 and h2 */
   --leading-snug: 1.18; /* @kind other */
-  --leading-body: 1.68; /* @kind other */
+  --leading-body: 1.7; /* @kind other */ /* was 1.68, retuned for 18px body */
   --leading-prose: 1.72; /* @kind other */
+  --leading-lead: 1.55; /* @kind other */
 
   /* --- Letter spacing ------------------------------------- */
   --tracking-display: -0.02em; /* @kind other */
@@ -304,10 +331,24 @@
   /* --- Layout containers ---------------------------------- */
   --container-desktop: 60rem;     /* is-max-desktop */
   --container-widescreen: 92rem;  /* blog / wide listings */
-  --measure-prose: 72ch;          /* long-form reading width */
-  --measure-lede: 58ch;           /* subtitle / lede width */
+  --measure-prose: 68ch;          /* long-form reading width — retuned from 72ch for the editorial pass */
+  --measure-lede: 58ch;           /* subtitle / lede width — kept for the existing section-header .lede pattern */
+  --measure-lead: 54ch;           /* standfirst / deck width — new, distinct from --measure-lede above */
+  --measure-caption: 44ch;        /* figure caption width */
 
   --navbar-height: 4.75rem;
+
+  /* --- Editorial grid --------------------------------------
+     12 columns, asymmetric by default. Prose sits in 2-8; the
+     margin column (sidenotes, metadata, pull quotes) sits in 9-12.
+     Figures break out to 2-12 or full-bleed 1-12. */
+  --grid-columns: 12;
+  --grid-gutter: 1.5rem;
+  --grid-max: 1280px;
+  --grid-prose-start: 2;
+  --grid-prose-span: 7;
+  --grid-margin-start: 9;
+  --grid-margin-span: 4;
 }
 
 
@@ -347,6 +388,16 @@
   --dur-base: 180ms;  /* @kind other */
   --dur-slow: 240ms;  /* @kind other */
   --lift-hover: -1px; /* @kind other */
+
+  /* --- Figure & caption ------------------------------------
+     Reuses existing color/radius tokens — no new color values for
+     captions (--color-text-muted is correct) and no new radius (media
+     already means --radius-lg per the "tight radii" rule above; the
+     spec for this pass referenced a --radius-media alias that doesn't
+     exist in this file, so this points straight at --radius-lg). */
+  --figure-gap: 0.75rem;         /* figure to caption */
+  --caption-border-top: 1px;     /* hairline, pairs with --color-border */
+  --figure-radius: var(--radius-lg);
 
   /* --- Surfaces are flat; gradients reserved for real imagery --- */
   --gradient-page: var(--color-base);        /* page is clean — no ambient wash */
@@ -392,6 +443,15 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--weight-display);
   letter-spacing: var(--tracking-display);
   text-wrap: balance;
+}
+
+/* Split from the old single "all headings get --leading-tight" rule:
+   h1/h2 read looser (--leading-heading), h3 and smaller stay tight. */
+h1, h2 {
+  line-height: var(--leading-heading);
+}
+
+h3, h4, h5, h6 {
   line-height: var(--leading-tight);
 }
 

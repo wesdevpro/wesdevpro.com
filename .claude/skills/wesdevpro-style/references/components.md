@@ -37,12 +37,18 @@ Rules: one eyebrow per section. Never sentence case. Never blue or ink — the s
 
 ## Section header
 
+Must work off-center on the editorial grid (not a centered stack) and must be able to carry a standfirst underneath, in addition to the plain `.lede`.
+
 ```css
 .section { padding-block: var(--section-y); }
 .section-header {
   display: grid;
-  gap: var(--space-2xs);
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--space-2xs) var(--grid-gutter);
   margin-bottom: var(--section-header-gap);
+}
+.section-header > * {
+  grid-column: var(--grid-prose-start) / span var(--grid-prose-span);  /* off-center: columns 2-8, not centered */
 }
 .section-header h2 {
   margin: 0;
@@ -60,15 +66,19 @@ Rules: one eyebrow per section. Never sentence case. Never blue or ink — the s
 }
 ```
 
+A `.standfirst` (see the new recipe below) can follow the `h2`/`.lede` directly in the same grid — it inherits the same column placement. Only center a section header when there's a specific reason to; asymmetry is the default.
+
 ## SIGNATURE 2 — Card + keyline
+
+Cards carry prose now, not three bullets — a 60 to 90 word body is the target (see the Density minimums in `SKILL.md`). Padding and body line-height are sized for that; the keyline, radius, flat fill, and hover lift are unchanged.
 
 ```css
 .card {
   background: var(--color-surface-1);
   border: var(--border-hairline);
-  border-radius: var(--radius-lg);        /* 10px */
-  box-shadow: var(--shadow-card);         /* 0 1px 2px */
-  padding: var(--space-md);               /* ~22px */
+  border-radius: var(--radius-lg);        /* 10px — unchanged */
+  box-shadow: var(--shadow-card);         /* 0 1px 2px — unchanged */
+  padding: var(--space-lg);               /* was --space-md (~22px) — more room for a 60-90 word body */
   transition:
     border-color var(--dur-base) var(--ease-standard),
     box-shadow var(--dur-base) var(--ease-standard),
@@ -79,7 +89,11 @@ Rules: one eyebrow per section. Never sentence case. Never blue or ink — the s
   font-size: var(--step-2);
   letter-spacing: var(--tracking-title);
 }
-.card p { margin: 0; color: var(--color-text-muted); }
+.card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: var(--leading-body);       /* new — real prose needs a real line-height */
+}
 
 /* interactive cards only */
 .card.is-interactive:hover {
@@ -268,6 +282,201 @@ Logo lockup: `assets/wesdevpro-full-logo-no-sub.svg` at ~28–32px tall; `wesdev
 .container { width: min(100% - 2 * var(--space-sm), var(--container-desktop)); margin-inline: auto; }   /* 60rem */
 .container--wide { max-width: var(--container-widescreen); }                                            /* 92rem, blog grid */
 .prose { max-width: var(--measure-prose); line-height: var(--leading-prose); }                          /* 72ch */
+```
+
+## Figure + caption
+
+Alt text and the caption are different jobs — alt describes the image for someone who can't see it; the caption says what it shows and why it matters. Never let one stand in for the other, and never treat the caption as decorative.
+
+```css
+.figure {
+  display: grid;
+  gap: var(--figure-gap);
+}
+.figure img {
+  display: block;
+  width: 100%;
+  border-radius: var(--figure-radius);
+}
+.figure figcaption {
+  padding-top: var(--space-2xs);
+  border-top: var(--caption-border-top) solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  max-width: var(--measure-caption);      /* 44ch */
+  color: var(--color-text-muted);
+}
+.figure--wide { grid-column: 2 / 13; }        /* breaks out to 2-12 */
+.figure--full-bleed { grid-column: 1 / 13; }  /* full-bleed 1-12 */
+```
+
+```html
+<figure class="figure">
+  <img src="..." alt="What's literally in the frame">
+  <figcaption>Present-tense sentence saying what the image shows and why it matters.</figcaption>
+</figure>
+```
+
+## Pull quote
+
+Reuses the eyebrow's teal `/` as the opener rather than inventing a new mark — this is editorial furniture, not a third signature. Unattributed is the default: don't add a `<cite>` until a real quote with a real name exists.
+
+```css
+.pull-quote {
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: var(--weight-display);
+  line-height: var(--leading-tight);
+  color: var(--color-text-strong);
+  max-width: var(--measure-lead);
+}
+.pull-quote::before {
+  content: var(--label-marker);           /* "/" — the eyebrow marker, reused */
+  color: var(--accent-teal);
+  margin-right: 0.25em;
+}
+.pull-quote cite {
+  display: block;
+  margin-top: var(--space-2xs);
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+}
+```
+
+```html
+<blockquote class="pull-quote">
+  <p>Quote text.</p>
+  <!-- omit <cite> entirely until there's a real testimonial — never invent an attribution -->
+</blockquote>
+```
+
+## Sidenote
+
+Lives in the margin column (9–12). Collapses below its anchor paragraph on mobile — it never disappears and its content is never dropped.
+
+```css
+.sidenote {
+  grid-column: var(--grid-margin-start) / span var(--grid-margin-span);
+  padding-left: var(--space-sm);
+  border-left: var(--border-hairline);
+  font-family: var(--font-ui);
+  font-size: var(--text-small);
+  color: var(--color-text-muted);
+}
+@media (max-width: 768px) {
+  .sidenote {
+    grid-column: 1 / -1;
+    margin-top: var(--space-sm);
+    border-left: none;
+    border-top: var(--border-hairline);
+    padding-left: 0;
+    padding-top: var(--space-xs);
+  }
+}
+```
+
+## Standfirst / deck
+
+Sits between the headline and the body. 30–50 words, answering "why should I keep reading" (see `voice.md`) — not a summary of the piece and not the headline restated.
+
+```css
+.standfirst {
+  font-family: var(--font-body);
+  font-size: var(--text-lead);
+  line-height: var(--leading-lead);
+  max-width: var(--measure-lead);         /* 54ch */
+  color: var(--color-text-muted);
+  margin: var(--space-sm) 0 var(--space-lg);
+}
+```
+
+## Article header
+
+Title and standfirst in the prose column; an Inconsolata metadata block — client, sector, year, stack, role — in the margin column.
+
+```css
+.article-header {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-columns), 1fr);
+  gap: var(--grid-gutter);
+}
+.article-header__title {
+  grid-column: var(--grid-prose-start) / span var(--grid-prose-span);
+  font-size: var(--text-h1);
+  line-height: var(--leading-heading);
+}
+.article-header__standfirst {
+  grid-column: var(--grid-prose-start) / span var(--grid-prose-span);
+}
+.article-header__meta {
+  grid-column: var(--grid-margin-start) / span var(--grid-margin-span);
+  display: grid;
+  gap: var(--space-2xs);
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+}
+.article-header__meta dt { text-transform: uppercase; letter-spacing: var(--tracking-label); }
+.article-header__meta dd { margin: 0 0 var(--space-2xs); color: var(--color-text-strong); }
+```
+
+```html
+<header class="article-header">
+  <h1 class="article-header__title">...</h1>
+  <p class="article-header__standfirst standfirst">...</p>
+  <dl class="article-header__meta">
+    <dt>Client</dt><dd>...</dd>
+    <dt>Sector</dt><dd>...</dd>
+    <dt>Year</dt><dd>...</dd>
+    <dt>Stack</dt><dd>...</dd>
+    <dt>Role</dt><dd>...</dd>
+  </dl>
+</header>
+```
+
+## Code sample block
+
+Primarily for `/buefy`. Treated as a figure — captionable via the same `.figure`/`figcaption` pattern above.
+
+```css
+.code-sample {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  border: var(--border-hairline);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-1);
+  overflow-x: auto;
+  padding: var(--space-sm);
+}
+```
+
+## Data table
+
+Primarily for `/buefy`. Replaces stat cards — bordered, dense, Inconsolata numerics read like a spec sheet rather than a marketing tile.
+
+```css
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+}
+.data-table th, .data-table td {
+  padding: var(--space-2xs) var(--space-sm);
+  border-bottom: var(--border-hairline);
+  text-align: left;
+}
+.data-table th {
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  font-weight: var(--weight-medium);
+}
+.data-table td { color: var(--color-text-strong); }
+.data-table tbody tr:last-child th,
+.data-table tbody tr:last-child td { border-bottom: none; }
 ```
 
 ## Media placeholder (the one allowed gradient)

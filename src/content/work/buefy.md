@@ -1,6 +1,6 @@
 ---
-name: Buefy Vue 3 Migration
-description: "Open source migration work transitioning Buefy from Vue 2 patterns to Vue 3-compatible architecture."
+name: Buefy
+description: "Open source Vue component library. I'm the lead maintainer and led its migration from Vue 2 to Vue 3."
 tags: ["open-source", "vue3", "buefy", "migration"]
 date: "09-07-2025"
 order: 2
@@ -10,7 +10,8 @@ coverImage: "https://buefy.org/static/img/buefy-banner.png"
 collaborators: ["kikuo", "buefy-vue3-development-team"]
 ---
 
-I contributed to migration efforts that modernized Buefy for the Vue 3 ecosystem.
+I'm the lead maintainer of Buefy, an open source component library for Vue,
+and I led its migration from Vue 2 to Vue 3.
 
 ## Focus Areas
 
@@ -20,4 +21,6 @@ I contributed to migration efforts that modernized Buefy for the Vue 3 ecosystem
 
 ## Outcome
 
-Buefy's components now run on Vue 3 without the Vue 2 compatibility shims the project relied on before. The migration is live in the published package, so anyone using Buefy today is running the result of this work.
+Buefy's components now run on Vue 3 without the Vue 2 compatibility shims the
+project relied on before. The migration is live in the published package: it
+sees 2.8M downloads all-time, and 194.6K in the past 28 days.

@@ -4,6 +4,7 @@
          <NavBrand />
       </template>
       <template #start>
+         <b-navbar-item class="is-nav-link" tag="router-link" :to="'/'" exact>Home</b-navbar-item>
          <b-navbar-item class="is-nav-link" tag="router-link" :to="'/services'">Services</b-navbar-item>
          <b-navbar-item class="is-nav-link" tag="router-link" :to="'/work'">Work</b-navbar-item>
          <b-navbar-item class="is-nav-link" tag="router-link" :to="'/about'">About</b-navbar-item>

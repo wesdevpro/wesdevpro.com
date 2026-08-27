@@ -93,6 +93,13 @@
   --accent-primary: var(--bulma-primary);
   --accent-teal: var(--bulma-accent);
   --accent-steel: var(--bulma-secondary);
+
+  /* --- Logo chip (theme-invariant, intentionally not redefined below) ----
+     The wordmark SVGs use fixed dark-navy ink meant for light surfaces —
+     never recolor the logo itself. This single constant gives it a light
+     backdrop in dark mode instead. Deliberately defined once and never
+     overridden by the dark media query or [data-theme] blocks. */
+  --logo-chip-bg: #ffffff;
 }
 
 /* ---- Dark token recipe, shared by media-query + explicit dark ---- */

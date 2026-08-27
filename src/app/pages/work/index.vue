@@ -19,6 +19,7 @@
             :tags="project.tags"
             :repo-url="project.repoUrl"
             :keyline="!!project.featured"
+            :concept="!!project.concept"
           />
         </div>
       </div>

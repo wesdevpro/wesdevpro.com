@@ -49,11 +49,24 @@ body,
 .site-brand__lockup {
   display: block;
   width: auto;
-  height: clamp(2.1rem, 1.95rem + 0.45vw, 2.6rem);
+  height: clamp(2.6rem, 2.2rem + 1.2vw, 3.6rem);
 }
 
 .site-brand--compact .site-brand__lockup {
-  height: clamp(1.7rem, 1.58rem + 0.3vw, 2rem);
+  height: clamp(2rem, 1.8rem + 0.6vw, 2.6rem);
+}
+
+/* The wordmark's ink is fixed dark navy for light surfaces — in dark mode
+   it needs a light backdrop rather than being recolored (see tokens.css).
+   Pill radius + a soft shadow instead of a hairline border, so it reads as
+   an intentional chip rather than a flat rectangle cut into the navbar. */
+[data-theme="dark"] .site-brand__lockup,
+.theme-dark .site-brand__lockup {
+  padding: 0.3rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: var(--logo-chip-bg);
+  box-shadow: var(--shadow-soft);
+  box-sizing: content-box;
 }
 
 .site-navbar .navbar-start,

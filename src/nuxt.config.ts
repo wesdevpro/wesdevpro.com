@@ -36,7 +36,6 @@ export default defineNuxtConfig({
         "/projects",
         "/projects/wesdevpro.com",
         "/projects/buefy",
-        "/projects/analyst",
       ],
     },
   },
@@ -53,7 +52,6 @@ export default defineNuxtConfig({
     "/projects": { redirect: { to: "/work", statusCode: 301 } },
     "/projects/wesdevpro.com": { redirect: { to: "/work", statusCode: 301 } },
     "/projects/buefy": { redirect: { to: "/work/buefy", statusCode: 301 } },
-    "/projects/analyst": { redirect: { to: "/work/analyst", statusCode: 301 } },
   },
   sourcemap: {
     client: false,

@@ -6,7 +6,7 @@
 
     <div class="card-content content-card__body">
       <div class="content-card__meta-row">
-        <p class="content-card__eyebrow">{{ formatDate(date) }}</p>
+        <p class="content-card__eyebrow">{{ concept ? `Concept · ${formatDate(date)}` : formatDate(date) }}</p>
         <a
           v-if="repoUrl"
           :href="repoUrl"
@@ -56,10 +56,12 @@ interface Props {
   tags?: string[]
   repoUrl?: string
   keyline?: boolean
+  concept?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   keyline: false,
+  concept: false,
 })
 
 const previewTags = computed(() => props.tags?.slice(0, 3) ?? [])

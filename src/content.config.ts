@@ -21,12 +21,13 @@ export default defineContentConfig({
       schema: z.object({
         name: z.string(),
         description: z.string().optional(),
-        client: z.string().optional(), // omit for non-client work (Buefy, Analyst) — never guess
+        client: z.string().optional(), // omit for non-client work (Buefy) — never guess
         sector: z.string().optional(),
         tags: z.array(z.string()).optional(), // doubles as "stack" metadata, rendered mono
         date: z.coerce.date(),
-        order: z.number().optional(), // explicit sort key: 1 = Imagine Land Works, 2 = Buefy, 3 = Analyst
+        order: z.number().optional(), // explicit sort key: 1 = Imagine Land Works, 2 = Buefy, 3 = BlueBird Theatre
         featured: z.boolean().optional(), // drives the has-keyline treatment on the Work index
+        concept: z.boolean().optional(), // drives the "Concept" label on the card + case-study page for non-delivered work
         repoUrl: z.string().optional(), // client work may have no public repo
         coverImage: z.string().optional(),
         screenshots: z.array(z.string()).optional(),

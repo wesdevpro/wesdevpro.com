@@ -5,6 +5,7 @@
             <NavBrand compact />
          </div>
          <div class="level-right">
+            <NuxtLink to="/" class="level-item">Home</NuxtLink>
             <NuxtLink to="/services" class="level-item">Services</NuxtLink>
             <NuxtLink to="/work" class="level-item">Work</NuxtLink>
             <NuxtLink to="/about" class="level-item">About</NuxtLink>
