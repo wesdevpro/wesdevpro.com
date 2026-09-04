@@ -38,6 +38,12 @@ export default defineNuxtConfig({
         "/projects",
         "/projects/wesdevpro.com",
         "/projects/buefy",
+        // Agent-discovery manifest (see src/server/README.md) — not linked from
+        // any page, so nuxt generate's link-crawler won't find these on its own.
+        "/.well-known/mcp.json",
+        "/api/mcp/sections",
+        "/api/mcp/search",
+        "/api/mcp/page-info",
       ],
     },
   },
