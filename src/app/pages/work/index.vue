@@ -43,8 +43,10 @@ useSeoMeta({
 
 const { data: projects } = await useAsyncData('work', async () => {
   const data = await queryCollection('work').all()
-  return data.sort((a, b) => {
-    return ((a.order ?? Infinity) - (b.order ?? Infinity)) || (new Date(b.date).getTime() - new Date(a.date).getTime())
-  })
+  return data
+    .filter((item) => !item.offline)
+    .sort((a, b) => {
+      return ((a.order ?? Infinity) - (b.order ?? Infinity)) || (new Date(b.date).getTime() - new Date(a.date).getTime())
+    })
 })
 </script>

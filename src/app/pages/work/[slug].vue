@@ -1,27 +1,27 @@
 <template>
-  <article v-if="post" class="detail-page section is-medium">
+  <article v-if="visiblePost" class="detail-page section is-medium">
     <ArticleHeader
-      :title="post.name"
-      :standfirst="post.description"
+      :title="visiblePost.name"
+      :standfirst="visiblePost.description"
       :meta="articleMeta"
     />
 
-    <div v-if="post.screenshots?.length" class="detail-page__screenshots">
-      <MediaFrame v-for="src in post.screenshots" :key="src" :src="src" :alt="`${post.name} screenshot`" />
+    <div v-if="visiblePost.screenshots?.length" class="detail-page__screenshots">
+      <MediaFrame v-for="src in visiblePost.screenshots" :key="src" :src="src" :alt="`${visiblePost.name} screenshot`" />
     </div>
 
     <section class="detail-page__prose">
       <div class="content">
-        <ContentRenderer :value="post" />
+        <ContentRenderer :value="visiblePost" />
       </div>
     </section>
 
     <PullQuote
-      v-if="post.testimonial"
+      v-if="visiblePost.testimonial"
       class="detail-page__testimonial"
-      :attribution="[post.testimonial.author, post.testimonial.business].filter(Boolean).join(', ')"
+      :attribution="[visiblePost.testimonial.author, visiblePost.testimonial.business].filter(Boolean).join(', ')"
     >
-      {{ post.testimonial.quote }}
+      {{ visiblePost.testimonial.quote }}
     </PullQuote>
   </article>
   <section v-else class="empty-page">
@@ -40,6 +40,11 @@ const { data: post } = await useAsyncData('post', () =>
     .first()
 )
 
+// An `offline: true` entry (e.g. a concept build that isn't actually live
+// yet) is treated exactly like a missing one — same "not found" state, no
+// separate messaging that would confirm the page exists but is hidden.
+const visiblePost = computed(() => (post.value && !post.value.offline ? post.value : null))
+
 function formatDate(date: string | Date) {
   return new Date(date).toLocaleDateString('en-US', {
     year: 'numeric',
@@ -49,26 +54,26 @@ function formatDate(date: string | Date) {
 }
 
 const articleMeta = computed(() => {
-  if (!post.value) return []
+  if (!visiblePost.value) return []
   const items: { label: string; value: string; href?: string }[] = []
-  if (post.value.concept) {
+  if (visiblePost.value.concept) {
     items.push({ label: 'Status', value: 'Concept — not a delivered engagement' })
-  } else if (post.value.client) {
+  } else if (visiblePost.value.client) {
     items.push({ label: 'Status', value: 'Client Project' })
-  } else if (post.value.repoUrl) {
+  } else if (visiblePost.value.repoUrl) {
     items.push({ label: 'Status', value: 'Open Source' })
   }
-  if (post.value.client || post.value.sector) {
-    items.push({ label: 'Client', value: [post.value.client, post.value.sector].filter(Boolean).join(' · ') })
+  if (visiblePost.value.client || visiblePost.value.sector) {
+    items.push({ label: 'Client', value: [visiblePost.value.client, visiblePost.value.sector].filter(Boolean).join(' · ') })
   }
   // A handful of entries carry a known-placeholder date (dateVerified: false)
   // until a real one is confirmed — don't render it as if it were real.
-  if (post.value.date && post.value.dateVerified !== false) {
-    items.push({ label: 'Updated', value: formatDate(post.value.date) })
+  if (visiblePost.value.date && visiblePost.value.dateVerified !== false) {
+    items.push({ label: 'Updated', value: formatDate(visiblePost.value.date) })
   }
-  if (post.value.liveUrl) items.push({ label: 'Live Site', value: post.value.liveUrl.replace(/^https?:\/\//, ''), href: post.value.liveUrl })
-  if (post.value.repoUrl) items.push({ label: 'Repository', value: 'View source', href: post.value.repoUrl })
-  if (post.value.tags?.length) items.push({ label: 'Stack', value: post.value.tags.join(', ') })
+  if (visiblePost.value.liveUrl) items.push({ label: 'Live Site', value: visiblePost.value.liveUrl.replace(/^https?:\/\//, ''), href: visiblePost.value.liveUrl })
+  if (visiblePost.value.repoUrl) items.push({ label: 'Repository', value: 'View source', href: visiblePost.value.repoUrl })
+  if (visiblePost.value.tags?.length) items.push({ label: 'Stack', value: visiblePost.value.tags.join(', ') })
   return items
 })
 
@@ -84,16 +89,16 @@ function seoDescription(description?: string, concept?: boolean) {
 }
 
 useSeoMeta({
-  title: () => seoTitle(post.value?.name, post.value?.concept),
-  description: () => seoDescription(post.value?.description, post.value?.concept),
-  ogTitle: () => (post.value?.name ? seoTitle(post.value.name, post.value.concept) : 'Work · wesdevpro'),
-  ogDescription: () => seoDescription(post.value?.description, post.value?.concept),
-  ogImage: () => post.value?.coverImage || '/images/wesdevpro-banner.jpg',
+  title: () => seoTitle(visiblePost.value?.name, visiblePost.value?.concept),
+  description: () => seoDescription(visiblePost.value?.description, visiblePost.value?.concept),
+  ogTitle: () => (visiblePost.value?.name ? seoTitle(visiblePost.value.name, visiblePost.value.concept) : 'Work · wesdevpro'),
+  ogDescription: () => seoDescription(visiblePost.value?.description, visiblePost.value?.concept),
+  ogImage: () => visiblePost.value?.coverImage || '/images/wesdevpro-banner.jpg',
   twitterCard: 'summary_large_image'
 })
 
 useHead(() => {
-  if (!post.value) return {}
+  if (!visiblePost.value) return {}
   return {
     script: [
       {
@@ -103,7 +108,7 @@ useHead(() => {
           '@type': 'BreadcrumbList',
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Work', item: 'https://wesdevpro.com/work' },
-            { '@type': 'ListItem', position: 2, name: post.value.name, item: `https://wesdevpro.com${route.path}` },
+            { '@type': 'ListItem', position: 2, name: visiblePost.value.name, item: `https://wesdevpro.com${route.path}` },
           ],
         }),
       },

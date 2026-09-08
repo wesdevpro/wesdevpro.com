@@ -1,5 +1,5 @@
 <template>
-  <section v-if="featured" class="section home-featured-work">
+  <section v-if="featured && !featured.offline" class="section home-featured-work">
     <div class="container is-max-desktop">
       <SectionHeader eyebrow="Featured Work" :title="featured.name" />
 

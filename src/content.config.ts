@@ -29,6 +29,7 @@ export default defineContentConfig({
         order: z.number().optional(), // explicit sort key: 1 = Imagine Land Works, 2 = Buefy, 3 = BlueBird Theatre
         featured: z.boolean().optional(), // drives the has-keyline treatment on the Work index
         concept: z.boolean().optional(), // drives the "Concept" label on the card + case-study page for non-delivered work
+        offline: z.boolean().optional(), // set true to pull an entry out of display entirely (Work index + its own case-study page 404s) without deleting the content — e.g. a concept build that isn't actually live/finished yet
         repoUrl: z.string().optional(), // client work may have no public repo
         liveUrl: z.string().optional(), // the deployed site, if it's public — surfaced as a clear link, not buried in body prose
         coverImage: z.string().optional(),
