@@ -50,12 +50,23 @@ function formatDate(date: string | Date) {
 
 const articleMeta = computed(() => {
   if (!post.value) return []
-  const items: { label: string; value: string }[] = []
-  if (post.value.concept) items.push({ label: 'Status', value: 'Concept — not a delivered engagement' })
+  const items: { label: string; value: string; href?: string }[] = []
+  if (post.value.concept) {
+    items.push({ label: 'Status', value: 'Concept — not a delivered engagement' })
+  } else if (post.value.client) {
+    items.push({ label: 'Status', value: 'Client Project' })
+  } else if (post.value.repoUrl) {
+    items.push({ label: 'Status', value: 'Open Source' })
+  }
   if (post.value.client || post.value.sector) {
     items.push({ label: 'Client', value: [post.value.client, post.value.sector].filter(Boolean).join(' · ') })
   }
-  if (post.value.date) items.push({ label: 'Updated', value: formatDate(post.value.date) })
+  // A handful of entries carry a known-placeholder date (dateVerified: false)
+  // until a real one is confirmed — don't render it as if it were real.
+  if (post.value.date && post.value.dateVerified !== false) {
+    items.push({ label: 'Updated', value: formatDate(post.value.date) })
+  }
+  if (post.value.liveUrl) items.push({ label: 'Live Site', value: post.value.liveUrl.replace(/^https?:\/\//, ''), href: post.value.liveUrl })
   if (post.value.repoUrl) items.push({ label: 'Repository', value: 'View source', href: post.value.repoUrl })
   if (post.value.tags?.length) items.push({ label: 'Stack', value: post.value.tags.join(', ') })
   return items
@@ -79,6 +90,25 @@ useSeoMeta({
   ogDescription: () => seoDescription(post.value?.description, post.value?.concept),
   ogImage: () => post.value?.coverImage || '/images/wesdevpro-banner.jpg',
   twitterCard: 'summary_large_image'
+})
+
+useHead(() => {
+  if (!post.value) return {}
+  return {
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Work', item: 'https://wesdevpro.com/work' },
+            { '@type': 'ListItem', position: 2, name: post.value.name, item: `https://wesdevpro.com${route.path}` },
+          ],
+        }),
+      },
+    ],
+  }
 })
 </script>
 

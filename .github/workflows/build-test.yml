@@ -26,6 +26,12 @@ jobs:
         run: npm ci
         working-directory: src
 
+      # TODO(wesley): add a `- name: Lint / run: npm run lint` step and a
+      # `nuxt generate` step here (the actual static deploy artifact) once
+      # you've confirmed both pass locally — added in this session but not
+      # verified against a working node/npm environment, so left out of the
+      # CI gate rather than risk breaking it unverified.
+
       - name: Build
         run: npm run build
         working-directory: src

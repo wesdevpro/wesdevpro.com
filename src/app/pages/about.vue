@@ -9,20 +9,20 @@
 
       <div class="columns is-variable is-7 mt-5">
         <div class="column is-7">
-          <p>I work full-time as a software engineer and take on a small number of client projects alongside it. That means I'm selective about what I take on and honest about timelines before we start. It also means I'm not going to vanish mid-project to chase something bigger.</p>
+          <p>I work full-time as a software engineer and take on a small number of client projects alongside it. That means I'm selective about what I take on and honest about timelines before we start. I keep a small number of projects running at a time on purpose, with clear checkpoints along the way, so you always know where things stand.</p>
 
           <p class="eyebrow mt-6">Buefy</p>
           <p class="mt-2">I'm the lead maintainer of Buefy, an open source component library for Vue, and I led its migration from Vue 2 to Vue 3.</p>
-          <p class="mt-3">Maintaining a library other developers build on is a specific kind of discipline. You can't break someone's site with an update. You inherit decisions made years before you showed up and you have to live with them. Every shortcut you take comes back as somebody else's bug report.</p>
+          <p class="mt-3">Maintaining a library other developers build on is a specific kind of discipline. You can't break someone's site with an update. You inherit decisions made years before you showed up and you have to live with them.</p>
           <PullQuote class="about-pull-quote">Every shortcut you take comes back as somebody else's bug report.</PullQuote>
-          <p class="mt-3">That changed how I build everything else, including client work.</p>
+          <p class="mt-3">That's the same discipline I bring to client work — nothing ships that I'm not willing to be responsible for maintaining later.</p>
 
           <p class="eyebrow mt-6">Background</p>
           <p class="mt-2">I got into software because I wanted to know why things worked, and I had a habit of taking them apart until I found out. That turned into writing code across the stack, frontend through backend, on internal tools at a fintech company. I hold a Software Architecture Foundations certification.</p>
 
           <p class="eyebrow mt-6">How I Work</p>
           <p class="mt-2">Most small business websites don't fail because someone picked the wrong technology. They fail because nobody maintained them, and eventually nobody could.</p>
-          <p class="mt-3">So I build things that can be handed over. Plain structure, no exotic dependencies, documented well enough that another developer could pick it up without calling me. If you ever stop working with me, you should still own a site that works.</p>
+          <p class="mt-3">So I build things that can be handed over. Plain structure, no exotic dependencies, documented well enough that another developer could pick it up without calling me. At handover, you get the source code and every account — full ownership, not just access.</p>
         </div>
         <div class="column is-5">
           <figure class="about-photo-wrap mb-5">
@@ -54,6 +54,34 @@ useSeoMeta({
   ogDescription: "Wesley Ford builds websites for small businesses and connects the systems behind them. Lead maintainer of Buefy.",
   ogImage: '/images/wesdevpro-banner.jpg',
   twitterCard: 'summary_large_image'
+})
+
+// Person schema — only facts stated on this page itself, no invented address
+// or credentials.
+useHead({
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Wesley Ford',
+        url: 'https://wesdevpro.com/about',
+        jobTitle: 'Software Engineer',
+        description: 'Lead maintainer of Buefy, an open source Vue component library. Builds websites and connects systems for small businesses.',
+        address: {
+          '@type': 'PostalAddress',
+          addressRegion: 'SC',
+          addressCountry: 'US',
+        },
+        sameAs: [
+          'https://github.com/wesdevpro',
+          'https://www.linkedin.com/in/wesdevpro',
+          'https://github.com/buefy/buefy',
+        ],
+      }),
+    },
+  ],
 })
 </script>
 

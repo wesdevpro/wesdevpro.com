@@ -16,26 +16,20 @@ author: "wesdevpro"
 
 # The Life and Mission of wesdevpro
 
-wesdevpro represents the professional work of Wesley Ford, shaped by curiosity, persistence, and a commitment to building practical software.
+I'm Wesley Ford. wesdevpro is the name I build under, and this is a bit about how I got here.
 
-Wesley’s interest in development began in his early teens when he learned C++ from a book gifted by his "adopted" grandparents. Early projects, including small games and experimental ideas, sparked a long-term interest in creating tools that solve real problems.
+I got into development in my early teens, when I learned C++ from a book my "adopted" grandparents gave me. Small games and experimental projects followed, and that turned into a longer-term interest in building tools that solve real problems.
 
-During the COVID period, Wesley helped create Analyst, a platform designed to support traders through news, AI, and personalized metrics. Although the project did not progress due to funding and academic commitments, it provided valuable experience in product development, collaboration, and technical planning.
+During COVID, I helped build Analyst, a platform meant to support traders through news, AI, and personalized metrics. It didn't get past funding and academic commitments, but it taught me a lot about product development, collaboration, and technical planning.
 
-The work behind Analyst introduced Wesley to Buefy, a lightweight Vue.js UI library. After discovering that the project was no longer actively maintained, he connected with contributors including Kikuo and began assisting with the migration to Vue 3. He has continued contributing to Buefy and remains involved in its ongoing development.
+Analyst is also how I found Buefy, a lightweight Vue.js UI library. I noticed the project had gone unmaintained, reached out to contributors including Kikuo, and started helping with the migration to Vue 3. I've stayed involved since.
 
-Wesley currently serves as a Software Engineer in fintech, where he builds and maintains multiple C# applications across Blazor, MVC, backend services, and scheduled jobs. He supports multiple business units and stays involved in the latest IT initiatives.
+I currently work as a software engineer in fintech, where I build and maintain C# applications across Blazor, MVC, backend services, and scheduled jobs, and support several business units.
 
 ## What This Site Is For
 
-This site serves as a place to:
+This site is where I write about the work: lessons from projects I'm building, the open-source work I do on Buefy, and a way for collaborators, clients, and other developers to reach me.
 
-- Share practical insights and lessons from ongoing work
-- Highlight projects and open-source contributions
-- Connect with collaborators, clients, and developers
-
-For inquiries related to Buefy, new projects, or technical discussions, Wesley welcomes conversation.
+If you want to talk about Buefy, a new project, or anything technical, I'm glad to hear from you.
 
 **Contact:** wes@wesdevpro.com
-
-wesdevpro reflects a professional journey focused on thoughtful engineering, continuous learning, and meaningful contributions to the software community.

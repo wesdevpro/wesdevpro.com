@@ -9,37 +9,78 @@
 
       <div class="contact-panel box mt-5 surface-panel">
         <form v-if="!submitted" novalidate @submit.prevent="onSubmit">
-          <b-field label="Name">
-            <b-input v-model="form.name" required />
+          <b-field label="Name (required)" label-for="contact-name">
+            <b-input
+              id="contact-name"
+              v-model="form.name"
+              name="name"
+              autocomplete="name"
+              required
+              aria-required="true"
+              :aria-describedby="error ? 'contact-form-error' : undefined"
+              :compat-fallthrough="false"
+            />
           </b-field>
 
-          <b-field label="Email">
-            <b-input v-model="form.email" type="email" required />
+          <b-field label="Email (required)" label-for="contact-email">
+            <b-input
+              id="contact-email"
+              v-model="form.email"
+              type="email"
+              name="email"
+              autocomplete="email"
+              required
+              aria-required="true"
+              :aria-describedby="error ? 'contact-form-error' : undefined"
+              :compat-fallthrough="false"
+            />
           </b-field>
 
-          <b-field label="Business name">
-            <b-input v-model="form.business" />
+          <b-field label="Business name (optional)" label-for="contact-business">
+            <b-input
+              id="contact-business"
+              v-model="form.business"
+              name="business"
+              autocomplete="organization"
+              :compat-fallthrough="false"
+            />
           </b-field>
 
-          <b-field label="What do you need?">
-            <b-input v-model="form.needs" type="textarea" required />
+          <b-field label="What do you need? (required)" label-for="contact-needs">
+            <b-input
+              id="contact-needs"
+              v-model="form.needs"
+              type="textarea"
+              name="needs"
+              required
+              aria-required="true"
+              :aria-describedby="error ? 'contact-form-error' : undefined"
+              :compat-fallthrough="false"
+            />
           </b-field>
 
-          <b-field label="Budget range (optional)">
-            <b-select v-model="form.budget" placeholder="Select a range">
+          <b-field label="Budget range (optional)" label-for="contact-budget">
+            <b-select
+              id="contact-budget"
+              v-model="form.budget"
+              name="budget"
+              placeholder="Select a range"
+              :compat-fallthrough="false"
+            >
               <option value="under-2k">Under $2,000</option>
               <option value="2k-5k">$2,000 - $5,000</option>
               <option value="5k-10k">$5,000 - $10,000</option>
               <option value="10k-plus">$10,000+</option>
+              <option value="not-sure">Not sure yet</option>
             </b-select>
           </b-field>
 
-          <p v-if="error" class="contact-form__error">{{ error }}</p>
+          <p v-if="error" id="contact-form-error" ref="errorEl" class="contact-form__error" role="alert" tabindex="-1">{{ error }}</p>
 
-          <button type="submit" class="button is-primary is-medium">Send -&gt;</button>
+          <button type="submit" class="button is-primary is-medium">Send inquiry -&gt;</button>
         </form>
 
-        <div v-else class="contact-form__success">
+        <div v-else ref="successEl" class="contact-form__success" role="status" tabindex="-1">
           <p>Thanks — I'll get back to you shortly.</p>
         </div>
 
@@ -82,18 +123,29 @@ const form = reactive({
 
 const submitted = ref(false)
 const error = ref('')
+const errorEl = ref<HTMLElement | null>(null)
+const successEl = ref<HTMLElement | null>(null)
 
 // TODO(wesley): wire this to a Cloudflare Worker endpoint once one exists
 // (under consideration, not built yet). This currently only validates in
 // the browser — no data leaves the client.
-function onSubmit() {
-  if (!form.name.trim() || !form.email.trim() || !form.needs.trim()) {
-    error.value = 'Name, email, and what you need are required.'
+async function onSubmit() {
+  const missing: string[] = []
+  if (!form.name.trim()) missing.push('your name')
+  if (!form.email.trim()) missing.push('your email')
+  if (!form.needs.trim()) missing.push('what you need')
+
+  if (missing.length) {
+    error.value = `Please add ${missing.join(', ')}.`
+    await nextTick()
+    errorEl.value?.focus()
     return
   }
 
   error.value = ''
   submitted.value = true
+  await nextTick()
+  successEl.value?.focus()
 }
 
 useSeoMeta({
@@ -108,6 +160,9 @@ useSeoMeta({
 
 <style scoped>
 .contact-panel {
+  max-width: 40rem;
+  margin-left: auto;
+  margin-right: auto;
   border: 1px solid var(--color-border);
 }
 
@@ -121,6 +176,12 @@ useSeoMeta({
   color: var(--color-ink-deep);
   font-weight: var(--weight-semibold);
   margin-bottom: 0.75rem;
+}
+
+.contact-form__error:focus,
+.contact-form__success:focus {
+  outline: var(--focus-ring);
+  outline-offset: var(--focus-offset);
 }
 
 .contact-form__success {

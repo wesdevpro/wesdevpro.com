@@ -25,10 +25,12 @@ export default defineContentConfig({
         sector: z.string().optional(),
         tags: z.array(z.string()).optional(), // doubles as "stack" metadata, rendered mono
         date: z.coerce.date(),
+        dateVerified: z.boolean().optional(), // set false when `date` is a known placeholder — render code hides the date instead of showing an unverified value; omitted/true = render normally
         order: z.number().optional(), // explicit sort key: 1 = Imagine Land Works, 2 = Buefy, 3 = BlueBird Theatre
         featured: z.boolean().optional(), // drives the has-keyline treatment on the Work index
         concept: z.boolean().optional(), // drives the "Concept" label on the card + case-study page for non-delivered work
         repoUrl: z.string().optional(), // client work may have no public repo
+        liveUrl: z.string().optional(), // the deployed site, if it's public — surfaced as a clear link, not buried in body prose
         coverImage: z.string().optional(),
         screenshots: z.array(z.string()).optional(),
         testimonial: z.object({

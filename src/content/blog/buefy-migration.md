@@ -7,72 +7,34 @@ tags:
 	- "Vue2ToVue3"
 	- "vue3"
 date: "09-07-2025"
-coverImage: "https://buefy.org/static/img/buefy-banner.png"
+coverImage: "/images/buefy-banner.png"
 author: "wesdevpro"
 ---
 
 # Migrating Buefy from Vue 2 to Vue 3
 
-The transition from Vue2 to Vue3 has been one of the most anticipated upgrades in the Vue ecosystem. For developers relying on Buefy—a lightweight UI component library based on Bulma—this migration posed both exciting opportunities and technical challenges.
+The transition from Vue 2 to Vue 3 has been one of the most anticipated upgrades in the Vue ecosystem. For developers relying on Buefy — a lightweight UI component library based on Bulma — this migration meant real technical work, not just a version bump.
 
-In this post, I’ll walk you through the key steps, lessons learned, and best practices from migrating Buefy to Vue3, based on my experience as part of the [buefy-vue3-development-team](https://github.com/buefy/buefy-vue3-development-team).
+In this post, I'll walk through the key steps, lessons, and practices from migrating Buefy to Vue 3, based on my work as part of the [buefy-vue3-development-team](https://github.com/buefy/buefy-vue3-development-team).
 
-## Why Migrate?
+## Why the Migration Mattered
 
-Vue3 introduced several game-changing features:
-
-- **Composition API** for better logic reuse
-- **Improved performance** and smaller bundle sizes
-- **Teleport, Fragments, and Suspense** for more flexible UI rendering
-- **TypeScript support** baked into the core
-
-For Buefy, staying on Vue2 meant falling behind in compatibility and performance. Migration was inevitable to stay relevant and modern.
+Vue 3 brought the Composition API for better logic reuse, smaller bundle sizes and improved performance, Teleport, Fragments, and Suspense for more flexible rendering, and TypeScript support built into the core. Staying on Vue 2 meant Buefy would keep falling behind on compatibility and performance, so the migration wasn't optional.
 
 ## Migration Strategy
 
-We approached the migration in phases:
+I approached the migration in phases. First, I audited the existing components, identifying the ones that relied heavily on the Options API and deprecated lifecycle hooks. Next, I refactored what I could to the Composition API, which cleaned up the separation of concerns and made the codebase easier to extend. Some third-party libraries Buefy depended on weren't Vue 3-compatible, so I either upgraded them or replaced them. Throughout, I used [Vitest](https://vitest.dev/) and [Playwright](https://playwright.dev/) to keep components behaving consistently across versions.
 
-### 1. **Audit Existing Components**
+## Challenges
 
-We started by identifying components that relied heavily on Vue2 options API and deprecated lifecycle hooks.
+Bulma is good for styling, but it doesn't have the flexibility of a utility-first framework like Tailwind, so some Vue 3 features needed custom CSS. Vue 3 also changed how `$listeners` and `$attrs` behave, which meant rewriting patterns that simply didn't translate from Vue 2. A lot of the community plugins built for Vue 2 weren't maintained anymore, so I had to fork some and build replacements for others.
 
-### 2. **Refactor to Composition API**
+## What Improved
 
-Where possible, we rewrote logic using the Composition API. This allowed for cleaner separation of concerns and better scalability.
+Initial load times dropped by about 30%. TypeScript support and cleaner APIs made the codebase easier to work in. And the library is now aligned with where the Vue ecosystem is heading, instead of trailing behind it.
 
-### 3. **Update Dependencies**
+## What's Next
 
-Some third-party libraries used by Buefy were not Vue3-compatible. We either upgraded them or replaced them with alternatives.
+I'm still working on full documentation for the Vue 3 components and migration guides for people upgrading their own apps. I'm also looking at whether integrating with Oruga UI makes sense for more flexibility down the line.
 
-### 4. **Testing & QA**
-
-We used [Vitest](https://vitest.dev/) and [Playwright](https://playwright.dev/) to ensure components behaved consistently across versions.
-
-## Challenges Faced
-
-- **Bulma’s limitations**: While Bulma is great for styling, it lacks the flexibility of utility-first frameworks like Tailwind. We had to write custom CSS for some Vue3 features.
-- **Breaking changes in Vue3**: Some Vue2 patterns simply didn’t translate. For example, `$listeners` and `$attrs` behavior changed, requiring rewrites.
-- **Community plugins**: Many plugins built for Vue2 weren’t maintained, forcing us to fork or build our own.
-
-## Key Wins
-
-- **Improved performance**: Initial load times dropped by ~30%.
-- **Better DX**: Developers now enjoy TypeScript support and cleaner APIs.
-- **Future-proofing**: We’re now aligned with the Vue ecosystem’s direction.
-
-## What’s Next?
-
-We’re working on:
-
-- Full documentation for Vue3 components
-- Migration guides for users upgrading their apps
-- Exploring integration with Oruga UI for extended flexibility
-
-## Final Thoughts
-
-Migrating Buefy to Vue3 wasn’t just a technical upgrade—it was a chance to rethink how we build UI components. The process was challenging but deeply rewarding, and the result is a more modern, performant, and developer-friendly library.
-
-If you're considering migrating your own Vue2 project, start small, test often, and embrace the new paradigms Vue3 offers.
-
-Happy coding!  
-— **wesdevpro**
+Migrating Buefy to Vue 3 wasn't just a technical upgrade — it was a chance to rethink how the components are built. The process took longer than expected, but the result is a more modern, better-performing library. If you're migrating your own Vue 2 project, my advice is the same as anyone's: start small, test constantly, and don't fight the new patterns.

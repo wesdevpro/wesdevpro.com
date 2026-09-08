@@ -3,18 +3,24 @@
     <h3 class="title is-4 service-card__title">{{ title }}</h3>
     <p v-if="whoFor" class="service-card__who-for">{{ whoFor }}</p>
 
-    <ul v-if="includes?.length" class="service-card__list service-card__list--includes">
-      <li v-for="item in includes" :key="item">{{ item }}</li>
-    </ul>
+    <div v-if="includes?.length" class="service-card__group">
+      <p class="service-card__group-label">Includes</p>
+      <ul class="service-card__list service-card__list--includes">
+        <li v-for="item in includes" :key="item">{{ item }}</li>
+      </ul>
+    </div>
 
-    <ul v-if="excludes?.length" class="service-card__list service-card__list--excludes">
-      <li v-for="item in excludes" :key="item">{{ item }}</li>
-    </ul>
+    <div v-if="excludes?.length" class="service-card__group">
+      <p class="service-card__group-label">Scoped separately</p>
+      <ul class="service-card__list service-card__list--excludes">
+        <li v-for="item in excludes" :key="item">{{ item }}</li>
+      </ul>
+    </div>
 
     <p v-if="startingPrice" class="service-card__price">Starting at {{ startingPrice }}</p>
 
     <NuxtLink :to="href" class="button is-primary service-card__cta">
-      Learn more ->
+      Discuss this service ->
     </NuxtLink>
   </article>
 </template>
@@ -50,6 +56,21 @@ withDefaults(defineProps<Props>(), {
 
 .service-card__who-for {
   margin: 0;
+  color: var(--color-text-muted);
+}
+
+.service-card__group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.service-card__group-label {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
   color: var(--color-text-muted);
 }
 

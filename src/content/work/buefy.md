@@ -6,7 +6,7 @@ date: "09-07-2025"
 order: 2
 featured: true
 repoUrl: "https://github.com/buefy/buefy"
-coverImage: "https://buefy.org/static/img/buefy-banner.png"
+coverImage: "/images/buefy-banner.png"
 collaborators: ["kikuo", "buefy-vue3-development-team"]
 stat:
   value: "2.8M"

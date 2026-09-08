@@ -63,6 +63,41 @@ useSeoMeta({
   ogTitle: () => post.value?.title || 'Blog Post · wesdevpro',
   ogDescription: () => post.value?.description || 'Technical writing and engineering insights by wesdevpro.',
   ogImage: () => post.value?.coverImage || '/images/wesdevpro-banner.jpg',
+  ogType: 'article',
+  articlePublishedTime: () => post.value?.date ? new Date(post.value.date).toISOString() : undefined,
   twitterCard: 'summary_large_image'
+})
+
+useHead(() => {
+  if (!post.value) return {}
+  const url = `https://wesdevpro.com${route.path}`
+  return {
+    script: [
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: post.value.title,
+          description: post.value.description,
+          datePublished: post.value.date ? new Date(post.value.date).toISOString() : undefined,
+          image: post.value.coverImage,
+          author: author.value?.name ? { '@type': 'Person', name: author.value.name } : undefined,
+          mainEntityOfPage: url,
+        }),
+      },
+      {
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Blog', item: 'https://wesdevpro.com/blog' },
+            { '@type': 'ListItem', position: 2, name: post.value.title, item: url },
+          ],
+        }),
+      },
+    ],
+  }
 })
 </script>

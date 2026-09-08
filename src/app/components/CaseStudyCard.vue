@@ -6,7 +6,7 @@
 
     <div class="card-content content-card__body">
       <div class="content-card__meta-row">
-        <p class="content-card__eyebrow">{{ concept ? `Concept · ${formatDate(date)}` : formatDate(date) }}</p>
+        <p v-if="eyebrowText" class="content-card__eyebrow">{{ eyebrowText }}</p>
         <a
           v-if="repoUrl"
           :href="repoUrl"
@@ -53,6 +53,8 @@ interface Props {
   coverImage?: string
   path: string
   date: string | Date
+  dateVerified?: boolean
+  client?: string
   tags?: string[]
   repoUrl?: string
   keyline?: boolean
@@ -62,6 +64,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   keyline: false,
   concept: false,
+  dateVerified: true,
 })
 
 const previewTags = computed(() => props.tags?.slice(0, 3) ?? [])
@@ -74,4 +77,23 @@ function formatDate(date: string | Date) {
     day: 'numeric'
   })
 }
+
+// Client / Open Source / Concept status should read unmistakably on every
+// card, not just the ones missing a verified date — inferred from existing
+// fields rather than a new required field, so nothing needs backfilling.
+const statusLabel = computed(() => {
+  if (props.concept) return 'Concept Project'
+  if (props.client) return 'Client Project'
+  if (props.repoUrl) return 'Open Source'
+  return null
+})
+
+// The two placeholder-date entries (dateVerified: false) don't get a fake
+// exact date rendered as if it were real.
+const eyebrowText = computed(() => {
+  const status = statusLabel.value
+  const dateText = props.dateVerified ? formatDate(props.date) : null
+  if (status && dateText) return `${status} · ${dateText}`
+  return status || dateText
+})
 </script>

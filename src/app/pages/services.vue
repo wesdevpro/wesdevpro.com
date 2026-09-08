@@ -37,11 +37,15 @@ const { data: services } = await useAsyncData('services', async () => {
   return data.sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity))
 })
 
+// Two FAQ answers (pricing, hosting/maintenance) don't have real copy yet.
+// Rather than ship a literal "TODO(wesley)" string to visitors, they're kept
+// here — commented out, not deleted — so restoring them once Wesley supplies
+// real answers is a one-line uncomment, not a rewrite.
 const faqItems = [
-  {
-    question: 'How does pricing work?',
-    answer: 'TODO(wesley)',
-  },
+  // {
+  //   question: 'How does pricing work?',
+  //   answer: 'TODO(wesley)',
+  // },
   {
     question: 'What\'s the typical timeline?',
     answer: 'Most sites take three to five weeks from the first call to launch, depending on how much content you have ready and how many rounds of feedback we go through. Systems integration work is usually faster — a few days to two weeks. You get a specific estimate in the written scope before anything starts, not a vague range.',
@@ -54,10 +58,10 @@ const faqItems = [
     question: 'Who owns the code and content?',
     answer: 'You do. At handover you get the source code, every account, and the content itself — nothing stays locked to me or to a platform you\'d need my help to leave. If you want another developer to take over later, they can, without calling me first.',
   },
-  {
-    question: 'What about hosting and ongoing maintenance?',
-    answer: 'TODO(wesley)',
-  },
+  // {
+  //   question: 'What about hosting and ongoing maintenance?',
+  //   answer: 'TODO(wesley)',
+  // },
   {
     question: 'Is accessibility part of the build?',
     answer: 'Yes, as a baseline, not an add-on: semantic HTML, keyboard navigation, sufficient color contrast in both light and dark themes, and alt text on every image. I test with a keyboard and a screen reader before calling a page done, not just by eye.',

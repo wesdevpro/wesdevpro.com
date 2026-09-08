@@ -2,13 +2,17 @@
 name: BlueBird Theatre
 description: "A concept site built for a local community theater — not a delivered client engagement."
 date: "01-01-2026"
+dateVerified: false
 order: 3
 concept: true
+liveUrl: "https://bluebirdtheater.netlify.app"
 ---
 
 <!--
 TODO(wesley): a real date for when this concept build was made would be
-good to have in place of the placeholder above.
+good to have in place of the placeholder above. Once set, remove
+`dateVerified: false` (or set it to true) so the date renders again — for
+now it's hidden from the card/case-study meta rather than shown as if real.
 -->
 
 ## What Was Built

@@ -16,6 +16,8 @@
             :cover-image="project.coverImage"
             :path="project.path"
             :date="project.date"
+            :date-verified="project.dateVerified !== false"
+            :client="project.client"
             :tags="project.tags"
             :repo-url="project.repoUrl"
             :keyline="!!project.featured"

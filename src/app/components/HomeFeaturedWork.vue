@@ -4,10 +4,10 @@
       <SectionHeader eyebrow="Featured Work" :title="featured.name" />
 
       <div class="columns is-vcentered is-variable is-8">
-        <div class="column is-half">
+        <div v-if="featured.coverImage" class="column is-half">
           <MediaFrame :src="featured.coverImage" :alt="`${featured.name} site preview`" />
         </div>
-        <div class="column is-half">
+        <div class="column" :class="featured.coverImage ? 'is-half' : 'is-full'">
           <p v-if="featured.description">{{ featured.description }}</p>
           <NuxtLink :to="featured.path" class="button is-primary is-medium">
             Read the Case Study -&gt;

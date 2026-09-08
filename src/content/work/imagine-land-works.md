@@ -3,7 +3,9 @@ name: Imagine Land Works
 description: "A public website for a licensed land-clearing and site-prep company, built to look credible and be findable."
 client: "Imagine Land Works"
 sector: "Landscaping and land clearing"
+liveUrl: "https://imaginelandworks.com"
 date: "01-01-2026"
+dateVerified: false
 order: 1
 ---
 
@@ -13,7 +15,8 @@ details are available:
 - coverImage / screenshots frontmatter fields — no screenshot files exist
   anywhere in this repo yet; add them under public/images/work/ once
   supplied, then wire the fields in.
-- a real engagement date to replace the placeholder above
+- a real engagement date to replace the placeholder above, then remove
+  `dateVerified: false` (or set it to true) so the date renders again
 - a real outcome sentence/metric below, if one exists
 - testimonial frontmatter (quote/author/business) — only if a real one exists
 -->
