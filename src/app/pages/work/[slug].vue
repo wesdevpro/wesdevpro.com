@@ -43,10 +43,18 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const { data: post } = await useAsyncData('post', () =>
+// Keyed by route.path (not a static 'post' string) and watching the route:
+// useAsyncData's cache is global across the whole app, keyed by the string
+// you give it. A static key here previously collided with blog/[slug].vue's
+// own useAsyncData('post', ...) — navigating between a work case study and
+// a blog post (or between two work entries, since Vue Router reuses this
+// same component instance across param-only changes) could show stale
+// cached data from a different page without a unique key + `watch`.
+const { data: post } = await useAsyncData(`work-post:${route.path}`, () =>
   queryCollection('work')
     .path(route.path)
-    .first()
+    .first(),
+  { watch: [() => route.path] }
 )
 
 // An `offline: true` entry (e.g. a concept build that isn't actually live

@@ -44,18 +44,26 @@ import AuthorCard from '~/components/blog/AuthorCard.vue'
 
 const route = useRoute()
 
-const { data: post } = await useAsyncData('post', () =>
+// Keyed by route.path (not a static 'post' string) and watching the route:
+// useAsyncData's cache is global across the whole app, keyed by the string
+// you give it. A static key here previously collided with work/[slug].vue's
+// own useAsyncData('post', ...) — and, since Vue Router reuses this same
+// component instance across /blog/a -> /blog/b navigations, even two
+// different blog posts could show stale cached data without `watch`.
+const { data: post } = await useAsyncData(`blog-post:${route.path}`, () =>
   queryCollection('blog')
     .path(route.path)
-    .first()
+    .first(),
+  { watch: [() => route.path] }
 )
 
 const fallbackAuthor = 'undefined'
 
-const { data: author } = await useAsyncData('author', () =>
+const { data: author } = await useAsyncData(`blog-author:${route.path}`, () =>
   queryCollection('authors')
     .where('github', '=', post.value?.author || fallbackAuthor)
-    .first()
+    .first(),
+  { watch: [post] }
 )
 
 // "Next post" — same sort as the blog index, wrapping around to the first
