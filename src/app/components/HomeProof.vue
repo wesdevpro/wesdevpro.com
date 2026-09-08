@@ -4,7 +4,7 @@
       <div class="proof">
         <ProofStat big :value="bigStat.value" :label="bigStat.label" />
         <p class="proof-caption">
-          Buefy — the Vue component library I maintain
+          Buefy — the Vue component library I maintain<template v-if="statAsOf"> · as of {{ statAsOf }}</template>
         </p>
       </div>
     </div>
@@ -23,6 +23,15 @@ const { data: buefy } = await useAsyncData('home-proof-buefy', () => {
 })
 
 const bigStat = computed(() => buefy.value?.stat)
+
+// Wesley confirmed the stat should stay static with an "as of" date rather
+// than an automated refresh — reusing the Buefy entry's own `date` field
+// (already the confirmed-accurate date for that content) instead of adding
+// a second date field just for this caption.
+const statAsOf = computed(() => {
+  if (!buefy.value?.date) return null
+  return new Date(buefy.value.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+})
 </script>
 
 <style scoped>

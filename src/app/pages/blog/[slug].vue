@@ -22,6 +22,15 @@
         <ContentRenderer :value="post" />
       </div>
     </section>
+
+    <nav v-if="nextPost" class="detail-page__more" aria-label="More posts">
+      <NuxtLink :to="nextPost.path" class="detail-page__more-link">
+        Next: {{ nextPost.title }} -&gt;
+      </NuxtLink>
+      <NuxtLink to="/blog" class="detail-page__more-link detail-page__more-link--secondary">
+        All posts -&gt;
+      </NuxtLink>
+    </nav>
   </article>
   <section v-else class="empty-page">
     <h1>Page Not Found</h1>
@@ -48,6 +57,22 @@ const { data: author } = await useAsyncData('author', () =>
     .where('github', '=', post.value?.author || fallbackAuthor)
     .first()
 )
+
+// "Next post" — same sort as the blog index, wrapping around to the first
+// post so this always has something to point to as long as more than one
+// post exists.
+const { data: allPosts } = await useAsyncData('all-blog-posts', async () => {
+  const data = await queryCollection('blog').all()
+  return data.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+})
+
+const nextPost = computed(() => {
+  const list = allPosts.value
+  if (!list || list.length < 2 || !post.value) return null
+  const currentIndex = list.findIndex((item) => item.path === post.value?.path)
+  if (currentIndex === -1) return null
+  return list[(currentIndex + 1) % list.length]
+})
 
 function formatDate(date: string | Date) {
   return new Date(date).toLocaleDateString('en-US', {
@@ -101,3 +126,29 @@ useHead(() => {
   }
 })
 </script>
+
+<style scoped>
+.detail-page__more {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: var(--border-hairline);
+}
+
+.detail-page__more-link {
+  font-weight: var(--weight-bold);
+  color: var(--color-link);
+}
+
+.detail-page__more-link:hover,
+.detail-page__more-link:focus-visible {
+  color: var(--color-accent);
+}
+
+.detail-page__more-link--secondary {
+  color: var(--color-text-muted);
+}
+</style>
