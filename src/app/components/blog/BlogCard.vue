@@ -2,7 +2,7 @@
     <article class="card content-card content-card--blog is-fullheight">
         <NuxtLink :to="path" class="content-card__media-link" :aria-label="`Read ${title}`">
             <div class="card-image content-card__media">
-                <img :src="imgSrc || '/images/wesdevpro-banner.jpg'" :alt="`${title} cover image`">
+                <img :src="imgSrc || '/images/wesdevpro-banner.jpg'" :alt="`${title} cover image`" loading="lazy" decoding="async">
             </div>
         </NuxtLink>
 
@@ -33,7 +33,7 @@
 
             <div class="content-card__footer">
                 <NuxtLink :to="path" class="content-card__cta">
-                    Read post ->
+                    Read post <span aria-hidden="true">-&gt;</span>
                 </NuxtLink>
             </div>
         </div>

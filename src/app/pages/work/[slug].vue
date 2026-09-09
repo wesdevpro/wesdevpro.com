@@ -24,12 +24,17 @@
       {{ visiblePost.testimonial.quote }}
     </PullQuote>
 
+    <p class="detail-page__inquiry">
+      Have something similar in mind?
+      <NuxtLink to="/contact">Get in touch <span aria-hidden="true">-&gt;</span></NuxtLink>
+    </p>
+
     <nav v-if="nextWork" class="detail-page__more" aria-label="More work">
       <NuxtLink :to="nextWork.path" class="detail-page__more-link">
-        Next: {{ nextWork.name }} -&gt;
+        Next: {{ nextWork.name }} <span aria-hidden="true">-&gt;</span>
       </NuxtLink>
       <NuxtLink to="/work" class="detail-page__more-link detail-page__more-link--secondary">
-        All work -&gt;
+        All work <span aria-hidden="true">-&gt;</span>
       </NuxtLink>
     </nav>
   </article>
@@ -157,6 +162,11 @@ useHead(() => {
   display: grid;
   gap: var(--space-md);
   margin-bottom: 2rem;
+}
+
+.detail-page__inquiry {
+  margin-top: 2.5rem;
+  font-weight: var(--weight-semibold);
 }
 
 .detail-page__testimonial {

@@ -1,6 +1,6 @@
 <template>
   <article class="card service-card" :class="{ 'has-keyline': keyline }">
-    <h3 class="title is-4 service-card__title">{{ title }}</h3>
+    <component :is="titleTag" class="title is-4 service-card__title">{{ title }}</component>
     <p v-if="whoFor" class="service-card__who-for">{{ whoFor }}</p>
 
     <div v-if="includes?.length" class="service-card__group">
@@ -20,7 +20,7 @@
     <p v-if="startingPrice" class="service-card__price">Starting at {{ startingPrice }}</p>
 
     <NuxtLink :to="href" class="button is-primary service-card__cta">
-      Discuss this service ->
+      {{ ctaLabel }} <span aria-hidden="true">-&gt;</span>
     </NuxtLink>
   </article>
 </template>
@@ -34,10 +34,17 @@ interface Props {
   startingPrice?: string
   href: string
   keyline?: boolean
+  /** Rendered tag for the card title — lets callers keep document heading order
+      correct (e.g. h2 on a page whose own title is h1) without changing the
+      visual size, which stays fixed via the `title is-4` classes above. */
+  titleTag?: 'h2' | 'h3'
+  ctaLabel?: string
 }
 
 withDefaults(defineProps<Props>(), {
   keyline: false,
+  titleTag: 'h3',
+  ctaLabel: 'Discuss this service',
 })
 </script>
 

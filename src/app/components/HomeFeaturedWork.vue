@@ -10,7 +10,7 @@
         <div class="column" :class="featured.coverImage ? 'is-half' : 'is-full'">
           <p v-if="featured.description">{{ featured.description }}</p>
           <NuxtLink :to="featured.path" class="button is-primary is-medium">
-            Read the Case Study -&gt;
+            Read the Case Study <span aria-hidden="true">-&gt;</span>
           </NuxtLink>
         </div>
       </div>

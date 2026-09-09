@@ -63,6 +63,12 @@ export default defineNuxtConfig({
     "/projects": { redirect: { to: "/work", statusCode: 301 } },
     "/projects/wesdevpro.com": { redirect: { to: "/work", statusCode: 301 } },
     "/projects/buefy": { redirect: { to: "/work/buefy", statusCode: 301 } },
+    // content/work/bluebird-theatre.md has `offline: true` and 404s (see
+    // work/[slug].vue's visiblePost guard) — @nuxtjs/sitemap's content
+    // auto-discovery doesn't know about that flag, so without this it gets
+    // listed as an indexable URL that doesn't actually resolve. If another
+    // work entry is ever marked offline, add its route here too.
+    "/work/bluebird-theatre": { sitemap: false, robots: false },
   },
   sourcemap: {
     client: false,

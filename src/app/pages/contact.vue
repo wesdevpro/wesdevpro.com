@@ -17,10 +17,12 @@
               autocomplete="name"
               required
               aria-required="true"
-              :aria-describedby="error ? 'contact-form-error' : undefined"
+              :aria-invalid="fieldErrors.name ? 'true' : undefined"
+              :aria-describedby="fieldErrors.name ? 'contact-name-error' : undefined"
               :compat-fallthrough="false"
             />
           </b-field>
+          <p v-if="fieldErrors.name" id="contact-name-error" class="contact-field-error">{{ fieldErrors.name }}</p>
 
           <b-field label="Email (required)" label-for="contact-email">
             <b-input
@@ -31,10 +33,12 @@
               autocomplete="email"
               required
               aria-required="true"
-              :aria-describedby="error ? 'contact-form-error' : undefined"
+              :aria-invalid="fieldErrors.email ? 'true' : undefined"
+              :aria-describedby="fieldErrors.email ? 'contact-email-error' : undefined"
               :compat-fallthrough="false"
             />
           </b-field>
+          <p v-if="fieldErrors.email" id="contact-email-error" class="contact-field-error">{{ fieldErrors.email }}</p>
 
           <b-field label="Business name (optional)" label-for="contact-business">
             <b-input
@@ -54,10 +58,12 @@
               name="needs"
               required
               aria-required="true"
-              :aria-describedby="error ? 'contact-form-error' : undefined"
+              :aria-invalid="fieldErrors.needs ? 'true' : undefined"
+              :aria-describedby="fieldErrors.needs ? 'contact-needs-error' : undefined"
               :compat-fallthrough="false"
             />
           </b-field>
+          <p v-if="fieldErrors.needs" id="contact-needs-error" class="contact-field-error">{{ fieldErrors.needs }}</p>
 
           <b-field label="Budget range (optional)" label-for="contact-budget">
             <b-select
@@ -77,7 +83,7 @@
 
           <p v-if="error" id="contact-form-error" ref="errorEl" class="contact-form__error" role="alert" tabindex="-1">{{ error }}</p>
 
-          <button type="submit" class="button is-primary is-medium">Send inquiry -&gt;</button>
+          <button type="submit" class="button is-primary is-medium" :disabled="isSubmitting">Send inquiry <span aria-hidden="true">-&gt;</span></button>
         </form>
 
         <div v-else ref="successEl" class="contact-form__success" role="status" tabindex="-1">
@@ -122,7 +128,13 @@ const form = reactive({
 })
 
 const submitted = ref(false)
+const isSubmitting = ref(false)
 const error = ref('')
+const fieldErrors = reactive({
+  name: '',
+  email: '',
+  needs: '',
+})
 const errorEl = ref<HTMLElement | null>(null)
 const successEl = ref<HTMLElement | null>(null)
 
@@ -130,15 +142,19 @@ const successEl = ref<HTMLElement | null>(null)
 // (under consideration, not built yet). This currently only validates in
 // the browser — no data leaves the client.
 async function onSubmit() {
-  const missing: string[] = []
-  if (!form.name.trim()) missing.push('your name')
-  if (!form.email.trim()) missing.push('your email')
-  if (!form.needs.trim()) missing.push('what you need')
+  if (isSubmitting.value) return
+  isSubmitting.value = true
 
+  fieldErrors.name = form.name.trim() ? '' : 'Enter your name.'
+  fieldErrors.email = form.email.trim() ? '' : 'Enter your email.'
+  fieldErrors.needs = form.needs.trim() ? '' : 'Tell me what you need.'
+
+  const missing = [fieldErrors.name, fieldErrors.email, fieldErrors.needs].filter(Boolean)
   if (missing.length) {
-    error.value = `Please add ${missing.join(', ')}.`
+    error.value = 'Please fix the highlighted field' + (missing.length > 1 ? 's' : '') + ' below.'
     await nextTick()
     errorEl.value?.focus()
+    isSubmitting.value = false
     return
   }
 
@@ -146,6 +162,7 @@ async function onSubmit() {
   submitted.value = true
   await nextTick()
   successEl.value?.focus()
+  isSubmitting.value = false
 }
 
 useSeoMeta({
@@ -175,6 +192,13 @@ useSeoMeta({
 .contact-form__error {
   color: var(--color-ink-deep);
   font-weight: var(--weight-semibold);
+  margin-bottom: 0.75rem;
+}
+
+.contact-field-error {
+  color: var(--color-ink-deep);
+  font-size: var(--step--1);
+  margin-top: -0.5rem;
   margin-bottom: 0.75rem;
 }
 

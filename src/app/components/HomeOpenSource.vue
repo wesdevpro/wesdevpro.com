@@ -10,7 +10,7 @@
         </p>
         <!-- TODO(wesley): add a real download/usage figure here once you have one -->
         <a href="https://github.com/buefy/buefy" target="_blank" rel="noopener" class="content-card__cta">
-          View the repository -&gt;
+          View the repository <span aria-hidden="true">-&gt;</span>
         </a>
       </div>
     </div>

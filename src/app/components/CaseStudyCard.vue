@@ -39,7 +39,7 @@
 
       <div class="content-card__footer">
         <NuxtLink :to="path" class="content-card__cta">
-          View project ->
+          View project <span aria-hidden="true">-&gt;</span>
         </NuxtLink>
       </div>
     </div>

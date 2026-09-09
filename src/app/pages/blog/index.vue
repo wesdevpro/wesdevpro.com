@@ -30,7 +30,7 @@
 
 <script setup async lang="ts">
 useSeoMeta({
-  title: 'Blog · wesdevpro',
+  title: 'Blog',
   description: 'Technical articles by wesdevpro on software engineering, Vue, Nuxt, and product development.',
   ogTitle: 'Blog · wesdevpro',
   ogDescription: 'Technical articles by wesdevpro on software engineering, Vue, Nuxt, and product development.',

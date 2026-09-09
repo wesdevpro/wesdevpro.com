@@ -25,10 +25,10 @@
 
     <nav v-if="nextPost" class="detail-page__more" aria-label="More posts">
       <NuxtLink :to="nextPost.path" class="detail-page__more-link">
-        Next: {{ nextPost.title }} -&gt;
+        Next: {{ nextPost.title }} <span aria-hidden="true">-&gt;</span>
       </NuxtLink>
       <NuxtLink to="/blog" class="detail-page__more-link detail-page__more-link--secondary">
-        All posts -&gt;
+        All posts <span aria-hidden="true">-&gt;</span>
       </NuxtLink>
     </nav>
   </article>

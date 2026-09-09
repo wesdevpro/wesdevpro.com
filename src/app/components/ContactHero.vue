@@ -4,7 +4,7 @@
             <p class="eyebrow">Contact</p>
             <h2 class="title is-2">Tell me what you need built.</h2>
             <p class="subtitle is-5">One form, one reply, no sales team in between.</p>
-            <NuxtLink to="/contact" class="button is-primary is-medium home-contact__cta">Start a Project -&gt;</NuxtLink>
+            <NuxtLink to="/contact" class="button is-primary is-medium home-contact__cta">Start a Project <span aria-hidden="true">-&gt;</span></NuxtLink>
             <p class="home-contact__secondary">
               Prefer email? <a :href="`mailto:${appConfig.contactEmail}`">{{ appConfig.contactEmail }}</a>
             </p>

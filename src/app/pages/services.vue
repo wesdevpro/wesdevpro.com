@@ -10,7 +10,12 @@
         />
 
         <div class="columns is-variable is-6">
-          <div v-for="service in services" :key="service.title" class="column is-one-third">
+          <div
+            v-for="service in services"
+            :key="service.title"
+            :id="slugFor(service)"
+            class="column is-one-third"
+          >
             <ServiceCard
               :title="service.title"
               :who-for="service.whoFor"
@@ -18,6 +23,7 @@
               :excludes="service.excludes"
               :starting-price="service.startingPrice"
               href="/contact"
+              title-tag="h2"
               keyline
             />
           </div>
@@ -36,6 +42,12 @@ const { data: services } = await useAsyncData('services', async () => {
   const data = await queryCollection('services').all()
   return data.sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity))
 })
+
+// Matches the slugs HomeServices.vue links to (`/services#<slug>`) — derived
+// from the content file path rather than duplicated, so the two can't drift.
+function slugFor(service: { path: string }) {
+  return service.path.split('/').pop()
+}
 
 // Two FAQ answers (pricing, hosting/maintenance) don't have real copy yet.
 // Rather than ship a literal "TODO(wesley)" string to visitors, they're kept

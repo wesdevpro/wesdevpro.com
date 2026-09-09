@@ -36,6 +36,12 @@ body,
   min-height: 4.75rem;
 }
 
+/* Any fragment-link target (e.g. /services#<slug>) needs room under the
+   sticky navbar above, or the destination heading lands hidden behind it. */
+[id] {
+  scroll-margin-top: calc(4.75rem + 1rem);
+}
+
 .site-navbar .navbar-brand {
   padding-left: 0.3rem;
 }
@@ -352,6 +358,11 @@ body,
 
 .content-card__cta,
 .content-card__secondary-link {
+  display: inline-block;
+  /* Standalone block CTAs, not inline prose links — WCAG 2.2 2.5.8's
+     "in a sentence" exception doesn't apply, so they need a real minimum
+     clickable height (24px), not just the surrounding text's line-height. */
+  padding-block: 0.25rem;
   font-weight: var(--weight-bold);
   letter-spacing: 0.01em;
 }
@@ -667,6 +678,25 @@ body,
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  /* Everything else that transitions/transforms on hover, focus, or press —
+     the navbar underline reveal, card hover/focus lift, button press, and
+     the sitewide light/dark transition — is small (opacity/translateY-scale
+     only) but still real motion, so it's neutralized here too. */
+  body,
+  .navbar,
+  .footer,
+  .site-navbar .navbar-item.is-nav-link::after,
+  .content-card,
+  .button {
+    transition: none;
+  }
+
+  .content-card:hover,
+  .content-card:focus-within,
+  .button:active {
+    transform: none;
   }
 }
 

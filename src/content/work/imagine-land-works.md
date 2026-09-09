@@ -34,6 +34,13 @@ and site-prep company operating out of Lakeland, Florida.
 
 ## Outcome
 
-The site is live at imaginelandworks.com.
+The site delivered on the brief: it's live and public at
+[imaginelandworks.com](https://imaginelandworks.com), presenting Imagine Land
+Works as the licensed, insured operation it is, with a clear path for a
+prospective customer to get in touch.
+
+No traffic, lead, or search-ranking figures have been collected for this
+project yet — this section will be updated if and when real numbers exist,
+rather than implying a measured result that hasn't been tracked.
 
 <!-- TODO(wesley): outcome metric, if one exists -->

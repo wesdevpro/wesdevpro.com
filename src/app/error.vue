@@ -9,8 +9,8 @@
           : "Sorry — something broke on this end." }}
       </p>
       <div class="empty-page__actions">
-        <NuxtLink to="/work" class="button is-primary is-medium" @click="handleClick">See the Work -&gt;</NuxtLink>
-        <NuxtLink to="/contact" class="button is-light is-medium" @click="handleClick">Contact -&gt;</NuxtLink>
+        <NuxtLink to="/work" class="button is-primary is-medium" @click="handleClick">See the Work <span aria-hidden="true">-&gt;</span></NuxtLink>
+        <NuxtLink to="/contact" class="button is-light is-medium" @click="handleClick">Contact <span aria-hidden="true">-&gt;</span></NuxtLink>
       </div>
     </section>
   </NuxtLayout>

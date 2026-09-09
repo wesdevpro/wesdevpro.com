@@ -8,8 +8,8 @@
             <h1 class="title">I build websites for small businesses, and I make sure the systems behind them actually work <EmphasisWord>together</EmphasisWord>.</h1>
             <p class="subtitle is-4">One person handles the design, the build, and the systems it runs on, from the first call to launch.</p>
             <div class="hero-actions">
-              <NuxtLink to="/contact" class="button is-primary is-medium">Start a Project -&gt;</NuxtLink>
-              <NuxtLink to="/work" class="button is-light is-medium">See the Work -&gt;</NuxtLink>
+              <NuxtLink to="/contact" class="button is-primary is-medium">Start a Project <span aria-hidden="true">-&gt;</span></NuxtLink>
+              <NuxtLink to="/work" class="button is-light is-medium">See the Work <span aria-hidden="true">-&gt;</span></NuxtLink>
             </div>
           </div>
         </div>

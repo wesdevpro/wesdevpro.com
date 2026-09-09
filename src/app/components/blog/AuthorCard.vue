@@ -1,6 +1,6 @@
 <template>
 	<div class="author-card">
-		<img v-if="avatar" class="author-card__avatar" :src="avatar" :alt="`${name} avatar`">
+		<img v-if="avatar" class="author-card__avatar" :src="avatar" :alt="`${name} avatar`" loading="lazy" decoding="async">
 		<div>
 			<p class="author-card__name">
 				<a v-if="url" :href="url" target="_blank" rel="noopener">{{ name }}</a>
