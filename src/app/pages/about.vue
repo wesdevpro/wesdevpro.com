@@ -4,12 +4,12 @@
       <header class="section-header">
         <p class="section-header__eyebrow">About</p>
         <h1 class="title section-header__title">I'm Wesley Ford.</h1>
-        <p class="section-header__subtitle">I build websites for small businesses and connect the systems behind them.</p>
+        <p class="section-header__subtitle">I build websites and AI-assisted automation for small businesses, and connect the systems behind them.</p>
       </header>
 
       <div class="columns is-variable is-7 mt-5">
         <div class="column is-7">
-          <p>I work full-time as a software engineer and take on a small number of client projects alongside it. That means I'm selective about what I take on and honest about timelines before we start. I keep a small number of projects running at a time on purpose, with clear checkpoints along the way, so you always know where things stand.</p>
+          <p>I work full-time as a software engineer and take on a small number of client projects alongside it. That means I'm selective about what I take on and honest about timelines before we start. I keep a small number of projects running at a time on purpose, with clear checkpoints along the way, so you always know where things stand. That includes AI-assisted automation now too — I build and ship it myself, the same way I build and maintain everything else I put my name on.</p>
 
           <p class="eyebrow mt-6">Buefy</p>
           <p class="mt-2">I'm the lead maintainer of Buefy, an open source component library for Vue, and I led its migration from Vue 2 to Vue 3.</p>
@@ -49,9 +49,9 @@ import headshot from '~/assets/images/LinkedIn Profile Picture.png'
 
 useSeoMeta({
   title: 'About',
-  description: "Wesley Ford builds websites for small businesses and connects the systems behind them. Lead maintainer of Buefy.",
+  description: "Wesley Ford builds websites and AI-assisted automation for small businesses, and connects the systems behind them. Lead maintainer of Buefy.",
   ogTitle: 'About · wesdevpro',
-  ogDescription: "Wesley Ford builds websites for small businesses and connects the systems behind them. Lead maintainer of Buefy.",
+  ogDescription: "Wesley Ford builds websites and AI-assisted automation for small businesses, and connects the systems behind them. Lead maintainer of Buefy.",
   ogImage: '/images/wesdevpro-banner.jpg',
   twitterCard: 'summary_large_image'
 })
@@ -68,7 +68,7 @@ useHead({
         name: 'Wesley Ford',
         url: 'https://wesdevpro.com/about',
         jobTitle: 'Software Engineer',
-        description: 'Lead maintainer of Buefy, an open source Vue component library. Builds websites and connects systems for small businesses.',
+        description: 'Lead maintainer of Buefy, an open source Vue component library. Builds websites, AI-assisted automation, and system integrations for small businesses.',
         address: {
           '@type': 'PostalAddress',
           addressRegion: 'SC',

@@ -12,10 +12,10 @@
 
 <script setup lang="ts">
 useSeoMeta({
-  title: 'Websites and Systems for Small Businesses',
-  description: 'wesdevpro builds websites and integrates the systems behind them for small businesses.',
-  ogTitle: 'wesdevpro · Websites and Systems for Small Businesses',
-  ogDescription: 'wesdevpro builds websites and integrates the systems behind them for small businesses.',
+  title: 'AI Tools and Automation for Small Businesses',
+  description: 'wesdevpro builds AI tooling and automation, connects the systems behind it, and builds the websites around it for small businesses.',
+  ogTitle: 'wesdevpro · AI Tools and Automation for Small Businesses',
+  ogDescription: 'wesdevpro builds AI tooling and automation, connects the systems behind it, and builds the websites around it for small businesses.',
   ogImage: '/images/wesdevpro-banner.jpg',
   twitterCard: 'summary_large_image'
 })
@@ -36,7 +36,7 @@ useHead({
           '@type': 'Person',
           name: 'Wesley Ford',
         },
-        description: 'Custom website design and development, cloud and systems integration, and AI tooling integration for small businesses.',
+        description: 'AI tooling integration, cloud and systems integration, and custom website design and development for small businesses.',
         areaServed: 'South Carolina',
         address: {
           '@type': 'PostalAddress',

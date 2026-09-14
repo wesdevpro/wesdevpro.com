@@ -28,10 +28,10 @@
 // on the right section instead of all three pointing at the bare page.
 const services = [
   {
-    slug: 'website-design-and-build',
-    title: 'Custom website design and build',
-    oneLiner: 'A site that explains what you do and makes it easy to get in touch.',
-    ctaLabel: 'Discuss website design',
+    slug: 'ai-tooling-integration',
+    title: 'AI tooling integration',
+    oneLiner: 'Sorting inquiries, pulling details from documents, or drafting a reply for you to check.',
+    ctaLabel: 'Discuss AI tooling',
   },
   {
     slug: 'cloud-and-systems-integration',
@@ -40,10 +40,10 @@ const services = [
     ctaLabel: 'Discuss systems integration',
   },
   {
-    slug: 'ai-tooling-integration',
-    title: 'AI tooling integration',
-    oneLiner: 'One specific task automated, wired into how you already work.',
-    ctaLabel: 'Discuss AI tooling',
+    slug: 'website-design-and-build',
+    title: 'Custom website design and build',
+    oneLiner: 'A site that explains what you do and makes it easy to get in touch.',
+    ctaLabel: 'Discuss website design',
   },
 ]
 </script>

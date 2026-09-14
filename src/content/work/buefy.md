@@ -2,7 +2,7 @@
 name: Buefy
 description: "Open source Vue component library. I'm the lead maintainer and led its migration from Vue 2 to Vue 3."
 tags: ["open-source", "vue3", "buefy", "migration"]
-date: "09-07-2025"
+date: "2025-09-07"
 order: 2
 featured: true
 repoUrl: "https://github.com/buefy/buefy"

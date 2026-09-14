@@ -7,7 +7,7 @@ includes:
   - A walkthrough of how to update it yourself after launch
 excludes:
   - Ongoing content writing or photography — you provide the words and images, or we scope that separately
-order: 1
+order: 3
 ---
 
 <!-- TODO(wesley): set a starting price anchor once decided, then add

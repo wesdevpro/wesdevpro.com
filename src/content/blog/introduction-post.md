@@ -9,12 +9,10 @@ tags:
   - "origin story"
   - "portfolio"
   - "business"
-date: "07-29-2025"
+date: "2025-07-29"
 coverImage: "/images/wesdevpro-banner.jpg"
 author: "wesdevpro"
 ---
-
-# The Life and Mission of wesdevpro
 
 I'm Wesley Ford. wesdevpro is the name I build under, and this is a bit about how I got here.
 

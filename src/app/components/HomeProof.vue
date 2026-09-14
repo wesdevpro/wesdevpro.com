@@ -30,7 +30,7 @@ const bigStat = computed(() => buefy.value?.stat)
 // a second date field just for this caption.
 const statAsOf = computed(() => {
   if (!buefy.value?.date) return null
-  return new Date(buefy.value.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })
+  return new Date(buefy.value.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })
 })
 </script>
 

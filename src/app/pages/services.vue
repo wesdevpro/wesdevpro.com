@@ -82,9 +82,9 @@ const faqItems = [
 
 useSeoMeta({
   title: 'Services',
-  description: 'Custom website design and build, cloud and systems integration, and AI tooling integration for small businesses.',
+  description: 'AI tooling integration, cloud and systems integration, and custom website design and build for small businesses.',
   ogTitle: 'Services · wesdevpro',
-  ogDescription: 'Custom website design and build, cloud and systems integration, and AI tooling integration for small businesses.',
+  ogDescription: 'AI tooling integration, cloud and systems integration, and custom website design and build for small businesses.',
   ogImage: '/images/wesdevpro-banner.jpg',
   twitterCard: 'summary_large_image'
 })

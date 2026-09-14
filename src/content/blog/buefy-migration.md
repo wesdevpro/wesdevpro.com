@@ -6,12 +6,10 @@ tags:
   - "Software Migration"
   - "Vue2ToVue3"
   - "vue3"
-date: "09-07-2025"
+date: "2025-09-07"
 coverImage: "/images/buefy-banner.png"
 author: "wesdevpro"
 ---
-
-# Migrating Buefy from Vue 2 to Vue 3
 
 The transition from Vue 2 to Vue 3 has been one of the most anticipated upgrades in the Vue ecosystem. For developers relying on Buefy — a lightweight UI component library based on Bulma — this migration meant real technical work, not just a version bump.
 

@@ -4,7 +4,7 @@
       <SectionHeader
         eyebrow="Process"
         title="How a project runs"
-        subtitle="Four steps from the first call to a live site."
+        subtitle="Four steps from the first call to launch."
       />
 
       <ol class="process-section__list">
@@ -25,7 +25,7 @@ const steps = [
   {
     step: 1,
     title: 'First call',
-    body: 'I ask about the business and what the site needs to do, then tell you honestly whether it\'s a good fit.',
+    body: 'I ask about the business and what needs to get built, then tell you honestly whether it\'s a good fit.',
   },
   {
     step: 2,
@@ -35,12 +35,12 @@ const steps = [
   {
     step: 3,
     title: 'Build',
-    body: 'I build the site and check in along the way, so nothing surprises you at the end.',
+    body: 'I build it and check in along the way, so nothing surprises you at the end.',
   },
   {
     step: 4,
     title: 'Launch',
-    body: 'I put the site live and walk you through how to update it yourself.',
+    body: 'I put it live and walk you through how to run or update it yourself.',
   },
 ]
 </script>

@@ -100,7 +100,7 @@
           <h2 class="title is-5">What to Include</h2>
           <ul class="contact-list">
             <li>What the business does</li>
-            <li>What you want the site or system to do</li>
+            <li>What you want automated, or what you want the site or system to do</li>
             <li>Any deadline you're working against</li>
           </ul>
         </div>
@@ -167,7 +167,7 @@ async function onSubmit() {
 
 useSeoMeta({
   title: 'Contact',
-  description: 'Tell wesdevpro about your business and what you need built — a website, a system integration, or AI tooling.',
+  description: 'Tell wesdevpro about your business and what you need built — AI tooling, a system integration, or a website.',
   ogTitle: 'Contact · wesdevpro',
   ogDescription: 'Tell wesdevpro about your business and what you need built.',
   ogImage: '/images/wesdevpro-banner.jpg',
